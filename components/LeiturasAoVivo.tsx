@@ -59,7 +59,7 @@ const LEITURAS: Leitura[] = [
     meta: [{ rotulo: 'Esperado', valor: '0', unidade: 'lux' }, { rotulo: 'Lacre', valor: 'Aberto' }, { rotulo: 'Desde', valor: '14:26' }],
     serie: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 280, 330, 320],
     escala: [0, 400],
-    legenda: 'Luz dentro do baú fora da doca: equipe avisada às 14:26',
+    legenda: 'Baú aberto fora da doca: equipe avisada às 14:26',
   },
   {
     parametro: 'Impacto',

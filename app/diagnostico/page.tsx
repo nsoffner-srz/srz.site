@@ -11,11 +11,11 @@ export default function Diagnostico() {
         <div className="diag__texto">
           <p className="rotulo">Diagnóstico gratuito</p>
           <h1 className="display-l">Conte sobre a sua operação</h1>
-          <p className="lead">O nosso time técnico retorna para entender os ativos que você precisa monitorar e mostrar onde estão os riscos de perda.</p>
+          <p className="lead">Nosso time entra em contato para entender o que você precisa monitorar.</p>
           <ul className="diag__lista">
-            <li>Levantamento dos ativos e ambientes sensíveis</li>
-            <li>Normas que se aplicam à sua operação</li>
-            <li>Dispositivos indicados e prazo de instalação</li>
+            <li>O que monitorar</li>
+            <li>Quais normas se aplicam</li>
+            <li>Dispositivos e prazo de instalação</li>
           </ul>
           <p className="apoio">Prefere conversar agora? <a href={SITE.whatsapp}>Fale pelo WhatsApp</a>.</p>
         </div>

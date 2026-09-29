@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="container rodape__grade">
         <div className="rodape__marca">
           <Logo largura={150} sempreNegativo />
-          <p>Monitoramento de ativos sensíveis em tempo real. Ver, agir e provar, em qualquer operação.</p>
+          <p>Monitoramento de ativos sensíveis em tempo real.</p>
           <Link className="botao botao--primario" href="/diagnostico">Solicitar diagnóstico</Link>
         </div>
         {NAV.filter((n) => n.filhos).map((n) => (

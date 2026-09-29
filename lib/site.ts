@@ -4,7 +4,7 @@ export const SITE = {
   nome: 'Sensoriz',
   url: 'https://www.sensoriz.com.br',
   descricao:
-    'A Sensoriz monitora cargas, estoques, geladeiras e equipamentos de alto valor em tempo real, avisa só quando algo sai do padrão e gera a prova para auditoria.',
+    'A Sensoriz monitora cargas, estoques e equipamentos em tempo real e avisa antes que o problema vire prejuízo.',
   loginCore: 'https://core.sensoriz.com.br/login',
   whatsapp: 'https://wa.me/5511937140742?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Sensoriz',
   ouvidoria: 'mailto:ouvidoria@sensoriz.com.br',

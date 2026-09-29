@@ -17,7 +17,7 @@ export default function Setores() {
           <div className="secao__topo">
             <Trilha itens={trilha} />
             <h1 className="display-xl">Setores</h1>
-            <p className="lead">Operações diferentes com o mesmo problema: ativos sensíveis longe dos olhos de quem responde por eles.</p>
+            <p className="lead">Operações diferentes, o mesmo desafio: cuidar do que está longe.</p>
           </div>
           <div className="grade grade--2">
             {SETORES.map((s) => (

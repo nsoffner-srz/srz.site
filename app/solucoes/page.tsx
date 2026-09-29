@@ -17,7 +17,7 @@ export default function Solucoes() {
           <div className="secao__topo">
             <Trilha itens={trilha} />
             <h1 className="display-xl">Soluções</h1>
-            <p className="lead">Dispositivos, plataforma e serviço trabalhando juntos para ver, agir e provar.</p>
+            <p className="lead">Dispositivos, plataforma e serviço trabalhando juntos.</p>
           </div>
           <div className="grade grade--2">
             {SOLUCOES.map((s) => (

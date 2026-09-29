@@ -18,7 +18,7 @@ export default function Conteudo() {
           <div className="secao__topo">
             <Trilha itens={trilha} />
             <h1 className="display-xl">Conteúdo</h1>
-            <p className="lead">O que a norma exige, quanto custa uma perda e como organizar a operação para não depender da sorte.</p>
+            <p className="lead">Normas, perdas e gestão da operação, em detalhe.</p>
           </div>
           <FiltrosConteudo atual="/conteudo" />
           {lista.length ? (

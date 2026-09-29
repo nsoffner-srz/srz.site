@@ -109,9 +109,22 @@ Se algo aqui divergir, o design system vence.
   A unidade ao lado do número (°C, %UR) fica em Questrial.
 - **14px é o piso** (exceção: rótulo em caixa alta, 13px). Alvo de toque mínimo 44 × 44px. Nada depende de hover.
 - **Celular e desktop têm o mesmo peso:** conferir toda página em 390px e 1280px, e nos temas claro e escuro.
-- **Logo:** use só os arquivos de `public/marca` pelo componente `Logo.astro`. Nunca escrever "Sensoriz" em
+- **Logo:** use só os arquivos de `public/marca` pelo componente `Logo.tsx`. Nunca escrever "Sensoriz" em
   Archivo Black como logo. Largura mínima 140px. Sobre fundo azul, só a versão mono branca.
 - Sem clichês de IA: nada de gradiente azul-roxo, cards com emoji ou borda lateral colorida.
+
+## Voz e linguagem (decisão da Nicole, 29 set 2026)
+
+- **No site: tom estabelecido e linguagem simples.** A Sensoriz fala como empresa segura do que entrega,
+  sem exagero e sem jargão. Quem lê é dono, diretor, responsável técnico ou gerente de operação.
+- **Textos curtos.** Título com até 10 palavras. Subtítulo com uma frase, no máximo duas.
+  Parágrafo com até 2 frases. Card com uma frase. Se dá para cortar, corte.
+- **Uma ideia por frase.** Verbo no começo sempre que possível ("Monitore", "Saiba", "Receba").
+- **Palavras do dia a dia do cliente:** "temperatura fora da faixa", "caminhão", "geladeira", "estoque".
+  Nada de "telemetria", "acionável", "irrefutável", "redefinimos".
+- **Termos técnicos ficam para o Conteúdo (blog).** Lá vale linguagem técnica, com norma, número e fonte.
+  No site, a norma aparece pelo nome e pelo que exige, em poucas palavras.
+- Sem exclamação, sem promessa absoluta ("nunca mais perca"), sem superlativo sem prova.
 
 ## Vocabulário
 
@@ -148,3 +161,13 @@ Datas e eventos sempre em português. Sem emojis.
 - Cada branch gera um link de prévia para revisão antes do merge na `main`.
 - Antes de apontar o domínio: conferir a lista completa de URLs do Framer em `public/_redirects`
   (incluindo cada post do blog antigo) e só então cancelar o Framer.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

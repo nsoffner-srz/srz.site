@@ -16,26 +16,26 @@ export const PARAMETROS_HUB = [
 export const PARAMETROS_TAG = ['Temperatura', 'Umidade', 'Localização'] as const;
 
 export const MODELOS_HUB = [
-  { nome: 'Recarregável', uso: 'Rotas que voltam à base, como a frota de distribuição. Recarrega entre uma viagem e outra.' },
-  { nome: 'Na tomada', uso: 'Geladeiras, câmaras e salas fixas. Mede também a queda de energia.' },
-  { nome: 'Descartável', uso: 'Envios de ida, sem retorno do equipamento. Bateria de longa duração.' },
-  { nome: 'Longa duração', uso: 'Ativos que ficam anos no mesmo lugar ou em circulação. Bateria de até 5 anos.' },
+  { nome: 'Recarregável', uso: 'Para frotas que voltam à base.' },
+  { nome: 'Na tomada', uso: 'Para geladeiras, câmaras e salas. Avisa se a energia cair.' },
+  { nome: 'Descartável', uso: 'Para envios só de ida.' },
+  { nome: 'Longa duração', uso: 'Para equipamentos de longa permanência. Até 5 anos de bateria.' },
 ];
 
 export const DISPOSITIVOS = [
   {
     nome: 'Hub',
-    resumo: 'Sensor completo e comunicador com a nuvem. Mede 8 parâmetros e envia as leituras, dele e das tags próximas, para a Sensoriz CORE.',
+    resumo: 'Mede 8 parâmetros e envia tudo para a CORE.',
     mede: PARAMETROS_HUB,
   },
   {
     nome: 'Tag',
-    resumo: 'Sensor compacto para cada volume, palete, caixa ou equipamento. Envia as leituras pelo hub mais próximo.',
+    resumo: 'Pequena, vai em cada caixa ou palete. Envia pelo hub.',
     mede: PARAMETROS_TAG,
   },
   {
     nome: 'Lacre inteligente',
-    resumo: 'Lacre eletrônico para portas de caminhão e baú. Registra e avisa quando a carga é aberta fora do previsto.',
-    mede: ['Abertura e violação da porta'] as readonly string[],
+    resumo: 'Na porta do caminhão. Avisa se a carga for aberta.',
+    mede: ['Abertura da porta'] as readonly string[],
   },
 ];

@@ -63,7 +63,7 @@ export default async function PaginaSetor({ params }: Props) {
           <div className="container">
             <div className="secao__topo">
               <p className="rotulo">O que a norma exige</p>
-              <h2 className="display-l">Conformidade que se prova com registro</h2>
+              <h2 className="display-l">Registro pronto para a fiscalização</h2>
             </div>
             <div className="grade grade--2">
               {s.normas.map((n) => (
@@ -74,7 +74,7 @@ export default async function PaginaSetor({ params }: Props) {
                 </div>
               ))}
             </div>
-            <p className="apoio" style={{ marginTop: 'var(--space-4)' }}>Resumo para orientação. Consulte o texto completo da norma para a sua operação.</p>
+            <p className="apoio" style={{ marginTop: 'var(--space-4)' }}>Resumo para orientação. Consulte a norma completa.</p>
           </div>
         </section>
       )}

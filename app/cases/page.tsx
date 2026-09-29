@@ -17,7 +17,7 @@ export default function Cases() {
           <div className="secao__topo">
             <Trilha itens={trilha} />
             <h1 className="display-xl">Cases</h1>
-            <p className="lead">Cenário, solução e resultado de operações que monitoram com a Sensoriz.</p>
+            <p className="lead">Operações que já monitoram com a Sensoriz.</p>
           </div>
           <div className="grade grade--3">{CASES.map((c) => <CaseCard c={c} completo key={c.id} />)}</div>
         </div>

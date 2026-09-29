@@ -21,7 +21,7 @@ export default function Empresa() {
         <div className="container pagina-topo__grade">
           <Trilha itens={trilha} />
           <h1 className="display-xl">A Sensoriz existe para que nada de valor se perca longe dos olhos</h1>
-          <p className="lead">Desenvolvemos a plataforma Sensoriz CORE e trabalhamos com hardware de parceiros internacionais para que operações de alimentos, medicamentos, saúde e indústria vejam o que acontece com os seus ativos, ajam antes do prejuízo e provem que tudo esteve dentro do padrão.</p>
+          <p className="lead">Desenvolvemos a plataforma Sensoriz CORE e trabalhamos com parceiros internacionais de hardware. Para que você veja, aja e prove.</p>
           <p className="pendente">História da empresa: pendente</p>
         </div>
       </section>
