@@ -10,7 +10,7 @@ import { TEMAS, SETORES_ROTULO } from './site';
 const PASTA = path.join(process.cwd(), 'content', 'conteudo');
 
 const Esquema = z.object({
-  titulo: z.string().max(90),
+  titulo: z.string().max(120),
   descricao: z.string().max(170),
   publicado: z.coerce.date(),
   atualizado: z.coerce.date().optional(),
@@ -19,6 +19,8 @@ const Esquema = z.object({
   setores: z.array(z.enum(Object.keys(SETORES_ROTULO) as [keyof typeof SETORES_ROTULO])).default([]),
   serie: z.enum(['norma-em-dia']).optional(),
   rascunho: z.boolean().default(false),
+  palavrasChave: z.array(z.string()).default([]), // viram keywords nos dados estruturados
+  origem: z.string().url().optional(), // onde o texto foi publicado primeiro (ex.: LinkedIn)
   perguntas: z.array(z.object({ pergunta: z.string(), resposta: z.string() })).default([]),
 });
 
@@ -38,7 +40,8 @@ export function artigos(): Artigo[] {
       if (!r.success) throw new Error(`Cabeçalho inválido em content/conteudo/${arquivo}: ${r.error.message}`);
       return { ...r.data, slug: arquivo.replace(/\.md$/, ''), html: marked.parse(content, { async: false }) as string };
     })
-    .filter((a) => !a.rascunho)
+    // Rascunhos aparecem só no `npm run dev` (com a marca Rascunho), nunca no site publicado.
+    .filter((a) => !a.rascunho || process.env.NODE_ENV === 'development')
     .sort((a, b) => b.publicado.getTime() - a.publicado.getTime());
   return cache;
 }

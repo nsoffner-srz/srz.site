@@ -39,6 +39,7 @@ export default async function Artigo({ params }: Props) {
     author: { '@type': 'Organization', name: a.autor, url: SITE.url },
     publisher: { '@id': `${SITE.url}/#organizacao` },
     about: a.setores.map((s) => SETORES_ROTULO[s]),
+    ...(a.palavrasChave.length ? { keywords: a.palavrasChave.join(', ') } : {}),
   };
   return (
     <>
@@ -47,6 +48,7 @@ export default async function Artigo({ params }: Props) {
         <div className="container artigo">
           <header className="artigo__topo">
             <Trilha itens={trilha} />
+            {a.rascunho && <p className="pendente">Rascunho: não aparece no site publicado</p>}
             <p className="rotulo"><Link href={`/conteudo/tema/${a.tema}`}>{TEMAS[a.tema]}</Link></p>
             <h1 className="display-l">{a.titulo}</h1>
             <p className="lead">{a.descricao}</p>
@@ -61,6 +63,7 @@ export default async function Artigo({ params }: Props) {
             )}
           </header>
           <div className="prosa" dangerouslySetInnerHTML={{ __html: a.html }} />
+          {a.origem && <p className="apoio">Publicado originalmente no <a href={a.origem}>LinkedIn da Sensoriz</a>.</p>}
           {a.perguntas.length > 0 && <div style={{ maxWidth: '70ch' }}><Perguntas itens={a.perguntas} titulo="Resumo em perguntas" /></div>}
         </div>
       </article>

@@ -9,7 +9,7 @@ setores:
   - farmacias-e-clinicas
   - saude
   - industria-e-inventario
-rascunho: false
+rascunho: true
 perguntas:
   - pergunta: O que é gestão por exceção no monitoramento de ativos?
     resposta: É o modelo em que a plataforma acompanha as leituras o tempo todo e só chama a equipe quando uma leitura sai da faixa definida, em vez de exigir que alguém olhe o painel continuamente.
