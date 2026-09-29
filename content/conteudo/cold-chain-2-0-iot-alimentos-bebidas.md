@@ -6,6 +6,8 @@ tema: tecnologia-e-dados
 setores:
   - logistica-e-cadeia-fria
 palavrasChave: [Logística e Cold Chain, Alimentos, Cadeia do Frio, IoT e Tecnologia]
+capaAlt: "Funcionário em câmara fria com carrinhos de produtos perecíveis"
+capaCredito: "Foto: Anna Shvets / Pexels"
 # PENDÊNCIA: números e caso sem fonte (30% de perdas globais, -40% desperdício,
 # caso de laticínios: -75%, R$ 1,2 mi/ano). Validar ou retirar.
 rascunho: true

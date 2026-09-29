@@ -6,6 +6,7 @@ tema: tecnologia-e-dados
 setores:
   - industria-e-inventario
 palavrasChave: [IoT e Tecnologia, Indústria e Inventário]
+capaAlt: "Mão robótica sobre fundo azul"
 origem: https://www.linkedin.com/pulse/tecnologia-inacessível-quando-inovação-falha-em-chegar-às-mãos-wfcdf/
 # PENDÊNCIA: estatísticas sem link de fonte (McKinsey 84%/16%, Gartner 65%, 32%, 45% e 70%). Validar ou retirar.
 rascunho: true

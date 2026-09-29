@@ -7,6 +7,8 @@ setores:
   - logistica-e-cadeia-fria
   - industria-e-inventario
 palavrasChave: [Ativos de Alto Valor, Logística e Cold Chain, IoT e Tecnologia]
+capaAlt: "Caminhão refrigerado com as luzes acesas em uma estrada à noite"
+capaCredito: "Foto: Sergei Skrynnik / Pexels"
 origem: https://www.linkedin.com/pulse/como-tecnologia-e-o-conhecimento-transformam-segurança-transporte-oc9of/
 # PENDÊNCIA: confirmar se o caso (-35% perdas, resposta 50% mais rápida, depoimento do gerente) é real.
 rascunho: true

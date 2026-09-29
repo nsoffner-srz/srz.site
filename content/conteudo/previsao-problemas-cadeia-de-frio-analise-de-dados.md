@@ -6,6 +6,7 @@ tema: tecnologia-e-dados
 setores:
   - logistica-e-cadeia-fria
 palavrasChave: [Logística e Cold Chain, Alimentos, Cadeia do Frio, IoT e Tecnologia]
+capaAlt: "Operador com roupa térmica movendo carga dentro de uma câmara fria"
 # PENDÊNCIA: números e caso sem fonte (R$ 500 mil, 25%, -50% avarias, -30% custos,
 # caso de sucos: R$ 2 mi, 98%, 100%). Validar ou apresentar como exemplo ilustrativo.
 rascunho: true

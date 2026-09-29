@@ -6,6 +6,8 @@ tema: perdas-e-custos
 setores:
   - logistica-e-cadeia-fria
 palavrasChave: [Logística e Cold Chain, Alimentos, Cadeia do Frio, Gestão pela Exceção]
+capaAlt: "Empilhadeira na porta de uma câmara fria de armazém"
+capaCredito: "Foto: ELEVATE / Pexels"
 # PENDÊNCIA: citar a fonte de "61% das empresas".
 rascunho: true
 ---

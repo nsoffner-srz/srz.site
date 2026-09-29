@@ -6,6 +6,7 @@ tema: perdas-e-custos
 setores:
   - logistica-e-cadeia-fria
 palavrasChave: [Logística e Cold Chain, Alimentos, ESG, Gestão pela Exceção]
+capaAlt: "Bandejas de salmão embaladas e refrigeradas"
 rascunho: false
 perguntas:
   - pergunta: Qual a relação entre a cadeia de frio e as emissões de gases de efeito estufa?

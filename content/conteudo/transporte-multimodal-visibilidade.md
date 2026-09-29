@@ -6,6 +6,8 @@ tema: tecnologia-e-dados
 setores:
   - logistica-e-cadeia-fria
 palavrasChave: [Logística e Cold Chain, IoT e Tecnologia, Regulatório (Anvisa)]
+capaAlt: "Navio porta-contêineres atracado em um terminal portuário ao entardecer"
+capaCredito: "Foto: Wolfgang Weiser / Pexels"
 origem: https://www.linkedin.com/pulse/o-que-é-transporte-multimodal-e-por-visibilidade-de-todas-etapas-fytqf/
 # PENDÊNCIA: confirmar se os casos são reais ("estudo de caso da Sensoriz": 20% de atrasos, até 72 h;
 # exportadora de eletrônicos: US$ 5 mil/dia, -95% multas).

@@ -6,6 +6,7 @@ tema: perdas-e-custos
 setores:
   - logistica-e-cadeia-fria
 palavrasChave: [Saúde e Farmacêutico, Cadeia do Frio, Regulatório (Anvisa), Gestão pela Exceção]
+capaAlt: "Central de monitoramento com vários monitores e um painel na parede"
 origem: https://www.linkedin.com/pulse/o-prejuízo-de-um-desvio-temperatura-não-termina-lote-descartado-mj3ff/
 rascunho: false
 perguntas:

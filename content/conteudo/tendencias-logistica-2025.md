@@ -6,6 +6,7 @@ tema: tecnologia-e-dados
 setores:
   - logistica-e-cadeia-fria
 palavrasChave: [Logística e Cold Chain, IoT e Tecnologia, Tendências, ESG]
+capaAlt: "Mulher com tablet no corredor de um centro de distribuição"
 origem: https://www.linkedin.com/pulse/5-tendências-que-vão-ou-melhor-estão-revolucionando-logística-s5hkf/
 # PENDÊNCIA: REVISÃO FORTE ANTES DE PUBLICAR. Exemplos sem fonte ou pouco verificáveis (supermercados no Chile -25%,
 # e-commerce no México -15%, Solistica -40%, startup com caminhões a energia solar, farmácias na Colômbia 90%,

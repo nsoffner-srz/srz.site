@@ -7,6 +7,7 @@ serie: norma-em-dia
 setores:
   - logistica-e-cadeia-fria
 palavrasChave: [Saúde e Farmacêutico, Regulatório (Anvisa)]
+capaAlt: "Operador em empilhadeira dentro de um armazém"
 origem: https://www.linkedin.com/pulse/sua-empresa-está-pronta-para-o-monitoramento-contínuo-da-anvisa-e3nxf/
 rascunho: false
 perguntas:

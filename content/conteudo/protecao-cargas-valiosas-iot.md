@@ -7,6 +7,8 @@ setores:
   - industria-e-inventario
   - logistica-e-cadeia-fria
 palavrasChave: [Ativos de Alto Valor, IoT e Tecnologia]
+capaAlt: "Trabalhador fechando a porta de um contêiner no porto"
+capaCredito: "Foto: Simon R. Minshall / Pexels"
 # PENDÊNCIA: sem fonte ("45% dos roubos", caso -90%). Confirmar "precisão de até 30 cm"
 # e "certificação IATA" nas especificações dos dispositivos.
 rascunho: true

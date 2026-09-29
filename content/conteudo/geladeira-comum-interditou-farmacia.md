@@ -6,6 +6,7 @@ tema: normas-e-fiscalizacao
 setores:
   - farmacias-e-clinicas
 palavrasChave: [Saúde e Farmacêutico, Regulatório (Anvisa), Cadeia do Frio, Monitoramento Ambiental]
+capaAlt: "Geladeira aberta em um estoque escuro"
 origem: https://www.linkedin.com/pulse/geladeira-comum-que-interditou-uma-farmácia-sensoriz-vabdf/
 rascunho: false
 perguntas:

@@ -7,6 +7,7 @@ setores:
   - logistica-e-cadeia-fria
   - industria-e-inventario
 palavrasChave: [IoT e Tecnologia, Logística e Cold Chain, Indústria e Inventário, Geofencing]
+capaAlt: "Vista aérea de caminhões estacionados nas docas de um armazém"
 # PENDÊNCIA: números sem fonte (-30% espera em pátio, -90% incidentes em fábrica de autopeças,
 # -40% descarte irregular em Curitiba). Validar ou retirar.
 rascunho: true

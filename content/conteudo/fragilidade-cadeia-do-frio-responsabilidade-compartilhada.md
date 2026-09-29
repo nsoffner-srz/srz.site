@@ -6,6 +6,7 @@ tema: normas-e-fiscalizacao
 setores:
   - logistica-e-cadeia-fria
 palavrasChave: [Saúde e Farmacêutico, Cadeia do Frio, Regulatório (Anvisa), Gestão pela Exceção]
+capaAlt: "Vista aérea de docas de carregamento de um centro de distribuição"
 origem: https://www.linkedin.com/pulse/fragilidade-da-cadeia-do-frio-brasileira-e-responsabilidade-compartilhada-nnobf/
 # PENDÊNCIA: citar a fonte de "R$ 192 bilhões" e "65% rodoviário" (provavelmente o Guia ABOL).
 rascunho: true

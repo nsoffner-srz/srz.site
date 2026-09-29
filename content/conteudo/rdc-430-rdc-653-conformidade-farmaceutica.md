@@ -7,6 +7,7 @@ serie: norma-em-dia
 setores:
   - logistica-e-cadeia-fria
 palavrasChave: [Saúde e Farmacêutico, Regulatório (Anvisa), Cadeia do Frio]
+capaAlt: "Frascos de vacina enfileirados"
 # PENDÊNCIA: sem fonte ("60% das não conformidades", caso farmacêutico: -90%, R$ 2,5 mi).
 # Confirmar "±0,5 °C" nas especificações. "A Anvisa está intensificando fiscalizações em 2025" está datado.
 rascunho: true

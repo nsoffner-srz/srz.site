@@ -7,6 +7,7 @@ setores:
   - logistica-e-cadeia-fria
   - industria-e-inventario
 palavrasChave: [Ativos de Alto Valor, Logística e Cold Chain, Geofencing]
+capaAlt: "Carretas estacionadas nas docas de um armazém"
 # PENDÊNCIA: sem fonte (caso R$ 2 milhões, "1 em cada 3 empresas", "70% dos roubos").
 # Confirmar "±0,5G" nas especificações dos dispositivos.
 rascunho: true

@@ -6,6 +6,7 @@ tema: perdas-e-custos
 setores:
   - logistica-e-cadeia-fria
 palavrasChave: [Saúde e Farmacêutico, Ativos de Alto Valor, Regulatório (Anvisa), Cadeia do Frio]
+capaAlt: "Equipe carregando caixas de medicamentos em um caminhão na saída da câmara fria"
 origem: https://www.linkedin.com/pulse/o-medicamento-que-vale-mais-também-é-corre-risco-duas-vezes-7qwic/
 rascunho: false
 perguntas:
