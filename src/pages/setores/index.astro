@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Trilha from '../../components/Trilha.astro';
+import ChamadaDiagnostico from '../../components/ChamadaDiagnostico.astro';
+import { trilhaJsonLd } from '../../lib/seo';
+const setores = (await getCollection('setores')).sort((a, b) => a.data.ordem - b.data.ordem);
+const trilha = [{ nome: 'Início', caminho: '/' }, { nome: 'Setores', caminho: '/setores' }];
+---
+<Base titulo="Setores atendidos" descricao="Logística e cadeia fria, farmácias e clínicas, saúde e indústria: onde a Sensoriz monitora ativos sensíveis em tempo real." jsonLd={[trilhaJsonLd(trilha)]}>
+  <section class="secao">
+    <div class="container">
+      <div class="secao__topo">
+        <Trilha itens={trilha} />
+        <h1 class="display-xl">Setores</h1>
+        <p class="lead">Operações diferentes com o mesmo problema: ativos sensíveis longe dos olhos de quem responde por eles.</p>
+      </div>
+      <div class="grade grade--2">
+        {setores.map((s) => (
+          <article class="card setor">
+            <h2 class="display-m"><a href={`/setores/${s.id}`}>{s.data.nome}</a></h2>
+            <p class="apoio">{s.data.resumo}</p>
+            <p class="rotulo">{s.data.normas.map((n) => n.nome.split(' (')[0]).join(' · ') || 'Inventário e localização'}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <ChamadaDiagnostico />
+</Base>
+<style>
+  .setor { display: grid; gap: var(--space-3); position: relative; }
+  .setor a { color: var(--tinta); text-decoration: none; }
+  .setor a::after { content: ''; position: absolute; inset: 0; }
+  .setor:hover { border-color: var(--tinta-suave); }
+</style>

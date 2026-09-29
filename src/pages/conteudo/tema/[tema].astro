@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Trilha from '../../../components/Trilha.astro';
+import CardConteudo from '../../../components/CardConteudo.astro';
+import FiltrosConteudo from '../../../components/FiltrosConteudo.astro';
+import { TEMAS } from '../../../content.config';
+import { TEMAS_ROTULO } from '../../../data/site';
+import { trilhaJsonLd } from '../../../lib/seo';
+
+export function getStaticPaths() {
+  return TEMAS.map((tema) => ({ params: { tema } }));
+}
+const { tema } = Astro.params as { tema: string };
+const nome = TEMAS_ROTULO[tema];
+const artigos = (await getCollection('conteudo', (a) => !a.data.rascunho && a.data.tema === tema))
+  .sort((a, b) => b.data.publicado.getTime() - a.data.publicado.getTime());
+const trilha = [{ nome: 'Início', caminho: '/' }, { nome: 'Conteúdo', caminho: '/conteudo' }, { nome, caminho: `/conteudo/tema/${tema}` }];
+---
+<Base titulo={`${nome} | Conteúdo`} descricao={`Artigos da Sensoriz sobre ${nome.toLowerCase()} para quem responde por ativos sensíveis.`} jsonLd={[trilhaJsonLd(trilha)]} semIndice={artigos.length === 0}>
+  <section class="secao">
+    <div class="container">
+      <div class="secao__topo">
+        <Trilha itens={trilha} />
+        <h1 class="display-l">{nome}</h1>
+      </div>
+      <FiltrosConteudo />
+      {artigos.length ? (
+        <div class="grade grade--3">
+          {artigos.map((a) => <CardConteudo href={`/conteudo/${a.id}`} titulo={a.data.titulo} descricao={a.data.descricao} tema={a.data.tema} data={a.data.publicado} />)}
+        </div>
+      ) : <p class="apoio">Ainda não há artigos neste tema.</p>}
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,116 @@
+---
+// Formulário de diagnóstico. Envia para /api/diagnostico (functions/api/diagnostico.ts),
+// que cria o lead no Pipeline Sensoriz do Notion com origem "Site".
+import Base from '../layouts/Base.astro';
+import { SITE, SETORES_ROTULO } from '../data/site';
+---
+<Base titulo="Solicitar diagnóstico gratuito" descricao="Peça um diagnóstico gratuito: o time técnico da Sensoriz levanta os ativos sensíveis da sua operação, as normas que se aplicam e onde estão os riscos de perda.">
+  <section class="secao">
+    <div class="container diag">
+      <div class="diag__texto">
+        <p class="rotulo">Diagnóstico gratuito</p>
+        <h1 class="display-l">Conte sobre a sua operação</h1>
+        <p class="lead">O nosso time técnico retorna para entender os ativos que você precisa monitorar e mostrar onde estão os riscos de perda.</p>
+        <ul class="diag__lista">
+          <li>Levantamento dos ativos e ambientes sensíveis</li>
+          <li>Normas que se aplicam à sua operação</li>
+          <li>Configuração de dispositivos e prazo de instalação</li>
+        </ul>
+        <p class="apoio">Prefere conversar agora? <a href={SITE.whatsapp}>Fale pelo WhatsApp</a>.</p>
+      </div>
+
+      <form class="card form" method="post" action="/api/diagnostico" id="form-diagnostico">
+        <div class="campo">
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" autocomplete="name" required />
+        </div>
+        <div class="campo">
+          <label for="cargo">Cargo</label>
+          <input id="cargo" name="cargo" autocomplete="organization-title" />
+        </div>
+        <div class="campo">
+          <label for="email">E-mail corporativo</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="campo">
+          <label for="telefone">Telefone ou WhatsApp</label>
+          <input id="telefone" name="telefone" type="tel" autocomplete="tel" required />
+        </div>
+        <div class="campo">
+          <label for="empresa">Empresa</label>
+          <input id="empresa" name="empresa" autocomplete="organization" required />
+        </div>
+        <div class="campo">
+          <label for="setor">Setor</label>
+          <select id="setor" name="setor" required>
+            <option value="">Selecione</option>
+            {Object.entries(SETORES_ROTULO).map(([id, nome]) => <option value={id}>{nome}</option>)}
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="pontos">Quantos pontos quer monitorar? <span class="opcional">(opcional)</span></label>
+          <input id="pontos" name="pontos" type="number" min="1" inputmode="numeric" />
+          <p class="ajuda">Uma geladeira, uma sala, um veículo ou um equipamento contam como um ponto.</p>
+        </div>
+        <div class="campo campo--largo">
+          <label for="mensagem">O que você quer resolver? <span class="opcional">(opcional)</span></label>
+          <textarea id="mensagem" name="mensagem" rows="4"></textarea>
+        </div>
+        <div class="armadilha" aria-hidden="true"><label>Não preencha<input type="text" name="site_url" tabindex="-1" autocomplete="off" /></label></div>
+        <div class="campo campo--largo campo--consentimento">
+          <input id="consentimento" name="consentimento" type="checkbox" required />
+          <label for="consentimento">Concordo que a Sensoriz use estes dados para entrar em contato sobre o diagnóstico, conforme a <a href="/privacidade">política de privacidade</a>.</label>
+        </div>
+        <button class="botao botao--primario" type="submit">Solicitar diagnóstico</button>
+        <p class="form__retorno" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Envia sem recarregar a página quando o JavaScript está disponível; sem ele, o formulário funciona do mesmo jeito.
+  const form = document.getElementById('form-diagnostico') as HTMLFormElement | null;
+  const params = new URLSearchParams(location.search);
+  const setor = params.get('setor');
+  if (form && setor) (form.elements.namedItem('setor') as HTMLSelectElement).value = setor;
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const retorno = form.querySelector('.form__retorno') as HTMLElement;
+    const botao = form.querySelector('button') as HTMLButtonElement;
+    botao.disabled = true;
+    retorno.textContent = 'Enviando…';
+    try {
+      const r = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (!r.ok) throw new Error();
+      form.reset();
+      retorno.textContent = 'Recebemos o seu pedido. O nosso time entra em contato em até um dia útil.';
+    } catch {
+      retorno.textContent = 'Não foi possível enviar agora. Tente de novo ou fale pelo WhatsApp.';
+    } finally {
+      botao.disabled = false;
+    }
+  });
+</script>
+
+<style>
+  .diag { display: grid; gap: var(--space-6); }
+  .diag__texto { display: grid; gap: var(--space-4); align-content: start; }
+  .diag__lista { margin: 0; padding-left: 1.2em; display: grid; gap: var(--space-2); color: var(--tinta-secundaria); }
+  @media (min-width: 960px) { .diag { grid-template-columns: 1fr 1.1fr; gap: var(--space-7); } }
+  .form { display: grid; gap: var(--space-4); }
+  @media (min-width: 640px) { .form { grid-template-columns: 1fr 1fr; } .campo--largo, .form button, .form__retorno { grid-column: 1 / -1; } }
+  .campo { display: grid; gap: 6px; align-content: start; }
+  .campo label { font: var(--text-corpo-forte); font-size: 15px; }
+  .opcional { font: var(--text-apoio); color: var(--tinta-suave); }
+  .ajuda { font: var(--text-apoio); color: var(--tinta-suave); }
+  input:not([type='checkbox']), select, textarea { width: 100%; min-height: 44px; padding: 10px 12px; font: var(--text-corpo); color: var(--tinta); background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--radius-md); }
+  input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--foco); outline-offset: 2px; border-color: var(--acao); }
+  .campo--consentimento { grid-template-columns: auto 1fr; align-items: start; gap: var(--space-3); }
+  .campo--consentimento label { font: var(--text-apoio); color: var(--tinta-secundaria); }
+  .campo--consentimento input { width: 22px; height: 22px; margin-top: 2px; accent-color: var(--acao); }
+  .form__retorno { font: var(--text-apoio); }
+  .armadilha { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .form { position: relative; }
+</style>

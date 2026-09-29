@@ -1,0 +1,50 @@
+---
+import Logo from './Logo.astro';
+import { NAV, SITE } from '../data/site';
+const ano = new Date().getFullYear();
+---
+<footer class="rodape">
+  <div class="container rodape__grade">
+    <div class="rodape__marca">
+      <Logo largura={150} sempreNegativo />
+      <p>Monitoramento de ativos sensíveis em tempo real. Ver, agir e provar, em qualquer operação.</p>
+      <a class="botao botao--primario" href="/diagnostico">Solicitar diagnóstico</a>
+    </div>
+    {NAV.filter((n) => n.filhos).map((n) => (
+      <nav aria-label={n.rotulo}>
+        <p class="rodape__titulo">{n.rotulo}</p>
+        <ul>{n.filhos!.map((f) => <li><a href={f.href}>{f.rotulo}</a></li>)}</ul>
+      </nav>
+    ))}
+    <nav aria-label="Institucional">
+      <p class="rodape__titulo">Sensoriz</p>
+      <ul>
+        <li><a href="/cases">Cases</a></li>
+        <li><a href="/conteudo">Conteúdo</a></li>
+        <li><a href="/empresa">Empresa</a></li>
+        <li><a href={SITE.loginCore}>Entrar na Sensoriz CORE</a></li>
+        <li><a href={SITE.ouvidoria}>Ouvidoria</a></li>
+        <li><a href="/privacidade">Privacidade</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="container rodape__base">
+    <p>© {ano} Sensoriz. Todos os direitos reservados.</p>
+    <p><a href={SITE.redes.linkedin}>LinkedIn</a> · <a href={SITE.redes.instagram}>Instagram</a></p>
+  </div>
+</footer>
+
+<style>
+  /* Rodapé sempre escuro: fundo tinta com logo negativo, como permite o design system. */
+  .rodape { background: #08111F; color: #A7B6CC; padding-top: var(--space-7); margin-top: var(--space-8); }
+  .rodape a { color: #EAF1FB; text-decoration: none; }
+  .rodape a:hover { color: #4DB4FF; }
+  .rodape__grade { display: grid; gap: var(--space-6); }
+  .rodape__marca { display: grid; gap: var(--space-4); max-width: 320px; align-content: start; }
+  .rodape__marca .botao { justify-self: start; color: #06101d; background: #4DB4FF; }
+  .rodape__titulo { font: var(--text-rotulo); letter-spacing: .06em; text-transform: uppercase; color: #8496AE; margin-bottom: var(--space-3); }
+  .rodape ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .rodape li a { display: inline-flex; align-items: center; min-height: 36px; }
+  .rodape__base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-3); padding-block: var(--space-5); margin-top: var(--space-6); border-top: 1px solid #1E2A3D; font: var(--text-apoio); }
+  @media (min-width: 768px) { .rodape__grade { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
+</style>

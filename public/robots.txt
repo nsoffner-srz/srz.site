@@ -1,0 +1,21 @@
+# Site da Sensoriz: aberto a buscadores e a robôs de busca por IA.
+User-agent: *
+Allow: /
+
+# Buscadores de IA liberados explicitamente (ajudam a Sensoriz a ser citada em respostas).
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://www.sensoriz.com.br/sitemap-index.xml

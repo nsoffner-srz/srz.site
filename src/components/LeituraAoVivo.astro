@@ -1,0 +1,63 @@
+---
+// Card de leitura no estilo da Sensoriz CORE (Ver): valor com unidade, faixa, hora e estado em palavra.
+// Os valores são ilustrativos; não representam um cliente real.
+interface Props {
+  ativo?: string;
+  local?: string;
+  valor?: string;
+  unidade?: string;
+  faixa?: string;
+  umidade?: string;
+  hora?: string;
+}
+const {
+  ativo = 'Geladeira de vacinas 02',
+  local = 'Sala de imunização, 1º andar',
+  valor = '4,6',
+  unidade = '°C',
+  faixa = '2 a 8',
+  umidade = '48',
+  hora = '14:32',
+} = Astro.props;
+// Linha de temperatura das últimas horas (ilustrativa), desenhada dentro da faixa de conformidade.
+const pontos = [4.9, 5.1, 5.0, 4.7, 4.5, 4.8, 5.2, 5.4, 5.1, 4.8, 4.6, 4.4, 4.6, 4.9, 4.7, 4.6];
+const w = 320, h = 96, min = 0, max = 10;
+const y = (v: number) => h - ((v - min) / (max - min)) * h;
+const x = (i: number) => (i / (pontos.length - 1)) * w;
+const linha = pontos.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(' ');
+---
+<figure class="leitura" aria-label={`Exemplo de leitura: ${ativo}, ${valor} ${unidade}, dentro da faixa, estado normal`}>
+  <div class="leitura__topo">
+    <div>
+      <p class="leitura__ativo">{ativo}</p>
+      <p class="apoio">{local}</p>
+    </div>
+    <span class="chip chip--normal">Normal</span>
+  </div>
+  <div class="leitura__valores">
+    <p class="leitura__valor"><span class="dado">{valor}</span><span class="leitura__unidade">{unidade}</span></p>
+    <dl class="leitura__meta">
+      <div><dt class="rotulo">Faixa</dt><dd><span class="dado">{faixa}</span> °C</dd></div>
+      <div><dt class="rotulo">Umidade</dt><dd><span class="dado">{umidade}</span> %UR</dd></div>
+      <div><dt class="rotulo">Leitura</dt><dd class="dado">{hora}</dd></div>
+    </dl>
+  </div>
+  <svg class="leitura__grafico" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" aria-hidden="true">
+    <rect x="0" y={y(8)} width={w} height={y(2) - y(8)} fill="var(--grafico-faixa)" />
+    <path d={linha} fill="none" stroke="var(--grafico-serie-1)" stroke-width="2" vector-effect="non-scaling-stroke" />
+  </svg>
+  <figcaption class="leitura__rodape apoio">Últimas 8 horas dentro da faixa · exemplo ilustrativo</figcaption>
+</figure>
+
+<style>
+  .leitura { margin: 0; background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--radius-lg); padding: var(--space-5); box-shadow: var(--sombra-flutuante); display: grid; gap: var(--space-4); }
+  .leitura__topo { display: flex; justify-content: space-between; align-items: start; gap: var(--space-3); }
+  .leitura__ativo { font: var(--text-corpo-forte); }
+  .leitura__valores { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-4); }
+  .leitura__valor { display: flex; align-items: baseline; gap: 6px; }
+  .leitura__valor .dado { font: var(--text-numero-destaque); font-size: 48px; letter-spacing: -0.06em; }
+  .leitura__unidade { font: var(--text-titulo-secao); color: var(--tinta-secundaria); }
+  .leitura__meta { display: flex; gap: var(--space-5); margin: 0; }
+  .leitura__meta dd { margin: 4px 0 0; font-size: 15px; }
+  .leitura__grafico { width: 100%; height: 96px; border-bottom: 1px solid var(--borda-sutil); }
+</style>

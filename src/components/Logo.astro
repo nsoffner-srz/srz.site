@@ -1,0 +1,26 @@
+---
+// Logotipo oficial (arquivos do design system em /public/marca). Nunca recriar com fonte.
+// Troca sozinho para a versão negativa no tema escuro. Largura mínima em tela: 140px.
+interface Props { largura?: number; sempreNegativo?: boolean }
+const { largura = 160, sempreNegativo = false } = Astro.props;
+const altura = Math.round((largura * 393.06) / 3147.78);
+---
+<span class="logo" style={`--w:${largura}px`}>
+  {sempreNegativo ? (
+    <img src="/marca/sensoriz-logotipo-negativo.svg" alt="Sensoriz" width={largura} height={altura} />
+  ) : (
+    <>
+      <img class="logo__claro" src="/marca/sensoriz-logotipo-principal.svg" alt="Sensoriz" width={largura} height={altura} />
+      <img class="logo__escuro" src="/marca/sensoriz-logotipo-negativo.svg" alt="" aria-hidden="true" width={largura} height={altura} />
+    </>
+  )}
+</span>
+<style>
+  .logo { display: inline-block; width: var(--w); }
+  .logo img { width: 100%; height: auto; }
+  .logo__escuro { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="claro"])) .logo__claro { display: none; }
+    :global(:root:not([data-theme="claro"])) .logo__escuro { display: block; }
+  }
+</style>

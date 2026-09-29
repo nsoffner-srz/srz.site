@@ -1,0 +1,19 @@
+---
+import { TEMAS_ROTULO } from '../data/site';
+import { formatarData } from '../lib/seo';
+interface Props { href: string; titulo: string; descricao: string; tema: string; data: Date }
+const { href, titulo, descricao, tema, data } = Astro.props;
+---
+<article class="card card-conteudo">
+  <p class="rotulo">{TEMAS_ROTULO[tema]}</p>
+  <h3 class="titulo-secao"><a href={href}>{titulo}</a></h3>
+  <p class="apoio">{descricao}</p>
+  <p class="apoio card-conteudo__data"><time datetime={data.toISOString()}>{formatarData(data)}</time></p>
+</article>
+<style>
+  .card-conteudo { display: grid; gap: var(--space-2); align-content: start; position: relative; }
+  .card-conteudo h3 a { color: var(--tinta); text-decoration: none; }
+  .card-conteudo h3 a::after { content: ''; position: absolute; inset: 0; }
+  .card-conteudo:hover { border-color: var(--tinta-suave); }
+  .card-conteudo__data { color: var(--tinta-suave); }
+</style>

@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import Trilha from '../../components/Trilha.astro';
+import ChamadaDiagnostico from '../../components/ChamadaDiagnostico.astro';
+import { SOLUCOES_DETALHE } from '../../data/solucoes';
+import { trilhaJsonLd } from '../../lib/seo';
+const trilha = [{ nome: 'Início', caminho: '/' }, { nome: 'Soluções', caminho: '/solucoes' }];
+---
+<Base titulo="Soluções" descricao="Sensoriz CORE, monitoramento ambiental, dispositivos, serviço de compliance e integrações." jsonLd={[trilhaJsonLd(trilha)]}>
+  <section class="secao">
+    <div class="container">
+      <div class="secao__topo">
+        <Trilha itens={trilha} />
+        <h1 class="display-xl">Soluções</h1>
+        <p class="lead">Dispositivos, plataforma e serviço trabalhando juntos para ver, agir e provar.</p>
+      </div>
+      <div class="grade grade--2">
+        {SOLUCOES_DETALHE.map((s) => (
+          <article class="card item">
+            <h2 class="display-m"><a href={`/solucoes/${s.slug}`}>{s.nome}</a></h2>
+            <p class="apoio">{s.resumo}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <ChamadaDiagnostico />
+</Base>
+<style>
+  .item { display: grid; gap: var(--space-3); position: relative; }
+  .item a { color: var(--tinta); text-decoration: none; }
+  .item a::after { content: ''; position: absolute; inset: 0; }
+  .item:hover { border-color: var(--tinta-suave); }
+</style>

@@ -1,0 +1,32 @@
+---
+// Filtros da seção Conteúdo: por tema e por setor. São links comuns (cada filtro tem a sua página),
+// o que também gera páginas indexáveis por tema e por setor.
+import { TEMAS_ROTULO, SETORES_ROTULO } from '../data/site';
+const atual = Astro.url.pathname;
+---
+<div class="filtros">
+  <nav aria-label="Filtrar por tema">
+    <p class="rotulo">Tema</p>
+    <ul>
+      <li><a href="/conteudo" aria-current={atual === '/conteudo' ? 'page' : undefined}>Todos</a></li>
+      {Object.entries(TEMAS_ROTULO).map(([id, nome]) => (
+        <li><a href={`/conteudo/tema/${id}`} aria-current={atual === `/conteudo/tema/${id}` ? 'page' : undefined}>{nome}</a></li>
+      ))}
+    </ul>
+  </nav>
+  <nav aria-label="Filtrar por setor">
+    <p class="rotulo">Setor</p>
+    <ul>
+      {Object.entries(SETORES_ROTULO).map(([id, nome]) => (
+        <li><a href={`/conteudo/setor/${id}`} aria-current={atual === `/conteudo/setor/${id}` ? 'page' : undefined}>{nome}</a></li>
+      ))}
+    </ul>
+  </nav>
+</div>
+<style>
+  .filtros { display: grid; gap: var(--space-4); margin-bottom: var(--space-6); }
+  .filtros ul { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; margin: var(--space-2) 0 0; padding: 0; }
+  .filtros a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border: 1px solid var(--borda); border-radius: var(--radius-pill); background: var(--superficie); color: var(--tinta); text-decoration: none; font: var(--text-apoio); }
+  .filtros a:hover { border-color: var(--tinta-suave); }
+  .filtros a[aria-current='page'] { background: var(--tinta); border-color: var(--tinta); color: var(--superficie); }
+</style>

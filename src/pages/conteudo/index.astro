@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Trilha from '../../components/Trilha.astro';
+import CardConteudo from '../../components/CardConteudo.astro';
+import FiltrosConteudo from '../../components/FiltrosConteudo.astro';
+import { trilhaJsonLd } from '../../lib/seo';
+
+const artigos = (await getCollection('conteudo', (a) => !a.data.rascunho))
+  .sort((a, b) => b.data.publicado.getTime() - a.data.publicado.getTime());
+const trilha = [{ nome: 'Início', caminho: '/' }, { nome: 'Conteúdo', caminho: '/conteudo' }];
+---
+<Base titulo="Conteúdo" descricao="Normas, perdas, gestão da operação e tecnologia para quem responde por ativos sensíveis: cadeia fria, farmácias, saúde e indústria." jsonLd={[trilhaJsonLd(trilha)]}>
+  <section class="secao">
+    <div class="container">
+      <div class="secao__topo">
+        <Trilha itens={trilha} />
+        <h1 class="display-xl">Conteúdo</h1>
+        <p class="lead">O que a norma exige, quanto custa uma perda e como organizar a operação para não depender da sorte.</p>
+      </div>
+      <FiltrosConteudo />
+      {artigos.length ? (
+        <div class="grade grade--3">
+          {artigos.map((a) => <CardConteudo href={`/conteudo/${a.id}`} titulo={a.data.titulo} descricao={a.data.descricao} tema={a.data.tema} data={a.data.publicado} />)}
+        </div>
+      ) : <p class="apoio">Nenhum artigo publicado ainda.</p>}
+    </div>
+  </section>
+</Base>

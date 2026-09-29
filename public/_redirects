@@ -1,0 +1,8 @@
+# Redirecionamentos permanentes do site antigo (Framer) para o novo. Formato da Cloudflare Pages.
+# Antes de desligar o Framer, conferir a lista completa de URLs antigas (incluindo cada post do blog).
+/cold-chain            /setores/logistica-e-cadeia-fria   301
+/cold-chain/           /setores/logistica-e-cadeia-fria   301
+/blog                  /conteudo                          301
+/blog/*                /conteudo                          301
+/contato               /diagnostico                       301
+/segmentos             /setores                           301

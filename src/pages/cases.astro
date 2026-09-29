@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import Trilha from '../components/Trilha.astro';
+import ChamadaDiagnostico from '../components/ChamadaDiagnostico.astro';
+import { trilhaJsonLd } from '../lib/seo';
+const trilha = [{ nome: 'Início', caminho: '/' }, { nome: 'Cases', caminho: '/cases' }];
+const cases = [
+  { setor: 'Cadeia fria', titulo: 'Redução de perdas térmicas em distribuição de medicamentos', resultado: 'até 75% menos perdas' },
+  { setor: 'Saúde', titulo: 'Gestão de equipamentos hospitalares móveis', resultado: '36 mil ativos geridos' },
+  { setor: 'Indústria', titulo: 'Controle de carrinhos em pátio fabril', resultado: 'Mais de 2 mil carrinhos rastreados' },
+];
+---
+<Base titulo="Cases" descricao="Resultados de operações que monitoram ativos sensíveis com a Sensoriz em cadeia fria, saúde e indústria." jsonLd={[trilhaJsonLd(trilha)]}>
+  <section class="secao">
+    <div class="container">
+      <div class="secao__topo">
+        <Trilha itens={trilha} />
+        <h1 class="display-xl">Cases</h1>
+        <p class="lead">Cenário, impacto, solução e resultado de operações atendidas pela Sensoriz. Os clientes aparecem pelo segmento até autorizarem o uso do nome.</p>
+      </div>
+      <div class="grade grade--3">
+        {cases.map((c) => (
+          <article class="card case">
+            <p class="rotulo">{c.setor}</p>
+            <h2 class="titulo-secao">{c.titulo}</h2>
+            <p class="case__resultado">{c.resultado}</p>
+            <p class="pendente">Texto completo e depoimento pendentes</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <ChamadaDiagnostico />
+</Base>
+<style>
+  .case { display: grid; gap: var(--space-3); align-content: start; }
+  .case__resultado { font-family: var(--font-dados); font-size: 18px; color: var(--tinta); }
+</style>

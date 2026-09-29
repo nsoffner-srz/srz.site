@@ -1,0 +1,29 @@
+---
+// Perguntas frequentes. Abrem por toque e já vêm no HTML (buscadores e IA leem mesmo fechadas).
+// O dado estruturado FAQPage é montado pela página com a função faqJsonLd de src/lib/seo.ts.
+interface Props { itens: { pergunta: string; resposta: string }[]; titulo?: string }
+const { itens, titulo = 'Perguntas frequentes' } = Astro.props;
+---
+{itens.length > 0 && (
+  <section class="perguntas" aria-labelledby="perguntas-titulo">
+    <h2 id="perguntas-titulo" class="display-m">{titulo}</h2>
+    <div class="perguntas__lista">
+      {itens.map((i) => (
+        <details>
+          <summary>{i.pergunta}</summary>
+          <p>{i.resposta}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+)}
+<style>
+  .perguntas { display: grid; gap: var(--space-5); }
+  .perguntas__lista { border-top: 1px solid var(--borda); }
+  details { border-bottom: 1px solid var(--borda); }
+  summary { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); min-height: 56px; padding-block: var(--space-3); font: var(--text-corpo-forte); cursor: pointer; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; font-size: 24px; color: var(--acao); flex-shrink: 0; }
+  details[open] summary::after { content: '−'; }
+  details p { padding-bottom: var(--space-4); color: var(--tinta-secundaria); max-width: 72ch; }
+</style>

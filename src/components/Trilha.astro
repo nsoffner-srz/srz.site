@@ -1,0 +1,18 @@
+---
+// Trilha de navegação (breadcrumb) visível. O dado estruturado vai junto, pela página.
+interface Props { itens: { nome: string; caminho: string }[] }
+const { itens } = Astro.props;
+---
+<nav class="trilha" aria-label="Você está em">
+  <ol>
+    {itens.map((i, n) => (
+      <li>{n < itens.length - 1 ? <a href={i.caminho}>{i.nome}</a> : <span aria-current="page">{i.nome}</span>}</li>
+    ))}
+  </ol>
+</nav>
+<style>
+  .trilha ol { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; font: var(--text-apoio); color: var(--tinta-suave); }
+  .trilha li + li::before { content: '/'; margin-right: 6px; color: var(--borda); }
+  .trilha a { color: var(--tinta-secundaria); text-decoration: none; }
+  .trilha a:hover { color: var(--acao); text-decoration: underline; }
+</style>

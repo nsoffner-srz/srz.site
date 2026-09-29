@@ -1,0 +1,264 @@
+---
+// Home: segue a ordem em que o decisor pensa — a dor, a prova, como funciona e o próximo passo.
+// Estrutura aprovada no documento "Novo site Sensoriz: referências e estrutura".
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import LeituraAoVivo from '../components/LeituraAoVivo.astro';
+import ChamadaDiagnostico from '../components/ChamadaDiagnostico.astro';
+import CardConteudo from '../components/CardConteudo.astro';
+import { SITE } from '../data/site';
+
+const setores = (await getCollection('setores')).sort((a, b) => a.data.ordem - b.data.ordem);
+const artigos = (await getCollection('conteudo', (a) => !a.data.rascunho))
+  .sort((a, b) => b.data.publicado.getTime() - a.data.publicado.getTime())
+  .slice(0, 3);
+
+const problemas = [
+  { texto: 'Perdi carga ou produto por temperatura', href: '/setores/logistica-e-cadeia-fria' },
+  { texto: 'Tenho auditoria ou fiscalização da Anvisa', href: '/solucoes/servico-de-compliance' },
+  { texto: 'Guardo produto sensível em geladeira ou sala', href: '/setores/farmacias-e-clinicas' },
+  { texto: 'Equipamentos somem dentro do hospital', href: '/setores/saude' },
+  { texto: 'Meu inventário não fecha', href: '/setores/industria-e-inventario' },
+  { texto: 'Controlo tudo em planilha, na mão', href: '/solucoes/sensoriz-core' },
+];
+
+const numeros = [
+  { valor: '75', unidade: '%', texto: 'menos perdas térmicas de produtos sensíveis, em operações de cadeia fria atendidas' , prefixo: 'até' },
+  { valor: '36', unidade: 'mil', texto: 'ativos hospitalares geridos em um único cliente da área da saúde' },
+  { valor: '80', unidade: 'm', texto: 'de alcance por hub, sem a fiação e as antenas de portais RFID', prefixo: 'até' },
+  { valor: '24', unidade: 'h', texto: 'por dia de monitoramento, com aviso só quando algo sai do padrão' },
+];
+
+const webSite = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Sensoriz',
+  url: SITE.url,
+  inLanguage: 'pt-BR',
+};
+---
+<Base titulo="Monitoramento de ativos sensíveis em tempo real" jsonLd={[webSite]}>
+
+  <!-- 1. Hero -->
+  <section class="hero">
+    <div class="container hero__grade">
+      <div class="hero__texto">
+        <p class="rotulo">Monitoramento de ativos sensíveis</p>
+        <h1 class="display-xl">Saiba o que acontece com o que importa, onde você não está</h1>
+        <p class="lead">Temperatura, umidade, impacto e localização de cargas, geladeiras, salas e equipamentos em tempo real. A Sensoriz avisa antes que o problema vire prejuízo e gera a prova para a auditoria.</p>
+        <div class="hero__acoes">
+          <a class="botao botao--primario" href="/diagnostico">Solicitar diagnóstico</a>
+          <a class="botao botao--secundario" href="#como-funciona">Ver como funciona</a>
+        </div>
+      </div>
+      <LeituraAoVivo />
+    </div>
+  </section>
+
+  <!-- 2. Prova social -->
+  <section class="prova" aria-label="Quem apoia a Sensoriz">
+    <div class="container prova__grade">
+      <p class="rotulo">Aceleradas e apoiadas por</p>
+      <div class="prova__logos">
+        <span class="prova__logo">WOW Aceleradora <span class="pendente">logo pendente</span></span>
+        <span class="prova__logo">Sebrae for Startups <span class="pendente">logo pendente</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Por onde começar -->
+  <section class="secao">
+    <div class="container">
+      <div class="secao__topo">
+        <p class="rotulo">Por onde começar</p>
+        <h2 class="display-l">Qual destes problemas é o seu?</h2>
+      </div>
+      <ul class="problemas">
+        {problemas.map((p) => (
+          <li><a href={p.href}><span>{p.texto}</span><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. Ver, Agir, Provar -->
+  <section class="secao secao--branca">
+    <div class="container">
+      <div class="secao__topo">
+        <p class="rotulo">Como a Sensoriz trabalha</p>
+        <h2 class="display-l">Ver, agir e provar</h2>
+        <p class="lead">Três passos que valem para uma carga na estrada, uma geladeira de vacinas ou um carrinho no pátio.</p>
+      </div>
+      <ol class="grade grade--3 pilares">
+        <li class="card">
+          <span class="pilares__n dado">01</span>
+          <h3 class="display-m">Ver</h3>
+          <p>Cada ativo com o valor, a unidade, a hora da leitura e o estado, no celular e no computador.</p>
+        </li>
+        <li class="card">
+          <span class="pilares__n dado">02</span>
+          <h3 class="display-m">Agir</h3>
+          <p>Gestão por exceção: a equipe só é chamada quando algo sai do padrão, por WhatsApp, e-mail ou SMS.</p>
+        </li>
+        <li class="card">
+          <span class="pilares__n dado">03</span>
+          <h3 class="display-m">Provar</h3>
+          <p>Relatórios imutáveis e QR Code para o fiscal consultar os últimos 30 dias sem acessar o sistema.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 5. Setores -->
+  <section class="secao">
+    <div class="container">
+      <div class="secao__topo">
+        <p class="rotulo">Setores</p>
+        <h2 class="display-l">Uma plataforma, operações diferentes</h2>
+      </div>
+      <div class="grade grade--4">
+        {setores.map((s) => (
+          <article class="card setor">
+            <h3 class="titulo-secao"><a href={`/setores/${s.id}`}>{s.data.nome}</a></h3>
+            <p class="apoio">{s.data.resumo}</p>
+            {s.data.normas.length > 0 && <p class="rotulo">{s.data.normas.map((n) => n.nome.split(' (')[0]).join(' · ')}</p>}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Como funciona -->
+  <section class="secao secao--branca" id="como-funciona">
+    <div class="container">
+      <div class="secao__topo">
+        <p class="rotulo">Como funciona</p>
+        <h2 class="display-l">Do sensor ao relatório, sem planilha</h2>
+      </div>
+      <ol class="passos">
+        <li><span class="dado">1</span><h3 class="titulo-secao">Instalação</h3><p class="apoio">Sensores sem fio junto da carga, na geladeira, na sala ou no equipamento. O hub vai na tomada.</p></li>
+        <li><span class="dado">2</span><h3 class="titulo-secao">Leitura contínua</h3><p class="apoio">As leituras chegam à Sensoriz CORE o tempo todo, com a hora e o estado de cada uma.</p></li>
+        <li><span class="dado">3</span><h3 class="titulo-secao">Aviso na exceção</h3><p class="apoio">Quando algo sai da faixa, a pessoa certa recebe o aviso a tempo de agir.</p></li>
+        <li><span class="dado">4</span><h3 class="titulo-secao">Prova pronta</h3><p class="apoio">O relatório para auditoria e fiscalização sai em poucos cliques, sem anotação manual.</p></li>
+      </ol>
+      <div class="dificil card">
+        <h3 class="titulo-secao">Funciona onde outros não funcionam</h3>
+        <p class="apoio">Subsolo, sala blindada, câmara fria, hospital e carga em trânsito: a cobertura é planejada para ambientes onde a comunicação costuma falhar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Resultados em números -->
+  <section class="secao">
+    <div class="container">
+      <div class="secao__topo">
+        <p class="rotulo">Resultados</p>
+        <h2 class="display-l">O que muda na operação</h2>
+      </div>
+      <dl class="grade grade--4 numeros">
+        {numeros.map((n) => (
+          <div class="card">
+            <dt class="numeros__valor">{n.prefixo && <span class="numeros__prefixo">{n.prefixo}</span>}<span class="dado">{n.valor}</span><span class="numeros__unidade">{n.unidade}</span></dt>
+            <dd class="apoio">{n.texto}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="pendente">Números a confirmar com os sócios antes de publicar</p>
+    </div>
+  </section>
+
+  <!-- 8. Cases e depoimentos -->
+  <section class="secao secao--branca">
+    <div class="container">
+      <div class="secao__topo">
+        <p class="rotulo">Cases</p>
+        <h2 class="display-l">Quem já monitora com a Sensoriz</h2>
+      </div>
+      <div class="grade grade--3">
+        <div class="card case"><p class="rotulo">Cadeia fria</p><p class="pendente">Case e depoimento pendentes</p></div>
+        <div class="card case"><p class="rotulo">Saúde</p><p class="pendente">Case e depoimento pendentes</p></div>
+        <div class="card case"><p class="rotulo">Indústria</p><p class="pendente">Case e depoimento pendentes</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Custo de não monitorar -->
+  <section class="secao">
+    <div class="container custo">
+      <div>
+        <p class="rotulo">O custo de não ver</p>
+        <h2 class="display-l">Uma carga perdida paga anos de monitoramento</h2>
+      </div>
+      <div class="custo__texto">
+        <p class="lead">Uma única carga de medicamentos descartada por excursão de temperatura pode custar R$ 300 mil. Uma autuação, a interdição de um lote ou um equipamento que some também custam, e costumam aparecer quando já é tarde.</p>
+        <p class="lead">O diagnóstico mostra quanto a sua operação arrisca hoje e quanto custa deixar de arriscar.</p>
+        <a class="botao botao--primario" href="/diagnostico">Calcular com o nosso time</a>
+      </div>
+    </div>
+  </section>
+
+  {artigos.length > 0 && (
+    <section class="secao secao--branca">
+      <div class="container">
+        <div class="secao__topo"><p class="rotulo">Conteúdo</p><h2 class="display-l">Normas, perdas e gestão da operação</h2></div>
+        <div class="grade grade--3">
+          {artigos.map((a) => <CardConteudo href={`/conteudo/${a.id}`} titulo={a.data.titulo} descricao={a.data.descricao} tema={a.data.tema} data={a.data.publicado} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 10. CTA final -->
+  <ChamadaDiagnostico />
+</Base>
+
+<style>
+  .hero { padding-block: var(--space-6) var(--space-7); }
+  .hero__grade { display: grid; gap: var(--space-6); align-items: center; }
+  .hero__texto { display: grid; gap: var(--space-4); }
+  .hero__acoes { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-2); }
+  @media (min-width: 1000px) { .hero { padding-block: var(--space-8); } .hero__grade { grid-template-columns: 1.15fr 1fr; gap: var(--space-7); } }
+
+  .prova { border-block: 1px solid var(--borda-sutil); background: var(--superficie); }
+  .prova__grade { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-6); padding-block: var(--space-5); }
+  .prova__logos { display: flex; flex-wrap: wrap; gap: var(--space-5); }
+  .prova__logo { display: inline-flex; align-items: center; gap: var(--space-2); font: var(--text-corpo-forte); color: var(--tinta-secundaria); }
+
+  .problemas { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+  @media (min-width: 768px) { .problemas { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .problemas { grid-template-columns: repeat(3, 1fr); } }
+  .problemas a { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); min-height: 64px; padding: var(--space-3) var(--space-4); background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--radius-md); color: var(--tinta); text-decoration: none; font: var(--text-corpo-forte); }
+  .problemas a:hover { border-color: var(--acao); color: var(--tinta); }
+  .problemas svg { color: var(--acao); flex-shrink: 0; }
+
+  .pilares { list-style: none; padding: 0; margin: 0; }
+  .pilares li { display: grid; gap: var(--space-3); align-content: start; }
+  .pilares li p { color: var(--tinta-secundaria); }
+  .pilares__n { color: var(--acao); font-size: 15px; }
+
+  .setor { display: grid; gap: var(--space-3); align-content: start; position: relative; }
+  .setor a { color: var(--tinta); text-decoration: none; }
+  .setor a::after { content: ''; position: absolute; inset: 0; }
+  .setor:hover { border-color: var(--tinta-suave); }
+
+  .passos { list-style: none; padding: 0; margin: 0 0 var(--space-5); display: grid; gap: var(--space-4); counter-reset: passo; }
+  .passos li { display: grid; gap: var(--space-2); padding-top: var(--space-4); border-top: 2px solid var(--borda); }
+  .passos li:first-child { border-top-color: var(--acao); }
+  .passos .dado { font-size: 15px; color: var(--acao); }
+  @media (min-width: 768px) { .passos { grid-template-columns: repeat(4, 1fr); gap: var(--space-5); } }
+  .dificil { display: grid; gap: var(--space-2); background: var(--superficie-sutil); box-shadow: none; }
+
+  .numeros { margin: 0 0 var(--space-4); }
+  .numeros .card { display: grid; gap: var(--space-2); align-content: start; }
+  .numeros dd { margin: 0; }
+  .numeros__valor { display: flex; align-items: baseline; gap: 4px; }
+  .numeros__valor .dado { font: var(--text-numero-destaque); font-size: 44px; color: var(--tinta); }
+  .numeros__unidade { font: var(--text-titulo-secao); color: var(--tinta-secundaria); }
+  .numeros__prefixo { font: var(--text-apoio); color: var(--tinta-suave); margin-right: 4px; }
+
+  .case { display: grid; gap: var(--space-3); min-height: 160px; align-content: start; }
+
+  .custo { display: grid; gap: var(--space-5); }
+  .custo__texto { display: grid; gap: var(--space-4); justify-items: start; }
+  @media (min-width: 900px) { .custo { grid-template-columns: 1fr 1fr; gap: var(--space-7); } }
+</style>

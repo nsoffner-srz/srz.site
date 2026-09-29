@@ -1,0 +1,208 @@
+/* Design System Sensoriz — copiado de project/tokens.css do artefato Design System Sensoriz.
+   Fonte da verdade: https://claude.ai/artifact/4iU263UfPAvhSkCVTrjEEF
+   Não edite valores aqui sem atualizar o design system primeiro. */
+:root, [data-theme="claro"] {
+  --acao: #0093ff; /* Azul da marca. Botão primário, link, série principal do gráfico. Substitui o blue-600 da CORE. */
+  --acao-pressionada: #004aad; /* Estado pressionado e hover do botão primário; segunda série de gráfico. */
+  --realce: #96e8ff; /* Destaque leve: fundo de chip informativo, sublinhado de aba ativa. Nunca para texto. */
+  --tinta: #08111f; /* Texto principal e títulos sobre superficie e superficie-fundo. */
+  --tinta-secundaria: #4a5568; /* Texto de apoio, descrições, valores secundários de tabela. */
+  --tinta-suave: #6b7a90; /* Rótulos, cabeçalho de tabela, texto de eixo de gráfico. Mínimo de 13px. */
+  --superficie: #ffffff; /* Fundo de card, tabela, menu e modal. */
+  --superficie-fundo: #f4f8fc; /* Fundo da página, atrás dos cards. */
+  --superficie-sutil: #eff5fc; /* Linha alternada de tabela, hover de linha, fundo de campo desabilitado. */
+  --borda: #d6e0ec; /* Borda de card, campo e tabela. Contraste de 3:1 com a superfície. */
+  --borda-sutil: #e8eff7; /* Divisor interno e grade de gráfico. */
+  --foco: #0093ff; /* Anel de foco de teclado, 2px de espessura e 2px de deslocamento. Nunca remover. */
+  --estado-normal: #2e8a06; /* Dentro do padrão. Texto e ícone. É o verde da marca escurecido para passar em contraste. */
+  --estado-normal-fundo: #eaf9e2; /* Fundo do chip de estado normal. */
+  --estado-atencao: #b87800; /* Aproximando-se do limite, bateria baixa, leitura atrasada. Texto e ícone. */
+  --estado-atencao-fundo: #fff4df; /* Fundo do chip de atenção; faixa de recomendação em gráficos. */
+  --estado-critico: #d92d20; /* Fora do padrão, excursão em curso, perda iminente. Texto, ícone e linha de limite. */
+  --estado-critico-fundo: #feecea; /* Fundo do chip crítico e do trecho de excursão no gráfico. */
+  --estado-sem-sinal: #6b7a90; /* Sem comunicação, sem dado, dispositivo inativo. Nunca confundir com normal. */
+  --estado-sem-sinal-fundo: #eff2f6; /* Fundo do chip sem sinal. */
+  --grafico-serie-1: #0093ff; /* Primeira série: a grandeza principal (temperatura). É o azul da marca. */
+  --grafico-serie-2: #004aad; /* Segunda série: umidade ou comparação. */
+  --grafico-serie-3: #dd10d1; /* Terceira série, quando existir. Diferente das anteriores em luminosidade, não só em matiz. */
+  --grafico-serie-4: #5b6b8c; /* Quarta série, neutra: referência, média ou histórico. */
+  --grafico-faixa: #0093ff26; /* Faixa de conformidade: banda entre o mínimo e o máximo permitidos. */
+  --grafico-limite: #d92d20; /* Linha de limite (tracejada, 2px). Sempre com rótulo em texto ao lado. */
+  --grafico-grade: #e8eff7; /* Grade e eixos do gráfico. Nunca mais forte que a série. */
+  --grafico-eixo-texto: #6b7a90; /* Rótulos de eixo, com a unidade sempre visível. */
+  --sombra-card: 0 1px 2px #08111f14; /* Elevação mínima de card sobre a superfície de fundo. */
+  --sombra-flutuante: 0 8px 24px #08111f1f; /* Menu, dropdown, modal e tooltip. */
+}
+[data-theme="escuro"] {
+  --acao: #4db4ff;
+  --acao-pressionada: #1e6fd9;
+  --realce: #96e8ff;
+  --tinta: #eaf1fb;
+  --tinta-secundaria: #a7b6cc;
+  --tinta-suave: #8496ae;
+  --superficie: #0c1422;
+  --superficie-fundo: #060b14;
+  --superficie-sutil: #131f31;
+  --borda: #1e2a3d;
+  --borda-sutil: #16212f;
+  --foco: #96e8ff;
+  --estado-normal: #6be62a;
+  --estado-normal-fundo: #14290a;
+  --estado-atencao: #ffb829;
+  --estado-atencao-fundo: #2e2003;
+  --estado-critico: #ff6b5e;
+  --estado-critico-fundo: #2e0f0c;
+  --estado-sem-sinal: #8496ae;
+  --estado-sem-sinal-fundo: #17202c;
+  --grafico-serie-1: #4db4ff;
+  --grafico-serie-2: #1e6fd9;
+  --grafico-serie-3: #f472e6;
+  --grafico-serie-4: #93a3bc;
+  --grafico-faixa: #4db4ff33;
+  --grafico-limite: #ff6b5e;
+  --grafico-grade: #1e2a3d;
+  --grafico-eixo-texto: #8496ae;
+  --sombra-card: 0 1px 2px #00000066;
+  --sombra-flutuante: 0 8px 24px #00000080;
+}
+/* Tema escuro automático, quando a pessoa não escolheu o claro */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="claro"]) {
+  --acao: #4db4ff;
+  --acao-pressionada: #1e6fd9;
+  --realce: #96e8ff;
+  --tinta: #eaf1fb;
+  --tinta-secundaria: #a7b6cc;
+  --tinta-suave: #8496ae;
+  --superficie: #0c1422;
+  --superficie-fundo: #060b14;
+  --superficie-sutil: #131f31;
+  --borda: #1e2a3d;
+  --borda-sutil: #16212f;
+  --foco: #96e8ff;
+  --estado-normal: #6be62a;
+  --estado-normal-fundo: #14290a;
+  --estado-atencao: #ffb829;
+  --estado-atencao-fundo: #2e2003;
+  --estado-critico: #ff6b5e;
+  --estado-critico-fundo: #2e0f0c;
+  --estado-sem-sinal: #8496ae;
+  --estado-sem-sinal-fundo: #17202c;
+  --grafico-serie-1: #4db4ff;
+  --grafico-serie-2: #1e6fd9;
+  --grafico-serie-3: #f472e6;
+  --grafico-serie-4: #93a3bc;
+  --grafico-faixa: #4db4ff33;
+  --grafico-limite: #ff6b5e;
+  --grafico-grade: #1e2a3d;
+  --grafico-eixo-texto: #8496ae;
+  --sombra-card: 0 1px 2px #00000066;
+  --sombra-flutuante: 0 8px 24px #00000080;
+  }
+}
+
+:root {
+  --space-1: 4px; /* Espaço entre ícone e texto. */
+  --space-2: 8px; /* Espaço interno de chip e de célula compacta. */
+  --space-3: 12px; /* Espaço entre campos de um mesmo grupo. */
+  --space-4: 16px; /* Espaço interno de card em tela pequena; espaço entre cards. */
+  --space-5: 24px; /* Espaço interno de card em desktop. */
+  --space-6: 32px; /* Espaço entre blocos de uma tela. */
+  --space-7: 48px; /* Espaço entre seções de página no site. */
+  --space-8: 64px; /* Respiro de topo e base de página no site. */
+  --radius-sm: 6px; /* Chip, campo pequeno, célula destacada. */
+  --radius-md: 8px; /* Padrão: botão, campo, card, tabela. */
+  --radius-lg: 12px; /* Card de destaque, modal, card de indicador. */
+  --radius-pill: 9999px; /* Chip de estado e botão de filtro em forma de pílula. */
+  --font-display: "Archivo Black", "Arial Black", Arial, sans-serif;
+  --font-texto: "Questrial", -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-dados: "Atkinson Hyperlegible Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --text-display-xl: 400 56px/1.05 var(--font-display); /* Título de capa em site, deck e materiais. Só na marca, nunca na plataforma. */
+  --text-display-l: 400 40px/1.1 var(--font-display); /* Título de seção no site. */
+  --text-display-m: 400 30px/1.15 var(--font-display); /* Título de card destacado e de slide. */
+  --text-titulo-tela: 600 24px/1.25 var(--font-texto); /* Título de tela na CORE. Questrial em 600, não Archivo Black. */
+  --text-titulo-secao: 600 20px/1.3 var(--font-texto); /* Título de card e de bloco. */
+  --text-corpo: 400 16px/1.5 var(--font-texto); /* Texto corrido e valores de tabela. */
+  --text-corpo-forte: 600 16px/1.5 var(--font-texto); /* Ênfase dentro do texto e valor que precisa ser lido primeiro. */
+  --text-apoio: 400 14px/1.45 var(--font-texto); /* Piso de tamanho da interface. Texto secundário, ajuda, legenda de card. */
+  --text-rotulo: 600 13px/1.3 var(--font-texto); /* Rótulo em caixa alta: cabeçalho de tabela, eyebrow de card. Único uso abaixo de 14px. */
+  --text-numero-destaque: 500 32px/1.1 var(--font-dados); /* Número grande de indicador: Sensoriz Score, dispositivos ativos, alertas. */
+  --text-numero-tabela: 400 15px/1.4 var(--font-dados); /* Números em coluna: temperatura, umidade, bateria. Sempre com algarismos tabulares e unidade. */
+}
+.display-xl {
+  font-family: var(--font-display);
+  font-size: 56px;
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.display-l {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.display-m {
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.titulo-tela {
+  font-family: var(--font-texto);
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.titulo-secao {
+  font-family: var(--font-texto);
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.corpo {
+  font-family: var(--font-texto);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.corpo-forte {
+  font-family: var(--font-texto);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.apoio {
+  font-family: var(--font-texto);
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.rotulo {
+  font-family: var(--font-texto);
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.numero-destaque {
+  font-family: var(--font-dados);
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.numero-tabela {
+  font-family: var(--font-dados);
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0;
+}

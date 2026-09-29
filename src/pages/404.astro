@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base titulo="Página não encontrada" semIndice>
+  <section class="secao">
+    <div class="container" style="display:grid;gap:var(--space-4);max-width:720px">
+      <p class="rotulo">Erro 404</p>
+      <h1 class="display-l">Esta página não existe ou mudou de endereço</h1>
+      <p class="lead">O site da Sensoriz foi reorganizado. Comece pelos setores ou fale com o nosso time.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:var(--space-3)">
+        <a class="botao botao--primario" href="/">Ir para o início</a>
+        <a class="botao botao--secundario" href="/setores">Ver setores</a>
+      </div>
+    </div>
+  </section>
+</Base>

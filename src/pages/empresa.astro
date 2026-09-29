@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import Trilha from '../components/Trilha.astro';
+import ChamadaDiagnostico from '../components/ChamadaDiagnostico.astro';
+import { trilhaJsonLd } from '../lib/seo';
+const trilha = [{ nome: 'Início', caminho: '/' }, { nome: 'Empresa', caminho: '/empresa' }];
+const socios = [
+  { nome: 'Rodrigo Amaral', cargo: 'Fundador e CEO' },
+  { nome: 'Leonardo Rissi', cargo: 'CTO' },
+  { nome: 'Leonard Lorentziadis', cargo: 'CSO' },
+  { nome: 'Natan Pace', cargo: 'CFO' },
+  { nome: 'Nicole Soffner', cargo: 'CMO' },
+];
+---
+<Base titulo="Empresa" descricao="A Sensoriz desenvolve hardware e plataforma próprios para monitorar ativos sensíveis em tempo real, na América do Sul." jsonLd={[trilhaJsonLd(trilha)]}>
+  <section class="secao">
+    <div class="container empresa">
+      <Trilha itens={trilha} />
+      <h1 class="display-xl">A Sensoriz existe para que nada de valor se perca longe dos olhos</h1>
+      <p class="lead">Desenvolvemos dispositivos e plataforma próprios para operações que precisam ver o que acontece com os seus ativos sensíveis, agir antes do prejuízo e provar que tudo esteve dentro do padrão.</p>
+      <p class="pendente">História da empresa: pendente</p>
+    </div>
+  </section>
+  <section class="secao secao--branca">
+    <div class="container">
+      <div class="secao__topo"><p class="rotulo">Sócios</p><h2 class="display-l">Quem faz a Sensoriz</h2></div>
+      <ul class="grade grade--3 socios">
+        {socios.map((s) => (
+          <li class="card"><p class="titulo-secao">{s.nome}</p><p class="apoio">{s.cargo}</p><p class="pendente">Foto e mini bio pendentes</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  <section class="secao">
+    <div class="container">
+      <div class="secao__topo"><p class="rotulo">Programas</p><h2 class="display-l">Aceleração e apoio</h2></div>
+      <div class="grade grade--2">
+        <div class="card"><p class="titulo-secao">WOW Aceleradora</p><p class="pendente">Logo e texto pendentes</p></div>
+        <div class="card"><p class="titulo-secao">Sebrae for Startups</p><p class="pendente">Logo e texto pendentes</p></div>
+      </div>
+    </div>
+  </section>
+  <ChamadaDiagnostico />
+</Base>
+<style>
+  .empresa { display: grid; gap: var(--space-4); }
+  .empresa > * { max-width: 900px; }
+  .socios { list-style: none; padding: 0; margin: 0; }
+  .socios li { display: grid; gap: var(--space-2); }
+</style>
