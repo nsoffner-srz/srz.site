@@ -1,12 +1,12 @@
 # Sensoriz
 
-> A Sensoriz monitora ativos sensíveis em tempo real: temperatura, umidade, impacto e localização de cargas, geladeiras, salas e equipamentos. A plataforma Sensoriz CORE avisa só quando algo sai do padrão (gestão por exceção) e gera relatórios imutáveis para auditoria e fiscalização, como a da Anvisa. Empresa brasileira, com hardware e plataforma próprios.
+> A Sensoriz monitora ativos sensíveis em tempo real: temperatura, umidade, luminosidade, pressão atmosférica, impacto, vibração, localização e orientação de cargas, estoques, geladeiras e equipamentos. A plataforma Sensoriz CORE, desenvolvida pela Sensoriz, avisa só quando algo sai do padrão (gestão por exceção) e gera relatórios imutáveis para auditoria e fiscalização. O hardware (hubs, tags e lacre inteligente para caminhões) vem de parceiros internacionais. Empresa brasileira.
 
 ## Setores
-- [Logística e Cadeia Fria](https://www.sensoriz.com.br/setores/logistica-e-cadeia-fria): temperatura, umidade e impacto da carga no transporte e no armazém; RDC 430 e RDC 653.
-- [Farmácias e Clínicas](https://www.sensoriz.com.br/setores/farmacias-e-clinicas): geladeiras, salas e laboratórios de farmácias de manipulação, drogarias e clínicas; RDC 67.
+- [Logística e Cadeia Fria](https://www.sensoriz.com.br/setores/logistica-e-cadeia-fria): temperatura e umidade de alimentos e medicamentos no transporte, na câmara fria e no estoque; RDC 430, RDC 653, RDC 216 e Portaria 326.
+- [Farmácias e Clínicas](https://www.sensoriz.com.br/setores/farmacias-e-clinicas): geladeiras, salas e laboratórios de farmácias de manipulação (RDC 67), farmácias e drogarias (RDC 44) e serviços de vacinação (RDC 197).
 - [Saúde](https://www.sensoriz.com.br/setores/saude): localização de equipamentos e kits cirúrgicos e rede de frio de vacinas.
-- [Indústria e Inventário](https://www.sensoriz.com.br/setores/industria-e-inventario): inventário contínuo e localização de ativos em galpões e pátios.
+- [Indústria e Inventário](https://www.sensoriz.com.br/setores/industria-e-inventario): localização e integridade (impacto, vibração, orientação) de equipamentos de alto valor em estoques complexos.
 
 ## Soluções
 - [Sensoriz CORE](https://www.sensoriz.com.br/solucoes/sensoriz-core)
@@ -14,6 +14,9 @@
 - [Dispositivos](https://www.sensoriz.com.br/solucoes/dispositivos)
 - [Serviço de compliance](https://www.sensoriz.com.br/solucoes/servico-de-compliance)
 - [Integrações](https://www.sensoriz.com.br/solucoes/integracoes)
+
+## Clientes
+- [Cases](https://www.sensoriz.com.br/cases): GoldPão (frota de pão congelado), Fungo de Quintal (estoque de cogumelos frescos) e um fabricante multinacional de climatização (impacto no transporte).
 
 ## Conteúdo
 - [Todos os artigos](https://www.sensoriz.com.br/conteudo)

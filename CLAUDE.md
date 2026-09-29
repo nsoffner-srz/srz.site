@@ -5,9 +5,11 @@ Instruções para quem trabalha neste repositório com o Claude (VS Code ou clau
 ## O que é
 
 Site institucional da Sensoriz (sensoriz.com.br), substituindo o site atual feito em Framer.
-Feito em **Astro**, com saída estática (HTML pronto por página), publicado na **Cloudflare Pages**.
-A escolha foi por SEO e busca por IA (AEO): cada página sai como HTML sem depender de JavaScript,
-com dados estruturados (schema.org), sitemap, RSS, `robots.txt` e `llms.txt`.
+Feito em **React com Next.js** (App Router), por indicação do TI, com **exportação estática**
+(`output: 'export'`): cada página sai como HTML pronto, o que mantém o SEO e a busca por IA (AEO).
+Publicado na **Cloudflare Pages**. Dados estruturados (schema.org), sitemap, RSS, `robots.txt` e `llms.txt`.
+Não usar recursos que exigem servidor Node (rotas dinâmicas sem `generateStaticParams`, `cookies()`,
+middleware, API routes do Next): o que precisar de servidor vai em `functions/` (Cloudflare Pages Functions).
 
 Responsável pelo site: Nicole Soffner (CMO). Tecnologia: Leonardo Rissi (CTO).
 
@@ -15,32 +17,39 @@ Responsável pelo site: Nicole Soffner (CMO). Tecnologia: Leonardo Rissi (CTO).
 
 ```bash
 npm install        # uma vez
-npm run dev        # site local em http://localhost:4321
-npm run build      # gera a pasta dist/ (é o que vai para a Cloudflare)
-npm run preview    # abre o build localmente
+npm run dev        # site local em http://localhost:3000
+npm run build      # gera a pasta out/ (é o que vai para a Cloudflare)
+npm run start      # serve a pasta out/ localmente
 ```
 
-Node 22.12 ou mais recente.
+Node 20.9 ou mais recente.
 
 ## Estrutura
 
 ```
-src/
-  content/
-    setores/*.md        uma página por setor (modelo de 7 blocos, só frontmatter)
-    conteudo/*.md       artigos da seção Conteúdo; _modelo.md é o molde (não publica)
-  content.config.ts     campos obrigatórios e listas fechadas de TEMAS e SETORES
-  data/site.ts          menu, rótulos de temas e setores, links (login CORE, WhatsApp)
-  data/solucoes.ts      conteúdo das páginas de solução
-  layouts/Base.astro    SEO, Open Graph, JSON-LD da organização, cabeçalho e rodapé
-  components/           Header, Footer, Logo, LeituraAoVivo, Perguntas, Trilha...
-  pages/                rotas: /, /setores, /solucoes, /conteudo, /cases, /empresa, /diagnostico
-  styles/tokens.css     tokens do design system (não editar sem mudar o design system)
-  styles/global.css     classes base (display-xl, card, botao, chip, prosa...)
-public/
-  marca/                logotipos e símbolo oficiais (SVG com a cor dentro do arquivo)
-  _redirects            301 das URLs do Framer para as novas
-  _headers, robots.txt, llms.txt
+app/                       rotas (cada pasta com page.tsx vira uma página)
+  page.tsx                 home
+  setores/[slug]/          modelo único das páginas de setor
+  solucoes/[slug]/         páginas de solução (dispositivos tem layout próprio)
+  conteudo/                lista, artigo, filtros por tema e setor, rss.xml
+  cases/ empresa/ diagnostico/ politicas/
+  layout.tsx               fontes, SEO padrão, JSON-LD da organização, cabeçalho e rodapé
+  sitemap.ts               /sitemap.xml
+components/                Header, Footer, Logo, LeiturasAoVivo (hero), CaseCard, FormDiagnostico...
+lib/
+  site.ts                  menu, rótulos, listas fechadas de TEMAS e SETORES, links
+  setores.ts               conteúdo das 4 páginas de setor (normas, perguntas, configuração)
+  solucoes.ts              conteúdo das páginas de solução
+  hardware.ts              hubs, tags, lacre e os 8 parâmetros
+  cases.ts                 clientes ativos
+  conteudo.ts              leitura e validação dos artigos em Markdown
+  seo.ts                   metadados e dados estruturados
+content/conteudo/*.md      artigos da seção Conteúdo; _modelo.md é o molde (não publica)
+styles/tokens.css          tokens do design system (não editar sem mudar o design system)
+styles/global.css          classes base (display-xl, card, botao, chip, prosa...)
+styles/site.css            componentes e páginas
+public/marca/              logotipos e símbolo oficiais
+public/_redirects          301 das URLs do Framer para as novas
 functions/api/diagnostico.ts   Cloudflare Pages Function: formulário vira lead no Notion
 ```
 
@@ -51,8 +60,9 @@ functions/api/diagnostico.ts   Cloudflare Pages Function: formulário vira lead 
 - **Cases** · **Conteúdo** (temas + tags de setor) · **Empresa**
 - Em toda página: Solicitar diagnóstico · Entrar na Sensoriz CORE · Ouvidoria · Privacidade
 
-Para criar um setor novo: adicione o id em `SETORES` (content.config.ts), o rótulo em `SETORES_ROTULO`
-(data/site.ts) e o arquivo `src/content/setores/<id>.md` copiando um existente.
+Para criar um setor novo: adicione o id e o rótulo em `SETORES_ROTULO` (lib/site.ts) e o conteúdo em
+`lib/setores.ts` copiando um existente. A seção "O que a norma exige" só aparece se `normas` tiver itens:
+Saúde e Indústria não têm norma de monitoramento e ficam sem essa seção.
 
 ## Seção Conteúdo
 
@@ -65,6 +75,26 @@ Cada artigo tem **1 tema** e **1 ou mais setores**. Listas fechadas, para não s
 Para escrever para busca e IA: o primeiro parágrafo responde à pergunta do título em até 3 frases;
 subtítulos em forma de pergunta; números sempre com unidade; `perguntas` no frontmatter (vira FAQ e dado estruturado).
 Use `rascunho: true` enquanto o texto não estiver aprovado.
+
+## Hardware (fonte: Nicole, 29 set 2026)
+
+O hardware NÃO é produção própria nem nacional. Nunca escrever "hardware próprio" ou "tecnologia própria de hardware".
+A plataforma Sensoriz CORE é desenvolvida pela Sensoriz.
+
+- **Hubs** (parceiro internacional SystemLoco): comunicam com a nuvem e são sensores. Medem 8 parâmetros:
+  temperatura, umidade, luminosidade, pressão atmosférica, impacto, vibração, localização e orientação (X, Y, Z).
+  Modelos: recarregável · na tomada (mede queda de energia) · descartável com bateria de longa duração ·
+  longa duração (bateria de até 5 anos).
+- **Tags** (SystemLoco): não se conectam à nuvem; enviam pelo hub. Medem só temperatura, umidade e localização.
+- **Lacre inteligente** (parceiro internacional TydenBrooks): lacre eletrônico de porta de caminhão.
+- Os nomes dos parceiros não aparecem no site até a Nicole decidir citá-los.
+
+## Clientes ativos (set 2026)
+
+- **Fabricante multinacional de climatização** (Midea Carrier, SEM citar o nome): impacto no transporte de equipamentos. Depoimento de funcionário a receber.
+- **GoldPão** (pão congelado): monitoramento dos caminhões de distribuição.
+- **Fungo de Quintal** (fungos e cogumelos para consumo): monitoramento do estoque.
+- Confirmar autorização por escrito para usar os nomes de GoldPão e Fungo de Quintal. Nenhum logo de cliente.
 
 ## Marca (resumo do Design System Sensoriz)
 
@@ -98,18 +128,21 @@ Datas e eventos sempre em português. Sem emojis.
 
 ## Regras de conteúdo
 
-- **Não usar logo nem nome de cliente** sem autorização por escrito. Clientes aparecem pelo segmento
-  ("rede de farmácias", "hospital em São Paulo").
+- **Não usar logo de cliente.** Nome só com autorização por escrito (ver Clientes ativos).
 - Prova social permitida hoje: logos da **WOW Aceleradora** e do **Sebrae for Startups**, e depoimentos autorizados.
-- Números de resultado (75% menos perdas, 36 mil ativos, R$ 300 mil por carga) estão marcados como
-  "a confirmar" na home. Só retirar a marcação depois da aprovação dos sócios.
-- Normas citadas (RDC 430, 653, 67) devem ser revisadas por quem conhece a regulação antes de publicar.
+- Números da home estão marcados como "a confirmar". Só retirar a marcação depois da aprovação dos sócios.
+- Normas citadas (RDC 430, 653, 216, 44, 67, 197 e Portaria 326) devem ser revisadas por quem conhece a
+  regulação antes de publicar. RDC 67 vale só para farmácias de manipulação.
+- Foco em alimentos sensíveis a temperatura e umidade (congelados, refrigerados, frescos), não só medicamentos.
+- Indústria: prioridade para estoques complexos, com muito metal e equipamentos de alto valor
+  (integridade por impacto, vibração e orientação, e localização).
+- Políticas: o texto oficial está hoje em sensoriz.com.br/politicas (Framer) e deve ser copiado para `app/politicas`.
 - A classe `.pendente` marca o que ainda falta. **O site não vai ao ar com nenhum `.pendente` visível.**
-  Para listar: `grep -rn "pendente" src`.
+  Para listar: `grep -rn "pendente" app components lib`.
 
 ## Publicação (Cloudflare Pages)
 
-- Projeto conectado a este repositório no GitHub. Build: `npm run build` · pasta de saída: `dist`.
+- Projeto conectado a este repositório no GitHub. Build: `npm run build` · pasta de saída: `out`.
 - Variáveis de ambiente (Settings > Variables, nunca no código): `NOTION_TOKEN`, `NOTION_DATA_SOURCE_ID`
   (padrão: Pipeline Sensoriz). A integração do Notion precisa de acesso ao banco Pipeline Sensoriz.
 - Cada branch gera um link de prévia para revisão antes do merge na `main`.

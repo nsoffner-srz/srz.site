@@ -1,24 +1,32 @@
 {
   "name": "srz-site",
-  "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Site institucional da Sensoriz (sensoriz.com.br), em Astro, publicado na Cloudflare.",
+  "description": "Site institucional da Sensoriz (sensoriz.com.br), em React (Next.js, exportação estática), publicado na Cloudflare Pages.",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "check": "astro check"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "npx serve out",
+    "lint": "tsc --noEmit"
   },
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=20.9.0"
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.19",
-    "@astrojs/sitemap": "^3.7.4",
     "@fontsource/archivo-black": "^5.3.0",
     "@fontsource/atkinson-hyperlegible-mono": "^5.3.0",
     "@fontsource/questrial": "^5.3.0",
-    "astro": "^7.3.5"
+    "gray-matter": "^4.0.3",
+    "marked": "^18.0.14",
+    "next": "^16.3.7",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^5.9.3"
   }
 }
