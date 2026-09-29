@@ -146,9 +146,12 @@ summary.topo__link::after { content: ''; width: 7px; height: 7px; border-right: 
 .destaque { display: grid; gap: var(--space-2); background: var(--superficie-sutil); box-shadow: none; }
 .parametros { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; padding: 0; margin: 0; }
 .parametros li { display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; border-radius: var(--radius-pill); background: var(--superficie); border: 1px solid var(--borda); font: var(--text-apoio); color: var(--tinta); }
-.numeros { margin: 0 0 var(--space-4); }
-.numeros .card { display: grid; gap: var(--space-2); align-content: start; }
-.numeros dd { margin: 0; }
+.numeros { list-style: none; padding: 0; margin: 0 0 var(--space-4); }
+.numeros .card { display: grid; gap: var(--space-2); align-content: start; grid-template-rows: auto 1fr auto; }
+.numeros p { margin: 0; }
+.numeros__valor { flex-wrap: wrap; }
+.numeros__texto a { color: var(--tinta-secundaria); }
+.numeros__contexto { color: var(--tinta-suave); padding-top: var(--space-2); border-top: 1px solid var(--borda-sutil); }
 .numeros__valor { display: flex; align-items: baseline; gap: 4px; }
 .numeros__valor .dado { font: var(--text-numero-destaque); font-size: 44px; color: var(--tinta); }
 .numeros__unidade { font: var(--text-titulo-secao); color: var(--tinta-secundaria); }

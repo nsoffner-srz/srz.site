@@ -24,11 +24,12 @@ const PROBLEMAS = [
   { texto: 'Equipamentos somem no hospital', href: '/setores/saude' },
 ];
 
+// Resultados de cases e POCs da Sensoriz (aprovados pela Nicole em 29/09/2026). Sem nome de cliente, só o segmento.
 const NUMEROS = [
-  { valor: '8', unidade: 'parâmetros', texto: 'medidos por um só hub' },
-  { prefixo: 'até', valor: '5', unidade: 'anos', texto: 'de bateria no hub de longa duração' },
-  { valor: '14–17', unidade: 'G', texto: 'impactos localizados no transporte de um cliente' },
-  { valor: '24', unidade: 'h', texto: 'de monitoramento por dia' },
+  { prefixo: 'R$', valor: '300', unidade: 'mil', texto: 'em perda evitada logo na primeira ocorrência. O monitoramento se pagou no primeiro alerta.', contexto: 'Multinacional química · cadeia fria', href: '/setores/logistica-e-cadeia-fria' },
+  { prefixo: 'menos de', valor: '1', unidade: 'mês', texto: 'de payback. O alerta revelou um compressor com defeito que o visor da geladeira escondia.', contexto: 'Prefeitura · vacinas em postos de saúde', href: '/setores/saude' },
+  { valor: '100', unidade: '%', texto: 'do trajeto com sinal, do Norte ao Sul do Brasil, incluindo trecho fluvial.', contexto: 'Indústria de climatização · transporte', href: '/setores/industria-e-inventario' },
+  { prefixo: 'até', valor: '1.440', unidade: 'registros/dia', texto: 'Leitura de 1 em 1 minuto, de 15 em 15 ou de hora em hora. Histórico com hora e valor, pronto para a fiscalização.', contexto: 'A planilha manual costuma ter 2', href: '/solucoes/servico-de-compliance' },
 ];
 
 export default function Home() {
@@ -134,21 +135,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. Números */}
+      {/* 7. Resultados */}
       <section className="secao">
         <div className="container">
           <div className="secao__topo">
-            <p className="rotulo">Em números</p>
-            <h2 className="display-l">A Sensoriz em números</h2>
+            <p className="rotulo">Resultados</p>
+            <h2 className="display-l">O que a Sensoriz já entregou</h2>
           </div>
-          <dl className="grade grade--4 numeros">
+          <ul className="grade grade--4 numeros">
             {NUMEROS.map((n) => (
-              <div className="card" key={n.texto}>
-                <dt className="numeros__valor">{n.prefixo && <span className="numeros__prefixo">{n.prefixo}</span>}<span className="dado">{n.valor}</span><span className="numeros__unidade">{n.unidade}</span></dt>
-                <dd className="apoio">{n.texto}</dd>
-              </div>
+              <li className="card card-link" key={n.texto}>
+                <p className="numeros__valor">{n.prefixo && <span className="numeros__prefixo">{n.prefixo}</span>}<span className="dado">{n.valor}</span><span className="numeros__unidade">{n.unidade}</span></p>
+                <p className="apoio numeros__texto"><Link href={n.href}>{n.texto}</Link></p>
+                <p className="rotulo numeros__contexto">{n.contexto}</p>
+              </li>
             ))}
-          </dl>
+          </ul>
           <p className="pendente">Números a confirmar com os sócios antes de publicar</p>
         </div>
       </section>
