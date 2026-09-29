@@ -156,7 +156,8 @@ Datas e eventos sempre em português. Sem emojis.
 - Foco em alimentos sensíveis a temperatura e umidade (congelados, refrigerados, frescos), não só medicamentos.
 - Indústria: prioridade para estoques complexos, com muito metal e equipamentos de alto valor
   (integridade por impacto, vibração e orientação, e localização).
-- Políticas: o texto oficial está hoje em sensoriz.com.br/politicas (Framer) e deve ser copiado para `app/politicas`.
+- Políticas: texto oficial em `content/politicas/*.md` (copiado sem alteração do site em Framer em 29/09/2026).
+  Cada arquivo vira `/politicas/<slug>`; a página `/politicas` lista todas. Não reescrever sem aprovação jurídica.
 - A classe `.pendente` marca o que ainda falta. **O site não vai ao ar com nenhum `.pendente` visível.**
   Para listar: `grep -rn "pendente" app components lib`.
 

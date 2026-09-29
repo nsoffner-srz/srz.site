@@ -62,7 +62,7 @@ export default function FormDiagnostico() {
       <div className="armadilha" aria-hidden="true"><label>Não preencha<input type="text" name="site_url" tabIndex={-1} autoComplete="off" /></label></div>
       <div className="campo campo--largo campo--consentimento">
         <input id="consentimento" name="consentimento" type="checkbox" required />
-        <label htmlFor="consentimento">Concordo que a Sensoriz use estes dados para entrar em contato sobre o diagnóstico, conforme as <Link href="/politicas">políticas de privacidade</Link>.</label>
+        <label htmlFor="consentimento">Concordo que a Sensoriz use estes dados para entrar em contato sobre o diagnóstico, conforme a <Link href="/politicas/privacidade">política de privacidade</Link>.</label>
       </div>
       <button className="botao botao--primario" type="submit" disabled={enviando}>Solicitar diagnóstico</button>
       <p className="form__retorno" role="status" aria-live="polite">{retorno}</p>

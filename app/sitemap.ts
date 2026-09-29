@@ -4,6 +4,7 @@ import { SITE } from '@/lib/site';
 import { SETORES } from '@/lib/setores';
 import { SOLUCOES } from '@/lib/solucoes';
 import { artigos } from '@/lib/conteudo';
+import { politicas } from '@/lib/politicas';
 
 export const dynamic = 'force-static';
 
@@ -20,5 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...artigos().map((a) => ({ url: u(`/conteudo/${a.slug}`), lastModified: a.atualizado ?? a.publicado })),
     { url: u('/empresa') },
     { url: u('/diagnostico') },
+    { url: u('/politicas'), priority: 0.3 },
+    ...politicas().map((p) => ({ url: u(`/politicas/${p.slug}`), priority: 0.3 })),
   ];
 }

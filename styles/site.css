@@ -211,3 +211,12 @@ summary.topo__link::after { content: ''; width: 7px; height: 7px; border-right: 
 .campo--consentimento input { width: 22px; height: 22px; margin-top: 2px; accent-color: var(--acao); }
 .form__retorno { font: var(--text-apoio); }
 .armadilha { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+/* ---------- Políticas ---------- */
+.politica { display: grid; gap: var(--space-6); }
+.politica > * { max-width: 820px; }
+.politica__sumario, .politica__outras { padding: var(--space-4); background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--radius-md); display: grid; gap: var(--space-2); }
+.politica__sumario ul, .politica__outras ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+.politica__sumario ul { list-style: none; padding-left: 0; }
+.politica__sumario a, .politica__outras a { color: var(--tinta); }
+.politica .prosa h2 { scroll-margin-top: 96px; }

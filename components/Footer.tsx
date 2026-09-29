@@ -26,6 +26,7 @@ export default function Footer() {
             <li><a href={SITE.loginCore}>Entrar na Sensoriz CORE</a></li>
             <li><a href={SITE.ouvidoria}>Ouvidoria</a></li>
             <li><Link href="/politicas">Políticas</Link></li>
+            <li><Link href="/politicas/privacidade">Privacidade (LGPD)</Link></li>
           </ul>
         </nav>
       </div>
