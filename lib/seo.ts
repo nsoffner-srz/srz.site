@@ -2,12 +2,13 @@
 import type { Metadata } from 'next';
 import { SITE } from './site';
 
-export function metadados({ titulo, descricao = SITE.descricao, caminho, tipo = 'website', semIndice = false }: {
+export function metadados({ titulo, descricao = SITE.descricao, caminho, tipo = 'website', semIndice = false, imagem }: {
   titulo: string;
   descricao?: string;
   caminho: string;
   tipo?: 'website' | 'article';
   semIndice?: boolean;
+  imagem?: string; // caminho da foto de capa (ex.: /conteudo/capas/slug.jpg)
 }): Metadata {
   const url = new URL(caminho, SITE.url).href;
   return {
@@ -15,8 +16,8 @@ export function metadados({ titulo, descricao = SITE.descricao, caminho, tipo = 
     description: descricao,
     alternates: { canonical: url },
     robots: semIndice ? { index: false, follow: true } : undefined,
-    openGraph: { title: titulo, description: descricao, url, type: tipo, siteName: 'Sensoriz', locale: 'pt_BR', images: [`${SITE.url}/icon-512.png`] },
-    twitter: { card: 'summary' },
+    openGraph: { title: titulo, description: descricao, url, type: tipo, siteName: 'Sensoriz', locale: 'pt_BR', images: [imagem ? new URL(imagem, SITE.url).href : `${SITE.url}/icon-512.png`] },
+    twitter: { card: imagem ? 'summary_large_image' : 'summary' },
   };
 }
 

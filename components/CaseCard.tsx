@@ -14,11 +14,14 @@ export default function CaseCard({ c, completo = false }: { c: Case; completo?: 
           <div><dt>Solução</dt><dd>{c.solucao}</dd></div>
         </dl>
       )}
-      {c.depoimento ? (
-        <figure className="depoimento">
-          <blockquote>{c.depoimento.texto}</blockquote>
-          <figcaption className="apoio">{c.depoimento.autor}</figcaption>
-        </figure>
+      {c.depoimentos.length > 0 ? (
+        // Na versão resumida (home) aparece só o primeiro depoimento; na completa, todos.
+        (completo ? c.depoimentos : c.depoimentos.slice(0, 1)).map((d) => (
+          <figure className="depoimento" key={d.texto}>
+            <blockquote>“{d.texto}”</blockquote>
+            <figcaption className="apoio">{d.autor}</figcaption>
+          </figure>
+        ))
       ) : (
         <p className="pendente">Depoimento e resultados pendentes</p>
       )}

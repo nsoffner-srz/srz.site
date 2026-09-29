@@ -28,7 +28,7 @@ export default async function Tema({ params }: Props) {
           <div className="secao__topo"><Trilha itens={trilha} /><h1 className="display-l">{TEMAS[tema]}</h1></div>
           <FiltrosConteudo atual={`/conteudo/tema/${tema}`} />
           {lista.length ? (
-            <div className="grade grade--3">{lista.map((a) => <CardConteudo key={a.slug} slug={a.slug} titulo={a.titulo} descricao={a.descricao} tema={a.tema} data={a.publicado} />)}</div>
+            <div className="grade grade--3">{lista.map((a) => <CardConteudo key={a.slug} artigo={a} />)}</div>
           ) : <p className="apoio">Ainda não há artigos neste tema.</p>}
         </div>
       </section>

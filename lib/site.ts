@@ -49,3 +49,16 @@ export const NAV: ItemMenu[] = [
   { rotulo: 'Conteúdo', href: '/conteudo' },
   { rotulo: 'Empresa', href: '/empresa' },
 ];
+
+// Programas de aceleração (prova social permitida hoje). Sem logo de cliente.
+// Os dois logos são brancos: sempre sobre fundo escuro (.faixa-parceiros).
+export const PARCEIROS = [
+  {
+    nome: 'WOW Aceleradora de Startups',
+    // Selo "Acelerada por WOW" guardado no armazenamento de marketing da Sensoriz.
+    logo: 'https://nyc3.digitaloceanspaces.com/srz.mktstorage/home/parceiros/wow/acelerada-wow.png',
+    largura: 2066,
+    altura: 307,
+  },
+  { nome: 'Sebrae for Startups', logo: '/marca/parceiros/sebrae-branco.svg', largura: 1250, altura: 700 },
+] as const;

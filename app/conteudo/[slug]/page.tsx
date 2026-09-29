@@ -15,7 +15,7 @@ export const generateStaticParams = () => artigos().map((a) => ({ slug: a.slug }
 
 export async function generateMetadata({ params }: Props) {
   const a = artigo((await params).slug)!;
-  return metadados({ titulo: a.titulo, descricao: a.descricao, caminho: `/conteudo/${a.slug}`, tipo: 'article' });
+  return metadados({ titulo: a.titulo, descricao: a.descricao, caminho: `/conteudo/${a.slug}`, tipo: 'article', imagem: a.capa });
 }
 
 export default async function Artigo({ params }: Props) {
@@ -40,6 +40,7 @@ export default async function Artigo({ params }: Props) {
     publisher: { '@id': `${SITE.url}/#organizacao` },
     about: a.setores.map((s) => SETORES_ROTULO[s]),
     ...(a.palavrasChave.length ? { keywords: a.palavrasChave.join(', ') } : {}),
+    ...(a.capa ? { image: `${SITE.url}${a.capa}` } : {}),
   };
   return (
     <>
@@ -62,6 +63,12 @@ export default async function Artigo({ params }: Props) {
               </ul>
             )}
           </header>
+          {a.capa && (
+            <figure className="artigo__capa">
+              <img src={a.capa} alt={a.capaAlt ?? ''} width={1200} height={675} fetchPriority="high" decoding="async" />
+              {a.capaCredito && <figcaption className="apoio">{a.capaCredito}</figcaption>}
+            </figure>
+          )}
           <div className="prosa" dangerouslySetInnerHTML={{ __html: a.html }} />
           {a.origem && <p className="apoio">Publicado originalmente no <a href={a.origem}>LinkedIn da Sensoriz</a>.</p>}
           {a.perguntas.length > 0 && <div style={{ maxWidth: '70ch' }}><Perguntas itens={a.perguntas} titulo="Resumo em perguntas" /></div>}

@@ -126,7 +126,7 @@ export default async function PaginaSetor({ params }: Props) {
         <section className="secao secao--branca">
           <div className="container">
             <div className="secao__topo"><p className="rotulo">Conteúdo</p><h2 className="display-l">Para aprofundar</h2></div>
-            <div className="grade grade--3">{relacionados.map((a) => <CardConteudo key={a.slug} slug={a.slug} titulo={a.titulo} descricao={a.descricao} tema={a.tema} data={a.publicado} />)}</div>
+            <div className="grade grade--3">{relacionados.map((a) => <CardConteudo key={a.slug} artigo={a} />)}</div>
           </div>
         </section>
       )}

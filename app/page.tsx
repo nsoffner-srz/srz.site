@@ -4,6 +4,7 @@ import LeiturasAoVivo from '@/components/LeiturasAoVivo';
 import ChamadaDiagnostico from '@/components/ChamadaDiagnostico';
 import CardConteudo from '@/components/CardConteudo';
 import CaseCard from '@/components/CaseCard';
+import Parceiros from '@/components/Parceiros';
 import JsonLd from '@/components/JsonLd';
 import { SETORES } from '@/lib/setores';
 import { CASES } from '@/lib/cases';
@@ -54,13 +55,7 @@ export default function Home() {
 
       {/* 2. Prova social */}
       <section className="prova" aria-label="Quem apoia a Sensoriz">
-        <div className="container prova__grade">
-          <p className="rotulo">Aceleradas e apoiadas por</p>
-          <div className="prova__logos">
-            <span className="prova__logo">WOW Aceleradora <span className="pendente">logo pendente</span></span>
-            <span className="prova__logo">Sebrae for Startups <span className="pendente">logo pendente</span></span>
-          </div>
-        </div>
+        <div className="container"><Parceiros /></div>
       </section>
 
       {/* 3. Por onde começar */}
@@ -188,7 +183,7 @@ export default function Home() {
           <div className="container">
             <div className="secao__topo"><p className="rotulo">Conteúdo</p><h2 className="display-l">Para aprofundar</h2></div>
             <div className="grade grade--3">
-              {ultimos.map((a) => <CardConteudo key={a.slug} slug={a.slug} titulo={a.titulo} descricao={a.descricao} tema={a.tema} data={a.publicado} />)}
+              {ultimos.map((a) => <CardConteudo key={a.slug} artigo={a} />)}
             </div>
           </div>
         </section>

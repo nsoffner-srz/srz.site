@@ -76,6 +76,11 @@ Para escrever para busca e IA: o primeiro parágrafo responde à pergunta do tí
 subtítulos em forma de pergunta; números sempre com unidade; `perguntas` no frontmatter (vira FAQ e dado estruturado).
 Use `rascunho: true` enquanto o texto não estiver aprovado.
 
+**Foto de capa:** salve a imagem em `public/conteudo/capas/<slug>.jpg` (ou `.webp`/`.png`), com o mesmo nome do
+arquivo `.md`. Ela aparece sozinha no card, no topo do artigo e na prévia de compartilhamento. Formato 16:9,
+1600 × 900px, até 300 KB. No frontmatter, `capaAlt` (descrição da foto) e `capaCredito` (ex.: "Foto: Nome / Pexels").
+Só use foto com licença livre (Pexels, Unsplash) ou própria.
+
 ## Hardware (fonte: Nicole, 29 set 2026)
 
 O hardware NÃO é produção própria nem nacional. Nunca escrever "hardware próprio" ou "tecnologia própria de hardware".
@@ -143,6 +148,8 @@ Datas e eventos sempre em português. Sem emojis.
 
 - **Não usar logo de cliente.** Nome só com autorização por escrito (ver Clientes ativos).
 - Prova social permitida hoje: logos da **WOW Aceleradora** e do **Sebrae for Startups**, e depoimentos autorizados.
+  Os dois logos são brancos e ficam sempre na faixa escura (`components/Parceiros.tsx`, lista em `PARCEIROS` de `lib/site.ts`).
+  Depoimentos ficam em `lib/cases.ts` (campo `depoimentos`).
 - Números da home estão marcados como "a confirmar". Só retirar a marcação depois da aprovação dos sócios.
 - Normas citadas (RDC 430, 653, 216, 44, 67, 197 e Portaria 326) devem ser revisadas por quem conhece a
   regulação antes de publicar. RDC 67 vale só para farmácias de manipulação.

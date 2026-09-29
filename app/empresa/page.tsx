@@ -2,6 +2,7 @@ import Trilha from '@/components/Trilha';
 import ChamadaDiagnostico from '@/components/ChamadaDiagnostico';
 import JsonLd from '@/components/JsonLd';
 import { trilhaJsonLd, metadados } from '@/lib/seo';
+import Parceiros from '@/components/Parceiros';
 
 export const metadata = metadados({ titulo: 'Empresa', descricao: 'A Sensoriz desenvolve a plataforma Sensoriz CORE e integra hardware de parceiros internacionais para monitorar ativos sensíveis em tempo real.', caminho: '/empresa' });
 const trilha = [{ nome: 'Início', caminho: '/' }, { nome: 'Empresa', caminho: '/empresa' }];
@@ -38,10 +39,8 @@ export default function Empresa() {
       <section className="secao">
         <div className="container">
           <div className="secao__topo"><p className="rotulo">Programas</p><h2 className="display-l">Aceleração e apoio</h2></div>
-          <div className="grade grade--2">
-            <div className="card case"><p className="titulo-secao">WOW Aceleradora</p><p className="pendente">Logo e texto pendentes</p></div>
-            <div className="card case"><p className="titulo-secao">Sebrae for Startups</p><p className="pendente">Logo e texto pendentes</p></div>
-          </div>
+          <Parceiros titulo="A Sensoriz participa de" />
+          <p className="pendente" style={{ marginTop: 'var(--space-3)' }}>Texto curto sobre cada programa: pendente</p>
         </div>
       </section>
       <ChamadaDiagnostico />

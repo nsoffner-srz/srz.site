@@ -22,7 +22,7 @@ export default function Conteudo() {
           </div>
           <FiltrosConteudo atual="/conteudo" />
           {lista.length ? (
-            <div className="grade grade--3">{lista.map((a) => <CardConteudo key={a.slug} slug={a.slug} titulo={a.titulo} descricao={a.descricao} tema={a.tema} data={a.publicado} />)}</div>
+            <div className="grade grade--3">{lista.map((a) => <CardConteudo key={a.slug} artigo={a} />)}</div>
           ) : <p className="apoio">Nenhum artigo publicado ainda.</p>}
         </div>
       </section>
