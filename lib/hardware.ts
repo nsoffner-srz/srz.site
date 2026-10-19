@@ -17,7 +17,8 @@ export const PARAMETROS_SOLUCAO = [
 ] as const;
 
 // O hub NÃO mede umidade: quem mede é a tag.
-export const PARAMETROS_HUB = PARAMETROS_SOLUCAO.filter((p) => p !== 'Umidade');
+// Queda de energia: só o hub na tomada mede (sensor de potência externa). Fica fora dos "8 parâmetros" da home.
+export const PARAMETROS_HUB = [...PARAMETROS_SOLUCAO.filter((p) => p !== 'Umidade'), 'Queda de energia (hub na tomada)'];
 
 export const PARAMETROS_TAG = ['Temperatura', 'Umidade', 'Localização'] as const;
 
