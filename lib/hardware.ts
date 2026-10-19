@@ -27,7 +27,7 @@ export type FotoProduto = { nome: string; alt: string };
 export const MODELOS_HUB: { nome: string; uso: string; foto?: FotoProduto }[] = [
   { nome: 'Recarregável', uso: 'Para frotas que voltam à base.', foto: { nome: 'hub-recarregavel', alt: 'Hub recarregável, preto, com botão e sensor de luz no canto' } },
   { nome: 'Na tomada', uso: 'Para geladeiras, câmaras e salas. Avisa se a energia cair.', foto: { nome: 'hub-tomada', alt: 'Hub na tomada, preto, com cabo de energia e furos para fixar na parede' } },
-  { nome: 'Descartável', uso: 'Para envios só de ida.' },
+  { nome: 'Descartável', uso: 'Para envios só de ida.', foto: { nome: 'hub-descartavel', alt: 'Hub descartável, cinza claro e alongado, com sensor de luz na ponta' } },
   { nome: 'Longa duração', uso: 'Para equipamentos de longa permanência. Até 5 anos de bateria.', foto: { nome: 'hub-longa-duracao', alt: 'Hub de longa duração, quadrado e preto, com furos para parafusos nas laterais' } },
 ];
 
