@@ -24,7 +24,7 @@ Já nas smart factories, o geofencing atua como um guardião invisível da segur
 
 ## Cidades inteligentes
 
-O papel do geofencing se expande ainda para as cidades inteligentes, onde a tecnologia promove sustentabilidade e ordem urbana. Em metrópoles, parques e áreas verdes sofrem com a invasão de veículos, colocando ecossistemas em risco. Ao delimitar cercas virtuais, câmeras e sensores emitem multas automáticas para carros estacionados ilegalmente, preservando espaços públicos. Na gestão de resíduos, lixeiras equipadas com geofencing enviam alertas quando atingem 80% de capacidade, permitindo que caminhões de coleta otimizem rotas — em Curitiba, essa estratégia diminuiu em 40% o descarte irregular de lixo. Até mesmo o transporte público se beneficia: bicicletas compartilhadas só podem ser estacionadas em zonas específicas, evitando congestionamentos e garantindo acesso equitativo.
+O papel do geofencing se expande ainda para as cidades inteligentes, onde a tecnologia promove sustentabilidade e ordem urbana. Em metrópoles, parques e áreas verdes sofrem com a invasão de veículos, colocando ecossistemas em risco. Ao delimitar cercas virtuais, câmeras e sensores emitem multas automáticas para carros estacionados ilegalmente, preservando espaços públicos. Na gestão de resíduos, lixeiras equipadas com geofencing enviam alertas quando atingem 80% de capacidade, permitindo que caminhões de coleta otimizem rotas. Até mesmo o transporte público se beneficia: bicicletas compartilhadas só podem ser estacionadas em zonas específicas, evitando congestionamentos e garantindo acesso equitativo.
 
 ## Preservação ambiental
 
