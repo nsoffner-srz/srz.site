@@ -384,8 +384,8 @@ summary.topo__link::after { content: ''; width: 7px; height: 7px; border-right: 
 .modelos-hub p, .modelos-hub h3 { margin: 0; }
 .modelos-hub .pendente.foto-produto { place-items: center; }
 
-/* Sócios (página Empresa). Retratos em preto e branco sobre fundo preto, recortados da apresentação. */
+/* Sócios (página Empresa). Retratos em preto e branco, recortados e sobre o mesmo fundo cinza claro. */
 .socios { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); }
 .socio { display: grid; gap: var(--space-2); align-content: start; }
 .socio p, .socio h3 { margin: 0; }
-.socio__foto { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-md); background: #000; margin-bottom: var(--space-2); }
+.socio__foto { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-md); margin-bottom: var(--space-2); }
