@@ -1,5 +1,7 @@
 # Redirecionamentos permanentes do site antigo (Framer) para o novo. Formato da Cloudflare Pages.
 # Antes de desligar o Framer, conferir a lista completa de URLs antigas (incluindo cada post do blog).
+# Link dos e-mails de alerta da CORE (sensoriz.com.br/login) leva para o login da plataforma.
+/login                 https://core.sensoriz.com.br/login   301
 /cold-chain            /solucoes/logistica-e-cadeia-fria   301
 /cold-chain/           /solucoes/logistica-e-cadeia-fria   301
 # Estrutura de out/2026 (menu Produtos e Soluções). Regras específicas antes das genéricas.

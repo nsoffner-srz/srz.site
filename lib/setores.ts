@@ -28,7 +28,7 @@ export interface Setor {
   fotos?: { src: string; alt: string; largura: number; altura: number }[]; // fotos reais da instalação
   visual?: 'rota' | 'geladeira'; // visual vivo ao lado do título (Logística: rota; Farmácias: geladeira na madrugada)
   // Quanto vale a carga em cada tipo de veículo (Logística). Dados do Rodrigo, out/2026: fonte a confirmar.
-  valorCarga?: { titulo: string; texto: string; linhas: { veiculo: string; paletes: string; operacao: string; valor: string }[] }; // visual vivo ao lado do título (Logística: carga percorrendo a rota)
+  valorCarga?: { titulo: string; texto: string; linhas: { veiculo: string; paletes: string; operacao: string }[] }; // visual vivo ao lado do título (Logística: carga percorrendo a rota)
 }
 
 export const SETORES: Setor[] = [
@@ -46,16 +46,18 @@ export const SETORES: Setor[] = [
       texto: 'Quando a carga chega fora da temperatura ou avariada, o cliente recusa. Vem a reentrega, o descarte e a marca arranhada. E o termômetro só mostra o que aconteceu quando já é tarde.',
       custo: 'Uma carga de medicamentos descartada pode custar mais de R$ 300 mil.',
     },
+    // Out/2026: valores por veículo e cortes de PGR enviados pelo Rodrigo ficaram de fora (sem documento que
+    // os comprove). Fica só o que passou no fact check: capacidade em paletes PBR, conta feita pela medida do baú.
     valorCarga: {
-      titulo: 'Quanto vale o que está no seu baú',
-      texto: 'Em medicamentos refrigerados, um veículo pequeno pode levar mais valor que uma carreta de carga seca. A assinatura mensal de um hub custa menos de 0,05% do valor de uma carga em um caminhão 3/4.',
+      titulo: 'Quantos paletes cabem no seu baú',
+      texto: 'O valor de uma carga é o número de paletes vezes o valor de cada palete. Em medicamentos, o preço de cada produto está na tabela oficial da CMED (Anvisa). No diagnóstico, fazemos essa conta com a sua frota.',
       linhas: [
-        { veiculo: 'Utilitário leve', paletes: '1 a 2', operacao: 'Última milha, clínicas e hospitais', valor: 'R$ 150 mil a R$ 600 mil' },
-        { veiculo: 'VUC', paletes: '4 a 6', operacao: 'Distribuição na região metropolitana', valor: 'R$ 500 mil a R$ 1,8 milhão' },
-        { veiculo: '3/4', paletes: '6 a 8', operacao: 'Distribuição regional', valor: 'R$ 1,2 milhão a R$ 3,5 milhões' },
-        { veiculo: 'Toco', paletes: '10 a 12', operacao: 'Transferência entre centros de distribuição', valor: 'R$ 2,5 milhões a R$ 6 milhões' },
-        { veiculo: 'Truck', paletes: '14 a 16', operacao: 'Longa distância e grandes redes', valor: 'R$ 4,5 milhões a R$ 12 milhões' },
-        { veiculo: 'Carreta frigorífica', paletes: '26 a 30', operacao: 'Da fábrica para o armazém', valor: 'R$ 8 milhões a R$ 25 milhões' },
+        { veiculo: 'Utilitário leve', paletes: '1 a 2', operacao: 'Última milha, clínicas e hospitais' },
+        { veiculo: 'VUC', paletes: '4 a 6', operacao: 'Distribuição na região metropolitana' },
+        { veiculo: '3/4', paletes: '6 a 8', operacao: 'Distribuição regional' },
+        { veiculo: 'Toco', paletes: '10 a 12', operacao: 'Transferência entre centros de distribuição' },
+        { veiculo: 'Truck', paletes: '14 a 16', operacao: 'Longa distância e grandes redes' },
+        { veiculo: 'Carreta frigorífica', paletes: '26 a 28', operacao: 'Da fábrica para o armazém' },
       ],
     },
     normas: [
@@ -74,6 +76,15 @@ export const SETORES: Setor[] = [
         exige: [
           'Alterou os prazos da RDC 430: estudos de rota e qualificação térmica até março de 2023',
           'Soluções de controle de temperatura implantadas e qualificadas até março de 2024. Os prazos já venceram',
+        ],
+      },
+      {
+        nome: 'Lei 14.599/2023',
+        valePara: 'Transportadoras de carga',
+        exige: [
+          'Seguros RCTR-C e RC-DC obrigatórios, numa só apólice',
+          'As duas coberturas ligadas a um Plano de Gerenciamento de Risco (PGR) combinado entre a transportadora e a seguradora',
+          'O embarcador pode pedir medidas de segurança além do PGR, arcando com o custo',
         ],
       },
       {

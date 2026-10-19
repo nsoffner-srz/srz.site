@@ -3,6 +3,7 @@ import Trilha from '@/components/Trilha';
 import Perguntas from '@/components/Perguntas';
 import ChamadaDiagnostico from '@/components/ChamadaDiagnostico';
 import JsonLd from '@/components/JsonLd';
+import PainelCore from '@/components/core/PainelCore';
 import { GRUPOS_PRODUTO, type Produto } from '@/lib/produtos';
 import { DISPOSITIVOS, MODELOS_HUB } from '@/lib/hardware';
 import { SETORES_ROTULO } from '@/lib/site';
@@ -38,6 +39,15 @@ export default function PaginaProduto({ s }: { s: Produto }) {
         </section>
       )}
 
+      {s.secoes.filter((b) => b.vitrine === 'painel').map((b) => (
+        <section className="secao vitrine-core" key={b.titulo}>
+          <div className="container">
+            <div className="secao__topo"><p className="rotulo">Sensoriz CORE</p><h2 className="display-l">{b.titulo}</h2><p className="lead">{b.texto}</p></div>
+            <PainelCore />
+          </div>
+        </section>
+      ))}
+
       {ehDispositivos ? (
         <>
           <section className="secao secao--branca">
@@ -69,7 +79,7 @@ export default function PaginaProduto({ s }: { s: Produto }) {
         <section className="secao secao--branca">
           <div className="container">
             <div className="grade grade--2">
-              {s.secoes.map((b) => <div className="card norma" id={b.id} key={b.titulo}><h2 className="titulo-secao">{b.titulo}</h2><p className="apoio">{b.texto}</p></div>)}
+              {s.secoes.filter((b) => !b.vitrine).map((b) => <div className="card norma" id={b.id} key={b.titulo}><h2 className="titulo-secao">{b.titulo}</h2><p className="apoio">{b.texto}</p></div>)}
             </div>
           </div>
         </section>

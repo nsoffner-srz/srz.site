@@ -12,7 +12,7 @@ export interface Produto {
   titulo: string;
   resumo: string;
   // Seções da página. "id" vira âncora e pode ser linkado pelo menu.
-  secoes: { id?: string; titulo: string; texto: string }[];
+  secoes: { id?: string; titulo: string; texto: string; vitrine?: 'painel' }[]; // vitrine: réplica da tela da CORE
   setores: SetorId[];
   perguntas: { pergunta: string; resposta: string }[];
   // Argumentos comerciais em destaque logo abaixo do título (CORE, feedback do Rodrigo out/2026)
@@ -49,7 +49,7 @@ export const PRODUTOS: Produto[] = [
     titulo: 'Tudo o que importa em um só painel',
     resumo: 'A plataforma da Sensoriz. Mostra cada leitura, avisa quando algo sai do padrão e gera o relatório.',
     secoes: [
-      { titulo: 'Tela inicial do seu jeito', texto: 'Monte a tela inicial com o que sua equipe precisa ver primeiro.' },
+      { titulo: 'Tela inicial do seu jeito', texto: 'Monte a tela inicial com o que sua equipe precisa ver primeiro: quantos dispositivos estão ativos, os alertas do dia, o Sensoriz Score e as baterias que pedem atenção.', vitrine: 'painel' },
       { id: 'relatorios', titulo: 'Relatórios e auditoria', texto: 'Relatório por carga ou equipamento, pronto para auditoria. O fiscal vê os últimos 30 dias pelo QR Code, sem senha.' },
       { id: 'integracoes', titulo: 'Integrações', texto: 'Alertas no WhatsApp, e-mail, SMS, Telegram e Google Chat. Dados no ERP e em outros sistemas, no formato definido no projeto.' },
       { titulo: 'Módulos por operação', texto: 'Você usa só os módulos que a sua operação precisa.' },

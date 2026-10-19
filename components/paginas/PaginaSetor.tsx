@@ -61,16 +61,16 @@ export default function PaginaSetor({ s }: { s: Setor }) {
             </div>
             <div className="tabela-rolagem">
               <table className="tabela-valor">
-                <caption className="apoio">Valor típico de uma carga de medicamentos refrigerados (2 a 8 °C), por tipo de veículo</caption>
-                <thead><tr><th scope="col">Veículo</th><th scope="col">Paletes</th><th scope="col">Operação</th><th scope="col">Valor da carga</th></tr></thead>
+                <caption className="apoio">Capacidade em paletes PBR (1,0 × 1,2 m), por tipo de veículo. Estimativa Sensoriz pela medida do baú</caption>
+                <thead><tr><th scope="col">Veículo</th><th scope="col">Paletes</th><th scope="col">Operação</th></tr></thead>
                 <tbody>
                   {s.valorCarga.linhas.map((l) => (
-                    <tr key={l.veiculo}><th scope="row">{l.veiculo}</th><td className="dado">{l.paletes}</td><td>{l.operacao}</td><td className="dado">{l.valor}</td></tr>
+                    <tr key={l.veiculo}><th scope="row">{l.veiculo}</th><td className="dado">{l.paletes}</td><td>{l.operacao}</td></tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <p className="pendente" style={{ marginTop: 'var(--space-3)' }}>Fonte da tabela a confirmar antes de publicar</p>
+            <p style={{ marginTop: 'var(--space-4)' }}><Link className="botao botao--secundario" href="/diagnostico?objetivo=roi">Calcular o valor em risco da minha frota</Link></p>
           </div>
         </section>
       )}
