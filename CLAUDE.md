@@ -29,8 +29,8 @@ Node 20.9 ou mais recente.
 ```
 app/                       rotas (cada pasta com page.tsx vira uma página)
   page.tsx                 home
-  setores/[slug]/          modelo único das páginas de setor
-  solucoes/[slug]/         páginas de solução (dispositivos tem layout próprio)
+  produtos/[slug]/         dispositivos, sensoriz-core, servicos
+  solucoes/[slug]/         setores e casos de uso (estoque parado, estoque em movimento)
   conteudo/                lista, artigo, filtros por tema e setor, rss.xml
   cases/ empresa/ diagnostico/ politicas/
   layout.tsx               fontes, SEO padrão, JSON-LD da organização, cabeçalho e rodapé
@@ -38,8 +38,9 @@ app/                       rotas (cada pasta com page.tsx vira uma página)
 components/                Header, Footer, Logo, LeiturasAoVivo (hero), CaseCard, FormDiagnostico...
 lib/
   site.ts                  menu, rótulos, listas fechadas de TEMAS e SETORES, links
-  setores.ts               conteúdo das 4 páginas de setor (normas, perguntas, configuração)
-  solucoes.ts              conteúdo das páginas de solução
+  setores.ts               conteúdo das 4 páginas de setor (normas, perguntas, visual vivo, fotos)
+  produtos.ts              conteúdo das páginas de produto
+  casos-de-uso.ts          estoque parado e estoque em movimento
   hardware.ts              hubs, tags, lacre e os 8 parâmetros
   cases.ts                 clientes ativos
   conteudo.ts              leitura e validação dos artigos em Markdown
@@ -55,8 +56,10 @@ functions/api/diagnostico.ts   Cloudflare Pages Function: formulário vira lead 
 
 ## Mapa do site
 
-- **Setores:** Logística e Cadeia Fria · Farmácias e Clínicas · Saúde · Indústria e Inventário
-- **Soluções:** Sensoriz CORE · Monitoramento ambiental · Dispositivos · Serviço de compliance · Integrações
+- **Produtos:** Dispositivos (hub, tag, lacre) · Sensoriz CORE · Serviços (implantação, compliance, suporte)
+- **Soluções:** por setor (Logística e Cadeia Fria · Farmácias e Clínicas · Saúde · Ativos de Alto Valor)
+  e por caso de uso (Estoque parado · Estoque em movimento). Chamada "Calcule seu ROI" no menu.
+- URLs antigas (/setores/*, /solucoes/sensoriz-core etc.) têm 301 em `public/_redirects`.
 - **Cases** · **Conteúdo** (temas + tags de setor) · **Empresa**
 - Em toda página: Solicitar diagnóstico · Entrar na Sensoriz CORE · Ouvidoria · Privacidade
 
@@ -69,7 +72,7 @@ Saúde e Indústria não têm norma de monitoramento e ficam sem essa seção.
 Cada artigo tem **1 tema** e **1 ou mais setores**. Listas fechadas, para não surgirem variações:
 
 - Temas: `normas-e-fiscalizacao`, `perdas-e-custos`, `gestao-da-operacao`, `tecnologia-e-dados`, `cases-e-depoimentos`
-- Setores: `logistica-e-cadeia-fria`, `farmacias-e-clinicas`, `saude`, `industria-e-inventario`
+- Setores: `logistica-e-cadeia-fria`, `farmacias-e-clinicas`, `saude`, `ativos-de-alto-valor`
 - Série opcional: `norma-em-dia` (conteúdo regulatório)
 
 Para escrever para busca e IA: o primeiro parágrafo responde à pergunta do título em até 3 frases;
@@ -93,6 +96,9 @@ A plataforma Sensoriz CORE é desenvolvida pela Sensoriz.
 - **Tags** (SystemLoco): não se conectam à nuvem; enviam pelo hub. Medem só temperatura, umidade e localização.
 - **Lacre inteligente** (parceiro internacional TydenBrooks): lacre eletrônico de porta de caminhão.
 - Os nomes dos parceiros não aparecem no site até a Nicole decidir citá-los.
+- **Na home e no institucional, a solução é uma só: "8 parâmetros em uma só solução".** Hub e tag aparecem
+  separados só nas páginas de hardware (o hub não mede umidade; quem mede é a tag).
+- Dúvidas de hardware: confirmar com o Rodrigo (CEO).
 
 ## Clientes ativos (set 2026)
 
@@ -147,7 +153,9 @@ Datas e eventos sempre em português. Sem emojis.
 ## Regras de conteúdo
 
 - **Não usar logo de cliente.** Nome só com autorização por escrito (ver Clientes ativos).
-- Prova social permitida hoje: logos da **WOW Aceleradora** e do **Sebrae for Startups**, e depoimentos autorizados.
+- Prova social permitida hoje: logos da **WOW Aceleradora**, **Sebrae for Startups** e **Google for Startups**
+  (faixa branca logo abaixo do hero), e depoimentos autorizados.
+- **Cases sempre sem nome de cliente**, só o segmento (formato antes · problema · como atuamos · resultado).
   Os dois logos são brancos e ficam sempre na faixa escura (`components/Parceiros.tsx`, lista em `PARCEIROS` de `lib/site.ts`).
   Depoimentos ficam em `lib/cases.ts` (campo `depoimentos`).
 - Números da home estão marcados como "a confirmar". Só retirar a marcação depois da aprovação dos sócios.
