@@ -6,12 +6,13 @@ import Parceiros from '@/components/Parceiros';
 
 export const metadata = metadados({ titulo: 'Empresa', descricao: 'A Sensoriz desenvolve a plataforma Sensoriz CORE e integra hardware de parceiros internacionais para monitorar ativos sensíveis em tempo real.', caminho: '/empresa' });
 const trilha = [{ nome: 'Início', caminho: '/' }, { nome: 'Empresa', caminho: '/empresa' }];
+// Fotos e bios: apresentação institucional dos sócios (out/2026). Fotos em public/fotos/socios.
 const SOCIOS = [
-  { nome: 'Rodrigo Amaral', cargo: 'Fundador e CEO' },
-  { nome: 'Leonardo Rissi', cargo: 'CTO' },
-  { nome: 'Leonard Lorentziadis', cargo: 'CSO' },
-  { nome: 'Natan Pace', cargo: 'CFO' },
-  { nome: 'Nicole Soffner', cargo: 'CMO' },
+  { id: 'rodrigo-amaral', nome: 'Rodrigo Amaral', cargo: 'CEO e fundador', bio: 'Engenheiro de Produção, com mais de 12 anos em inovação tecnológica e supply chain. Liderou projetos logísticos em grandes multinacionais.' },
+  { id: 'leonard-lorentziadis', nome: 'Leonard Lorentziadis', cargo: 'CCO', bio: 'Especialista em negócios médico-hospitalares, com mais de 20 anos no setor. Cofundador da Biocare e da Sparkia e conselheiro estratégico, com rede no Brasil e no exterior.' },
+  { id: 'natan-pace', nome: 'Natan Pace', cargo: 'CFO', bio: 'Engenheiro de Produção, com experiência como controller em empresas de tecnologia. Perfil analítico, com atuação no mercado financeiro e foco em excelência operacional.' },
+  { id: 'leonardo-rissi', nome: 'Leonardo Rissi', cargo: 'CTO', bio: 'Engenheiro de software, com mais de 15 anos criando sistemas escaláveis para startups e grandes empresas. Foco em alta performance e robustez.' },
+  { id: 'nicole-soffner', nome: 'Nicole Soffner', cargo: 'CMO', bio: 'Mais de 10 anos em estratégia digital e branding B2B, entre grandes empresas e a própria agência, a NICZO. Experiência em logística, inovação e projetos orientados a dados.' },
 ];
 
 export default function Empresa() {
@@ -29,9 +30,14 @@ export default function Empresa() {
       <section className="secao secao--branca">
         <div className="container">
           <div className="secao__topo"><p className="rotulo">Sócios</p><h2 className="display-l">Quem faz a Sensoriz</h2></div>
-          <ul className="grade grade--3" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+          <ul className="socios">
             {SOCIOS.map((s) => (
-              <li className="card case" key={s.nome}><p className="titulo-secao">{s.nome}</p><p className="apoio">{s.cargo}</p><p className="pendente">Foto e mini bio pendentes</p></li>
+              <li className="card socio" key={s.id}>
+                <img className="socio__foto" src={`/fotos/socios/${s.id}.webp`} alt={`Foto de ${s.nome}`} width={480} height={480} loading="lazy" decoding="async" />
+                <p className="rotulo">{s.cargo}</p>
+                <h3 className="titulo-secao">{s.nome}</h3>
+                <p className="apoio">{s.bio}</p>
+              </li>
             ))}
           </ul>
         </div>
