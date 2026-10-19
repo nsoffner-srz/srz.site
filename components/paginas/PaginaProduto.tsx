@@ -60,7 +60,7 @@ export default function PaginaProduto({ s }: { s: Produto }) {
                     <p className="dispositivo__uso">“{d.uso}”</p>
                     <h2 className="display-m">{d.nome}</h2>
                     <p className="apoio">{d.resumo}</p>
-                    <p className="rotulo">Mede</p>
+                    <p className="rotulo">Parâmetros</p>
                     <ul>{d.mede.map((m) => <li key={m}>{m}</li>)}</ul>
                   </article>
                 ))}
