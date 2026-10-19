@@ -51,7 +51,7 @@ export const PRODUTOS: Produto[] = [
     secoes: [
       { titulo: 'Tela inicial do seu jeito', texto: 'Monte a tela inicial com o que sua equipe precisa ver primeiro: quantos dispositivos estão ativos, os alertas do dia, o Sensoriz Score e as baterias que pedem atenção.', vitrine: 'painel' },
       { id: 'relatorios', titulo: 'Relatórios e auditoria', texto: 'Relatório por carga ou equipamento, pronto para auditoria. O fiscal vê os últimos 30 dias pelo QR Code, sem senha.' },
-      { id: 'integracoes', titulo: 'Integrações', texto: 'Alertas no WhatsApp, e-mail, SMS, Telegram e Google Chat. Dados no ERP e em outros sistemas, no formato definido no projeto.' },
+      { id: 'integracoes', titulo: 'Integrações', texto: 'Alertas no WhatsApp, e-mail, SMS, Telegram, Google Chat e Microsoft Teams. Dados no ERP e em outros sistemas, no formato definido no projeto.' },
       { titulo: 'Módulos por operação', texto: 'Você usa só os módulos que a sua operação precisa.' },
       { titulo: 'Segurança e LGPD', texto: 'Dados criptografados e com cópia de segurança.' },
     ],
@@ -67,7 +67,7 @@ export const PRODUTOS: Produto[] = [
       itens: [
         { titulo: 'O que é uma exceção', texto: 'Temperatura fora da faixa, queda de energia, impacto, porta aberta ou dispositivo sem sinal. Fora isso, silêncio.' },
         { titulo: 'Grupos', texto: 'Cada alerta vai para o grupo certo: qualidade, logística ou responsável técnico.' },
-        { titulo: 'Canais', texto: 'WhatsApp, e-mail, SMS, Telegram e Google Chat.' },
+        { titulo: 'Canais', texto: 'WhatsApp, e-mail, SMS, Telegram, Google Chat e Microsoft Teams.' },
         { titulo: 'Grade de horário', texto: 'Quem recebe em horário comercial e quem recebe à noite e no fim de semana.' },
       ],
     },

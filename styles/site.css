@@ -370,3 +370,6 @@ summary.topo__link::after { content: ''; width: 7px; height: 7px; border-right: 
   .core-painel { padding: var(--space-4); }
 }
 @media (prefers-reduced-motion: reduce) { .core-lista__novo { animation: none; } }
+/* Duas seções seguidas com o mesmo fundo (quando um bloco opcional some) ganham uma linha divisória. */
+.secao:not(.secao--branca) + .secao:not(.secao--branca),
+.secao--branca + .secao--branca { border-top: 1px solid var(--borda-sutil); }

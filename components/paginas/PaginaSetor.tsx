@@ -8,7 +8,8 @@ import CardConteudo from '@/components/CardConteudo';
 import CaseCard from '@/components/CaseCard';
 import JsonLd from '@/components/JsonLd';
 import type { Setor } from '@/lib/setores';
-import { casesDoSetor } from '@/lib/cases';
+import { casesDoSetor, CASES_SUCESSO } from '@/lib/cases';
+import CaseSucessoCard from '@/components/CaseSucessoCard';
 import { artigos } from '@/lib/conteudo';
 import { faqJsonLd, trilhaJsonLd } from '@/lib/seo';
 import RotaAoVivo from '@/components/RotaAoVivo';
@@ -17,6 +18,7 @@ import GeladeiraAoVivo from '@/components/GeladeiraAoVivo';
 export default function PaginaSetor({ s }: { s: Setor }) {
   const trilha = [{ nome: 'Início', caminho: '/' }, { nome: 'Soluções', caminho: '/solucoes' }, { nome: s.nome, caminho: `/solucoes/${s.id}` }];
   const cases = casesDoSetor(s.id);
+  const sucesso = CASES_SUCESSO.filter((c) => c.href === `/solucoes/${s.id}`);
   const relacionados = artigos().filter((a) => a.setores.includes(s.id)).slice(0, 3);
 
   return (
@@ -134,17 +136,19 @@ export default function PaginaSetor({ s }: { s: Setor }) {
         </div>
       </section>
 
-      {/* 5. Case ou depoimento */}
-      <section className="secao secao--branca">
-        <div className="container">
-          <div className="secao__topo"><p className="rotulo">Resultado em operação</p><h2 className="display-l">{cases.length > 1 ? 'Clientes do setor' : 'Case do setor'}</h2></div>
-          {cases.length > 0 ? (
-            <div className="grade grade--2">{cases.map((c) => <CaseCard c={c} completo key={c.id} />)}</div>
-          ) : (
-            <div className="card case"><p className="pendente">Case e depoimento: pendentes</p></div>
-          )}
-        </div>
-      </section>
+      {/* 5. Case ou depoimento. Sem cliente ativo no setor, usa o case de sucesso sem nome; sem nenhum, a seção sai. */}
+      {(cases.length > 0 || sucesso.length > 0) && (
+        <section className="secao secao--branca">
+          <div className="container">
+            <div className="secao__topo"><p className="rotulo">Resultado em operação</p><h2 className="display-l">{cases.length > 1 ? 'Clientes do setor' : 'Case do setor'}</h2></div>
+            {cases.length > 0 ? (
+              <div className="grade grade--2">{cases.map((c) => <CaseCard c={c} completo key={c.id} />)}</div>
+            ) : (
+              <div className="grade grade--2">{sucesso.map((c) => <CaseSucessoCard c={c} semLink key={c.id} />)}</div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* 6. Perguntas frequentes */}
       <section className="secao"><div className="container"><Perguntas itens={s.perguntas} /></div></section>

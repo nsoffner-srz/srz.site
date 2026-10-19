@@ -27,7 +27,7 @@ export interface Setor {
   caseId?: string;
   fotos?: { src: string; alt: string; largura: number; altura: number }[]; // fotos reais da instalação
   visual?: 'rota' | 'geladeira'; // visual vivo ao lado do título (Logística: rota; Farmácias: geladeira na madrugada)
-  // Quanto vale a carga em cada tipo de veículo (Logística). Dados do Rodrigo, out/2026: fonte a confirmar.
+  // Capacidade em paletes por tipo de veículo (Logística). Só dados verificados (out/2026).
   valorCarga?: { titulo: string; texto: string; linhas: { veiculo: string; paletes: string; operacao: string }[] }; // visual vivo ao lado do título (Logística: carga percorrendo a rota)
 }
 

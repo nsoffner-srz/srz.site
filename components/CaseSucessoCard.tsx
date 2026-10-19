@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { CaseSucesso } from '@/lib/cases';
 // Card de case de sucesso: o resultado em destaque e a comparação antes x com a Sensoriz. Sem nome de cliente.
-export default function CaseSucessoCard({ c }: { c: CaseSucesso }) {
+export default function CaseSucessoCard({ c, semLink }: { c: CaseSucesso; semLink?: boolean }) {
   const d = c.destaque;
   return (
     <article className="card case-sucesso">
@@ -30,7 +30,7 @@ export default function CaseSucessoCard({ c }: { c: CaseSucesso }) {
           <figcaption className="apoio">{c.depoimento.autor}</figcaption>
         </figure>
       )}
-      <p className="case-sucesso__link apoio"><Link href={c.href}>Ver a solução</Link></p>
+      {!semLink && <p className="case-sucesso__link apoio"><Link href={c.href}>Ver a solução</Link></p>}
     </article>
   );
 }
