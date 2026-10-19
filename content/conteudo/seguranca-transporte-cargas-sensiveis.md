@@ -5,7 +5,7 @@ publicado: 2025-04-07
 tema: tecnologia-e-dados
 setores:
   - logistica-e-cadeia-fria
-  - industria-e-inventario
+  - ativos-de-alto-valor
 palavrasChave: [Ativos de Alto Valor, Logística e Cold Chain, IoT e Tecnologia]
 capaAlt: "Caminhão refrigerado com as luzes acesas em uma estrada à noite"
 capaCredito: "Foto: Sergei Skrynnik / Pexels"

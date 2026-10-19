@@ -5,7 +5,7 @@ publicado: 2025-03-06
 tema: perdas-e-custos
 setores:
   - logistica-e-cadeia-fria
-  - industria-e-inventario
+  - ativos-de-alto-valor
 palavrasChave: [Ativos de Alto Valor, Logística e Cold Chain, Geofencing]
 capaAlt: "Carretas estacionadas nas docas de um armazém"
 # PENDÊNCIA: sem fonte (caso R$ 2 milhões, "1 em cada 3 empresas", "70% dos roubos").

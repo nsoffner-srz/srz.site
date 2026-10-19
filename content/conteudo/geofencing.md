@@ -5,7 +5,7 @@ publicado: 2025-03-27
 tema: tecnologia-e-dados
 setores:
   - logistica-e-cadeia-fria
-  - industria-e-inventario
+  - ativos-de-alto-valor
 palavrasChave: [IoT e Tecnologia, Logística e Cold Chain, Indústria e Inventário, Geofencing]
 capaAlt: "Vista aérea de caminhões estacionados nas docas de um armazém"
 # PENDÊNCIA: números sem fonte (-30% espera em pátio, -90% incidentes em fábrica de autopeças,

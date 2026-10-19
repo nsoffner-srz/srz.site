@@ -3,12 +3,13 @@ import Link from 'next/link';
 import LeiturasAoVivo from '@/components/LeiturasAoVivo';
 import ChamadaDiagnostico from '@/components/ChamadaDiagnostico';
 import CardConteudo from '@/components/CardConteudo';
-import CaseCard from '@/components/CaseCard';
+import CaseSucessoCard from '@/components/CaseSucessoCard';
 import Parceiros from '@/components/Parceiros';
 import JsonLd from '@/components/JsonLd';
 import { SETORES } from '@/lib/setores';
-import { CASES } from '@/lib/cases';
-import { PARAMETROS_HUB } from '@/lib/hardware';
+import { CASOS_DE_USO } from '@/lib/casos-de-uso';
+import { CASES_SUCESSO } from '@/lib/cases';
+import { PARAMETROS_SOLUCAO } from '@/lib/hardware';
 import { artigos } from '@/lib/conteudo';
 import { SITE } from '@/lib/site';
 import { metadados } from '@/lib/seo';
@@ -16,21 +17,14 @@ import { metadados } from '@/lib/seo';
 export const metadata = { ...metadados({ titulo: 'Sensoriz | Monitoramento de ativos sensíveis em tempo real', caminho: '/' }), title: { absolute: 'Sensoriz | Monitoramento de ativos sensíveis em tempo real' } };
 
 const PROBLEMAS = [
-  { texto: 'Perdi carga por temperatura', href: '/setores/logistica-e-cadeia-fria' },
-  { texto: 'Preciso provar para a fiscalização', href: '/solucoes/servico-de-compliance' },
-  { texto: 'Guardo produto em geladeira ou câmara', href: '/solucoes/monitoramento-ambiental' },
-  { texto: 'Meus equipamentos chegam danificados', href: '/setores/industria-e-inventario' },
-  { texto: 'Não acho equipamentos no estoque', href: '/setores/industria-e-inventario' },
-  { texto: 'Equipamentos somem no hospital', href: '/setores/saude' },
+  { texto: 'Perdi carga por temperatura', href: '/solucoes/logistica-e-cadeia-fria' },
+  { texto: 'Preciso provar para a fiscalização', href: '/produtos/servicos#compliance' },
+  { texto: 'Guardo produto em geladeira ou câmara', href: '/solucoes/estoque-parado' },
+  { texto: 'Cliente recusa a entrega por avaria', href: '/solucoes/ativos-de-alto-valor' },
+  { texto: 'Não consigo instalar sensor no caminhão do agregado', href: '/solucoes/estoque-em-movimento' },
+  { texto: 'Equipamentos e insumos críticos somem no hospital', href: '/solucoes/saude' },
 ];
 
-// Resultados de cases e POCs da Sensoriz (aprovados pela Nicole em 29/09/2026). Sem nome de cliente, só o segmento.
-const NUMEROS = [
-  { prefixo: 'R$', valor: '300', unidade: 'mil', texto: 'em perda evitada logo na primeira ocorrência. O monitoramento se pagou no primeiro alerta.', contexto: 'Multinacional química · cadeia fria', href: '/setores/logistica-e-cadeia-fria' },
-  { prefixo: 'menos de', valor: '1', unidade: 'mês', texto: 'de payback. O alerta revelou um compressor com defeito que o visor da geladeira escondia.', contexto: 'Prefeitura · vacinas em postos de saúde', href: '/setores/saude' },
-  { valor: '100', unidade: '%', texto: 'do trajeto com sinal, do Norte ao Sul do Brasil, incluindo trecho fluvial.', contexto: 'Indústria de climatização · transporte', href: '/setores/industria-e-inventario' },
-  { prefixo: 'até', valor: '1.440', unidade: 'registros/dia', texto: 'Leitura de 1 em 1 minuto, de 15 em 15 ou de hora em hora. Histórico com hora e valor, pronto para a fiscalização.', contexto: 'A planilha manual costuma ter 2', href: '/solucoes/servico-de-compliance' },
-];
 
 export default function Home() {
   const ultimos = artigos().slice(0, 3);
@@ -90,7 +84,7 @@ export default function Home() {
           <ol className="grade grade--3 pilares">
             <li className="card"><span className="pilares__n dado">01</span><h3 className="display-m">Ver</h3><p>Tudo o que importa no celular e no computador.</p></li>
             <li className="card"><span className="pilares__n dado">02</span><h3 className="display-m">Agir</h3><p>Você só é chamado quando algo sai do padrão.</p></li>
-            <li className="card"><span className="pilares__n dado">03</span><h3 className="display-m">Provar</h3><p>O relatório sai pronto para o fiscal.</p></li>
+            <li className="card"><span className="pilares__n dado">03</span><h3 className="display-m">Provar</h3><p>Dados que ninguém altera, prontos para consultar e extrair.</p></li>
           </ol>
         </div>
       </section>
@@ -99,13 +93,23 @@ export default function Home() {
       <section className="secao">
         <div className="container">
           <div className="secao__topo">
-            <p className="rotulo">Setores</p>
+            <p className="rotulo">Soluções</p>
             <h2 className="display-l">Uma plataforma, operações diferentes</h2>
           </div>
+          <div className="grade grade--2 casos-uso">
+            {CASOS_DE_USO.map((c) => (
+              <article className="card card-link casos-uso__card" key={c.slug}>
+                <p className="rotulo">Caso de uso</p>
+                <h3 className="display-m"><Link href={`/solucoes/${c.slug}`}>{c.nome}</Link></h3>
+                <p className="apoio">{c.ondeSeAplica.join(' · ')}</p>
+              </article>
+            ))}
+          </div>
+          <p className="rotulo" style={{ margin: 'var(--space-5) 0 var(--space-3)' }}>Por setor</p>
           <div className="grade grade--4">
             {SETORES.map((s) => (
               <article className="card card-link" key={s.id}>
-                <h3 className="titulo-secao"><Link href={`/setores/${s.id}`}>{s.nome}</Link></h3>
+                <h3 className="titulo-secao"><Link href={`/solucoes/${s.id}`}>{s.nome}</Link></h3>
                 <p className="apoio">{s.resumo}</p>
                 {s.normas.length > 0 && <p className="rotulo">{s.normas.map((n) => n.nome.split(' (')[0].replace(/\/\d{4}/, '')).join(' · ')}</p>}
               </article>
@@ -127,47 +131,37 @@ export default function Home() {
             <li><span className="dado">3</span><h3 className="titulo-secao">Receba o aviso</h3><p className="apoio">A pessoa certa recebe o aviso a tempo.</p></li>
             <li><span className="dado">4</span><h3 className="titulo-secao">Prove</h3><p className="apoio">Relatório em poucos cliques, sem planilha.</p></li>
           </ol>
-          <div className="card destaque">
-            <h3 className="titulo-secao">Oito parâmetros em um só hub</h3>
-            <ul className="parametros">{PARAMETROS_HUB.map((p) => <li key={p}>{p}</li>)}</ul>
-            <p className="apoio"><Link href="/solucoes/dispositivos">Conheça os dispositivos</Link></p>
+          <div className="grade grade--2 como-funciona__cards">
+            <div className="card destaque">
+              <h3 className="titulo-secao">Oito parâmetros em uma só solução</h3>
+              <ul className="parametros">{PARAMETROS_SOLUCAO.map((p) => <li key={p}>{p}</li>)}</ul>
+              <p className="apoio"><Link href="/produtos/dispositivos">Conheça os dispositivos</Link></p>
+            </div>
+            {/* Texto do Rodrigo (out/2026). Saiu da antiga seção Resultados. */}
+            <div className="card destaque">
+              <h3 className="titulo-secao">Monitoramento inteligente</h3>
+              <p className="numeros__valor"><span className="numeros__prefixo">a cada</span><span className="dado">5</span><span className="numeros__unidade">s</span></p>
+              <p className="apoio">O dispositivo verifica o ambiente e registra a cada 15 minutos. Se algo sai do padrão, quebra esse ritmo, registra e avisa na hora.</p>
+              <p className="apoio"><Link href="/produtos/servicos#compliance">Frequência ajustável para estoque parado ou em movimento</Link></p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 7. Resultados */}
+      {/* 7. Cases de sucesso (antes · problema · como atuamos · resultado), sem nome de cliente */}
       <section className="secao">
         <div className="container">
           <div className="secao__topo">
-            <p className="rotulo">Resultados</p>
-            <h2 className="display-l">O que a Sensoriz já entregou</h2>
+            <p className="rotulo">Cases de sucesso</p>
+            <h2 className="display-l">Antes e depois da Sensoriz</h2>
           </div>
-          <ul className="grade grade--4 numeros">
-            {NUMEROS.map((n) => (
-              <li className="card card-link" key={n.texto}>
-                <p className="numeros__valor">{n.prefixo && <span className="numeros__prefixo">{n.prefixo}</span>}<span className="dado">{n.valor}</span><span className="numeros__unidade">{n.unidade}</span></p>
-                <p className="apoio numeros__texto"><Link href={n.href}>{n.texto}</Link></p>
-                <p className="rotulo numeros__contexto">{n.contexto}</p>
-              </li>
-            ))}
-          </ul>
-          <p className="pendente">Números a confirmar com os sócios antes de publicar</p>
+          <div className="grade grade--2">{CASES_SUCESSO.map((c) => <CaseSucessoCard c={c} key={c.id} />)}</div>
+          <p className="apoio" style={{ marginTop: 'var(--space-4)' }}><Link href="/cases">Ver todos os cases</Link></p>
         </div>
       </section>
 
-      {/* 8. Cases */}
+      {/* 8. Custo de não monitorar */}
       <section className="secao secao--branca">
-        <div className="container">
-          <div className="secao__topo">
-            <p className="rotulo">Clientes</p>
-            <h2 className="display-l">Quem já monitora com a Sensoriz</h2>
-          </div>
-          <div className="grade grade--3">{CASES.map((c) => <CaseCard c={c} key={c.id} />)}</div>
-        </div>
-      </section>
-
-      {/* 9. Custo de não monitorar */}
-      <section className="secao">
         <div className="container duas-colunas">
           <div>
             <p className="rotulo">O custo de não ver</p>
@@ -181,7 +175,7 @@ export default function Home() {
       </section>
 
       {ultimos.length > 0 && (
-        <section className="secao secao--branca">
+        <section className="secao">
           <div className="container">
             <div className="secao__topo"><p className="rotulo">Conteúdo</p><h2 className="display-l">Para aprofundar</h2></div>
             <div className="grade grade--3">
@@ -191,7 +185,7 @@ export default function Home() {
         </section>
       )}
 
-      {/* 10. CTA final */}
+      {/* 9. CTA final */}
       <ChamadaDiagnostico />
     </>
   );

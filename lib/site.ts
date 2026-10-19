@@ -28,37 +28,73 @@ export const SETORES_ROTULO = {
   'logistica-e-cadeia-fria': 'Logística e Cadeia Fria',
   'farmacias-e-clinicas': 'Farmácias e Clínicas',
   saude: 'Saúde',
-  'industria-e-inventario': 'Indústria e Inventário',
+  'ativos-de-alto-valor': 'Ativos de Alto Valor',
 } as const;
 export type SetorId = keyof typeof SETORES_ROTULO;
 
-export const SOLUCOES_MENU = [
-  { slug: 'sensoriz-core', nome: 'Sensoriz CORE' },
-  { slug: 'monitoramento-ambiental', nome: 'Monitoramento ambiental' },
-  { slug: 'dispositivos', nome: 'Dispositivos' },
-  { slug: 'servico-de-compliance', nome: 'Serviço de compliance' },
-  { slug: 'integracoes', nome: 'Integrações' },
-];
-
-export type ItemMenu = { rotulo: string; href: string; filhos?: { rotulo: string; href: string }[] };
+// Menu principal, no modelo da Controlant: Produtos (o que entregamos) e Soluções (para quem).
+// Cada coluna do menu vira um grupo. Âncoras (#hub, #alertas...) apontam para seções das páginas de produto.
+export type LinkMenu = { rotulo: string; href: string };
+export type ItemMenu = {
+  rotulo: string;
+  href: string;
+  colunas?: { titulo: string; itens: LinkMenu[] }[];
+  chamada?: { titulo: string; texto: string; href: string };
+  verTodos?: string; // texto do link para a página que lista tudo
+};
 
 export const NAV: ItemMenu[] = [
-  { rotulo: 'Setores', href: '/setores', filhos: Object.entries(SETORES_ROTULO).map(([slug, nome]) => ({ rotulo: nome, href: `/setores/${slug}` })) },
-  { rotulo: 'Soluções', href: '/solucoes', filhos: SOLUCOES_MENU.map((s) => ({ rotulo: s.nome, href: `/solucoes/${s.slug}` })) },
+  {
+    rotulo: 'Produtos',
+    href: '/produtos',
+    verTodos: 'Ver todos os produtos',
+    colunas: [
+      { titulo: 'Dispositivos', itens: [
+        { rotulo: 'Hub', href: '/produtos/dispositivos#hub' },
+        { rotulo: 'Tag', href: '/produtos/dispositivos#tag' },
+        { rotulo: 'Lacre inteligente', href: '/produtos/dispositivos#lacre' },
+      ] },
+      { titulo: 'Plataforma', itens: [
+        { rotulo: 'Sensoriz CORE', href: '/produtos/sensoriz-core' },
+        { rotulo: 'Alertas e gestão por exceção', href: '/produtos/sensoriz-core#alertas' },
+        { rotulo: 'Relatórios e auditoria', href: '/produtos/sensoriz-core#relatorios' },
+        { rotulo: 'Integrações', href: '/produtos/sensoriz-core#integracoes' },
+      ] },
+      { titulo: 'Serviços', itens: [
+        { rotulo: 'Implantação e instalação', href: '/produtos/servicos#implantacao' },
+        { rotulo: 'Serviço de compliance', href: '/produtos/servicos#compliance' },
+        { rotulo: 'Suporte e gestão dos dispositivos', href: '/produtos/servicos#suporte' },
+      ] },
+    ],
+  },
+  {
+    rotulo: 'Soluções',
+    href: '/solucoes',
+    verTodos: 'Ver todas as soluções',
+    colunas: [
+      { titulo: 'Por setor', itens: Object.entries(SETORES_ROTULO).map(([id, nome]) => ({ rotulo: nome, href: `/solucoes/${id}` })) },
+      { titulo: 'Por caso de uso', itens: [
+        { rotulo: 'Estoque parado', href: '/solucoes/estoque-parado' },
+        { rotulo: 'Estoque em movimento', href: '/solucoes/estoque-em-movimento' },
+      ] },
+    ],
+    chamada: { titulo: 'Calcule seu ROI', texto: 'Veja o retorno na sua operação, com o nosso time.', href: '/diagnostico?objetivo=roi' },
+  },
   { rotulo: 'Cases', href: '/cases' },
   { rotulo: 'Conteúdo', href: '/conteudo' },
   { rotulo: 'Empresa', href: '/empresa' },
 ];
 
 // Programas de aceleração (prova social permitida hoje). Sem logo de cliente.
-// Os dois logos são brancos: sempre sobre fundo escuro (.faixa-parceiros).
+// A faixa é sempre branca (os logos coloridos foram feitos para fundo claro). "exibir" = altura na tela, em px.
 export const PARCEIROS = [
   {
     nome: 'WOW Aceleradora de Startups',
     // Selo "Acelerada por WOW" guardado no armazenamento de marketing da Sensoriz.
     logo: 'https://nyc3.digitaloceanspaces.com/srz.mktstorage/home/parceiros/wow/acelerada-wow.png',
-    largura: 2066,
-    altura: 307,
+    largura: 2066, altura: 307, exibir: 40,
   },
-  { nome: 'Sebrae for Startups', logo: '/marca/parceiros/sebrae-branco.svg', largura: 1250, altura: 700 },
+  { nome: 'Sebrae for Startups', logo: '/marca/parceiros/sebrae-for-startups.png', largura: 477, altura: 154, exibir: 56 },
+  // Logo do Google + "for Startups" em Google Sans, convertido em curvas (feedback do Rodrigo, out/2026).
+  { nome: 'Google for Startups', logo: '/marca/parceiros/google-for-startups-cinza.svg', largura: 210, altura: 32, exibir: 34 },
 ] as const;

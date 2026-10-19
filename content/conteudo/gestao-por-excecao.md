@@ -8,7 +8,7 @@ setores:
   - logistica-e-cadeia-fria
   - farmacias-e-clinicas
   - saude
-  - industria-e-inventario
+  - ativos-de-alto-valor
 rascunho: true
 perguntas:
   - pergunta: O que é gestão por exceção no monitoramento de ativos?

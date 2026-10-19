@@ -4,7 +4,7 @@ descricao: Como a IoT protege cargas valiosas com alertas de impacto, violação
 publicado: 2025-03-03
 tema: tecnologia-e-dados
 setores:
-  - industria-e-inventario
+  - ativos-de-alto-valor
   - logistica-e-cadeia-fria
 palavrasChave: [Ativos de Alto Valor, IoT e Tecnologia]
 capaAlt: "Trabalhador fechando a porta de um contêiner no porto"

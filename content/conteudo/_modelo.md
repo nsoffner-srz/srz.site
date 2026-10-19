@@ -8,7 +8,7 @@ publicado: 2026-10-01
 autor: Equipe Sensoriz
 # tema: escolha UM entre normas-e-fiscalizacao, perdas-e-custos, gestao-da-operacao, tecnologia-e-dados, cases-e-depoimentos
 tema: gestao-da-operacao
-# setores: um ou mais entre logistica-e-cadeia-fria, farmacias-e-clinicas, saude, industria-e-inventario
+# setores: um ou mais entre logistica-e-cadeia-fria, farmacias-e-clinicas, saude, ativos-de-alto-valor
 setores:
   - logistica-e-cadeia-fria
 # serie: norma-em-dia   (só para artigos da série regulatória)

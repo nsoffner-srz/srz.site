@@ -41,15 +41,30 @@ export default function Header() {
           <ul>
             {NAV.map((item) => (
               <li key={item.href}>
-                {item.filhos ? (
+                {item.colunas ? (
                   <details className="menu">
                     <summary className={`topo__link${ativo(item.href) ? ' is-ativo' : ''}`}>{item.rotulo}</summary>
-                    <ul className="menu__lista">
-                      <li><Link href={item.href}>Ver todos</Link></li>
-                      {item.filhos.map((f) => (
-                        <li key={f.href}><Link href={f.href} aria-current={atual === f.href ? 'page' : undefined}>{f.rotulo}</Link></li>
-                      ))}
-                    </ul>
+                    <div className="menu__painel">
+                      <div className="menu__colunas">
+                        {item.colunas.map((c) => (
+                          <div className="menu__coluna" key={c.titulo}>
+                            <p className="menu__titulo">{c.titulo}</p>
+                            <ul>
+                              {c.itens.map((f) => (
+                                <li key={f.href}><Link href={f.href} aria-current={atual === f.href ? 'page' : undefined}>{f.rotulo}</Link></li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                      {item.chamada && (
+                        <Link className="menu__chamada" href={item.chamada.href}>
+                          <strong>{item.chamada.titulo}</strong>
+                          <span>{item.chamada.texto}</span>
+                        </Link>
+                      )}
+                      {item.verTodos && <Link className="menu__todos" href={item.href}>{item.verTodos}</Link>}
+                    </div>
                   </details>
                 ) : (
                   <Link className={`topo__link${ativo(item.href) ? ' is-ativo' : ''}`} href={item.href} aria-current={ativo(item.href) ? 'page' : undefined}>{item.rotulo}</Link>
@@ -74,7 +89,13 @@ export default function Header() {
               {NAV.map((item) => (
                 <div className="movel__grupo" key={item.href}>
                   <Link className="movel__titulo" href={item.href}>{item.rotulo}</Link>
-                  {item.filhos && <ul>{item.filhos.map((f) => <li key={f.href}><Link href={f.href}>{f.rotulo}</Link></li>)}</ul>}
+                  {item.colunas?.map((c) => (
+                    <div className="movel__subgrupo" key={c.titulo}>
+                      <p className="movel__subtitulo">{c.titulo}</p>
+                      <ul>{c.itens.map((f) => <li key={f.href}><Link href={f.href}>{f.rotulo}</Link></li>)}</ul>
+                    </div>
+                  ))}
+                  {item.chamada && <Link className="movel__chamada" href={item.chamada.href}>{item.chamada.titulo}</Link>}
                 </div>
               ))}
             </nav>

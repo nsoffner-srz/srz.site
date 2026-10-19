@@ -1,31 +1,21 @@
-// Modelo único das páginas de setor (7 blocos). O conteúdo vem de lib/setores.ts.
+// Modelo único das páginas de setor (7 blocos), em /solucoes/<setor>. O conteúdo vem de lib/setores.ts.
 // A seção de norma só aparece quando existe norma que exige monitoramento no setor.
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
 import Trilha from '@/components/Trilha';
 import Perguntas from '@/components/Perguntas';
 import ChamadaDiagnostico from '@/components/ChamadaDiagnostico';
 import CardConteudo from '@/components/CardConteudo';
 import CaseCard from '@/components/CaseCard';
 import JsonLd from '@/components/JsonLd';
-import { SETORES, setorPorId } from '@/lib/setores';
+import type { Setor } from '@/lib/setores';
 import { casesDoSetor } from '@/lib/cases';
 import { artigos } from '@/lib/conteudo';
-import { faqJsonLd, trilhaJsonLd, metadados } from '@/lib/seo';
+import { faqJsonLd, trilhaJsonLd } from '@/lib/seo';
+import RotaAoVivo from '@/components/RotaAoVivo';
+import GeladeiraAoVivo from '@/components/GeladeiraAoVivo';
 
-type Props = { params: Promise<{ slug: string }> };
-export const dynamicParams = false;
-export const generateStaticParams = () => SETORES.map((s) => ({ slug: s.id }));
-
-export async function generateMetadata({ params }: Props) {
-  const s = setorPorId((await params).slug)!;
-  return metadados({ titulo: `${s.nome}: monitoramento em tempo real`, descricao: s.resumo, caminho: `/setores/${s.id}` });
-}
-
-export default async function PaginaSetor({ params }: Props) {
-  const s = setorPorId((await params).slug);
-  if (!s) notFound();
-  const trilha = [{ nome: 'Início', caminho: '/' }, { nome: 'Setores', caminho: '/setores' }, { nome: s.nome, caminho: `/setores/${s.id}` }];
+export default function PaginaSetor({ s }: { s: Setor }) {
+  const trilha = [{ nome: 'Início', caminho: '/' }, { nome: 'Soluções', caminho: '/solucoes' }, { nome: s.nome, caminho: `/solucoes/${s.id}` }];
   const cases = casesDoSetor(s.id);
   const relacionados = artigos().filter((a) => a.setores.includes(s.id)).slice(0, 3);
 
@@ -33,7 +23,9 @@ export default async function PaginaSetor({ params }: Props) {
     <>
       <JsonLd dados={[trilhaJsonLd(trilha), ...faqJsonLd(s.perguntas)]} />
       <section className="pagina-topo">
-        <div className="container pagina-topo__grade">
+        <div className={`container pagina-topo__grade${s.visual ? ' pagina-topo__grade--visual' : ''}`}>
+          {s.visual === 'rota' && <RotaAoVivo />}
+          {s.visual === 'geladeira' && <GeladeiraAoVivo />}
           <Trilha itens={trilha} />
           <p className="rotulo">{s.nome}</p>
           <h1 className="display-xl">{s.tituloHero}</h1>
@@ -53,9 +45,35 @@ export default async function PaginaSetor({ params }: Props) {
           <div className="duas-colunas__texto">
             <p className="lead">{s.dor.texto}</p>
             <p className="dor__custo">{s.dor.custo}</p>
+            {s.dor.custoNota && <p className="apoio">{s.dor.custoNota}</p>}
           </div>
         </div>
       </section>
+
+      {/* 1b. Quanto vale a carga (só quando o setor tem a tabela) */}
+      {s.valorCarga && (
+        <section className="secao">
+          <div className="container">
+            <div className="secao__topo">
+              <p className="rotulo">Valor em risco</p>
+              <h2 className="display-l">{s.valorCarga.titulo}</h2>
+              <p className="lead">{s.valorCarga.texto}</p>
+            </div>
+            <div className="tabela-rolagem">
+              <table className="tabela-valor">
+                <caption className="apoio">Valor típico de uma carga de medicamentos refrigerados (2 a 8 °C), por tipo de veículo</caption>
+                <thead><tr><th scope="col">Veículo</th><th scope="col">Paletes</th><th scope="col">Operação</th><th scope="col">Valor da carga</th></tr></thead>
+                <tbody>
+                  {s.valorCarga.linhas.map((l) => (
+                    <tr key={l.veiculo}><th scope="row">{l.veiculo}</th><td className="dado">{l.paletes}</td><td>{l.operacao}</td><td className="dado">{l.valor}</td></tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="pendente" style={{ marginTop: 'var(--space-3)' }}>Fonte da tabela a confirmar antes de publicar</p>
+          </div>
+        </section>
+      )}
 
       {/* 2. O que a norma exige (só quando existe norma de monitoramento) */}
       {s.normas.length > 0 && (
@@ -102,8 +120,17 @@ export default async function PaginaSetor({ params }: Props) {
           <dl className="config__lista">
             {s.configuracao.map((c) => <div key={c.item}><dt>{c.item}</dt><dd className="apoio">{c.detalhe}</dd></div>)}
           </dl>
-          <p className="apoio"><Link href="/solucoes/dispositivos">Ver todos os dispositivos</Link></p>
-          <p className="pendente" style={{ marginTop: 'var(--space-3)' }}>Foto dos dispositivos instalados neste setor: pendente</p>
+          <p className="apoio"><Link href="/produtos/dispositivos">Ver todos os dispositivos</Link></p>
+          {s.fotos ? (
+            <div className="fotos-instalacao">
+              {s.fotos.map((f) => (
+                <figure key={f.src}><img src={f.src} alt={f.alt} width={f.largura} height={f.altura} loading="lazy" decoding="async" /></figure>
+              ))}
+              <p className="apoio">Instalação real em um caminhão de distribuição: o hub vai na parede do baú, em menos de 1 minuto, sem mexer na elétrica.</p>
+            </div>
+          ) : (
+            <p className="pendente" style={{ marginTop: 'var(--space-3)' }}>Foto dos dispositivos instalados neste setor: pendente</p>
+          )}
         </div>
       </section>
 

@@ -30,7 +30,7 @@ export default async function SetorConteudo({ params }: Props) {
           <div className="secao__topo">
             <Trilha itens={trilha} />
             <h1 className="display-l">Conteúdo para {nome}</h1>
-            <p className="apoio"><Link href={`/setores/${setor}`}>Ver como a Sensoriz atende {nome}</Link></p>
+            <p className="apoio"><Link href={`/solucoes/${setor}`}>Ver como a Sensoriz atende {nome}</Link></p>
           </div>
           <FiltrosConteudo atual={`/conteudo/setor/${setor}`} />
           {lista.length ? (

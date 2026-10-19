@@ -1,7 +1,16 @@
 # Redirecionamentos permanentes do site antigo (Framer) para o novo. Formato da Cloudflare Pages.
 # Antes de desligar o Framer, conferir a lista completa de URLs antigas (incluindo cada post do blog).
-/cold-chain            /setores/logistica-e-cadeia-fria   301
-/cold-chain/           /setores/logistica-e-cadeia-fria   301
+/cold-chain            /solucoes/logistica-e-cadeia-fria   301
+/cold-chain/           /solucoes/logistica-e-cadeia-fria   301
+# Estrutura de out/2026 (menu Produtos e Soluções). Regras específicas antes das genéricas.
+/setores/industria-e-inventario   /solucoes/ativos-de-alto-valor        301
+/setores/*                        /solucoes/:splat                      301
+/setores                          /solucoes                             301
+/solucoes/sensoriz-core           /produtos/sensoriz-core               301
+/solucoes/dispositivos            /produtos/dispositivos                301
+/solucoes/servico-de-compliance   /produtos/servicos#compliance         301
+/solucoes/integracoes             /produtos/sensoriz-core#integracoes   301
+/solucoes/monitoramento-ambiental /solucoes/estoque-parado              301
 # Posts do blog antigo (/blog/articles/<slug>) para a seção Conteúdo.
 # Precisam vir antes da regra /blog/*. Slugs com acento aparecem também na forma codificada (%C3%A1...).
 # Linhas comentadas são de artigos ainda em rascunho: descomente quando o artigo for publicado.
@@ -20,4 +29,4 @@
 /blog                  /conteudo                          301
 /blog/*                /conteudo                          301
 /contato               /diagnostico                       301
-/segmentos             /setores                           301
+/segmentos             /solucoes                          301

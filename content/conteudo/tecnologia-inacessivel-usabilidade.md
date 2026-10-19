@@ -4,7 +4,7 @@ descricao: Tecnologia que ninguém consegue usar não gera resultado. Por que a 
 publicado: 2025-04-15
 tema: tecnologia-e-dados
 setores:
-  - industria-e-inventario
+  - ativos-de-alto-valor
 palavrasChave: [IoT e Tecnologia, Indústria e Inventário]
 capaAlt: "Mão robótica sobre fundo azul"
 origem: https://www.linkedin.com/pulse/tecnologia-inacessível-quando-inovação-falha-em-chegar-às-mãos-wfcdf/

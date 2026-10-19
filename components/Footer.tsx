@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import Logo from './Logo';
-import { NAV, SITE } from '@/lib/site';
+import { SITE, SETORES_ROTULO } from '@/lib/site';
+import { PRODUTOS } from '@/lib/produtos';
+import { CASOS_DE_USO } from '@/lib/casos-de-uso';
 
 export default function Footer() {
   return (
@@ -11,12 +13,17 @@ export default function Footer() {
           <p>Monitoramento de ativos sensíveis em tempo real.</p>
           <Link className="botao botao--primario" href="/diagnostico">Solicitar diagnóstico</Link>
         </div>
-        {NAV.filter((n) => n.filhos).map((n) => (
-          <nav aria-label={n.rotulo} key={n.href}>
-            <p className="rodape__titulo">{n.rotulo}</p>
-            <ul>{n.filhos!.map((f) => <li key={f.href}><Link href={f.href}>{f.rotulo}</Link></li>)}</ul>
-          </nav>
-        ))}
+        <nav aria-label="Produtos">
+          <p className="rodape__titulo">Produtos</p>
+          <ul>{PRODUTOS.map((p) => <li key={p.slug}><Link href={`/produtos/${p.slug}`}>{p.nome}</Link></li>)}</ul>
+        </nav>
+        <nav aria-label="Soluções">
+          <p className="rodape__titulo">Soluções</p>
+          <ul>
+            {Object.entries(SETORES_ROTULO).map(([id, nome]) => <li key={id}><Link href={`/solucoes/${id}`}>{nome}</Link></li>)}
+            {CASOS_DE_USO.map((c) => <li key={c.slug}><Link href={`/solucoes/${c.slug}`}>{c.nome}</Link></li>)}
+          </ul>
+        </nav>
         <nav aria-label="Institucional">
           <p className="rodape__titulo">Sensoriz</p>
           <ul>

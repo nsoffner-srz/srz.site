@@ -15,6 +15,11 @@ export default function FormDiagnostico() {
     const p = new URLSearchParams(window.location.search);
     const setor = p.get('setor');
     if (setor && form.current) (form.current.elements.namedItem('setor') as HTMLSelectElement).value = setor;
+    // Vindo de "Calcule seu ROI": já deixa o pedido escrito na mensagem.
+    if (p.get('objetivo') === 'roi' && form.current) {
+      const msg = form.current.elements.namedItem('mensagem') as HTMLTextAreaElement;
+      if (!msg.value) msg.value = 'Quero calcular o retorno (ROI) da Sensoriz na minha operação.';
+    }
     if (p.get('enviado')) setRetorno('Recebemos o seu pedido. O nosso time entra em contato em até um dia útil.');
     if (p.get('erro')) setRetorno('Não foi possível enviar. Confira os campos obrigatórios ou fale pelo WhatsApp.');
   }, []);

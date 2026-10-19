@@ -1,8 +1,9 @@
 import Trilha from '@/components/Trilha';
 import ChamadaDiagnostico from '@/components/ChamadaDiagnostico';
 import CaseCard from '@/components/CaseCard';
+import CaseSucessoCard from '@/components/CaseSucessoCard';
 import JsonLd from '@/components/JsonLd';
-import { CASES } from '@/lib/cases';
+import { CASES, CASES_SUCESSO } from '@/lib/cases';
 import { trilhaJsonLd, metadados } from '@/lib/seo';
 
 export const metadata = metadados({ titulo: 'Cases', descricao: 'Clientes que monitoram cargas, estoques e equipamentos com a Sensoriz: alimentos congelados, cogumelos frescos e equipamentos de climatização.', caminho: '/cases' });
@@ -19,6 +20,8 @@ export default function Cases() {
             <h1 className="display-xl">Cases</h1>
             <p className="lead">Operações que já monitoram com a Sensoriz.</p>
           </div>
+          <div className="grade grade--2">{CASES_SUCESSO.map((c) => <CaseSucessoCard c={c} key={c.id} />)}</div>
+          <h2 className="display-l" style={{ margin: 'var(--space-7) 0 var(--space-4)' }}>Clientes ativos</h2>
           <div className="grade grade--3">{CASES.map((c) => <CaseCard c={c} completo key={c.id} />)}</div>
         </div>
       </section>

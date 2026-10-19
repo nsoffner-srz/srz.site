@@ -3,11 +3,13 @@
 // Valores ilustrativos, não são de um cliente real. Troca a cada 6 s; para ao passar o mouse, ao focar,
 // ao tocar em um parâmetro ou quando a pessoa prefere menos movimento.
 import { useEffect, useState } from 'react';
+import GraficoGatilho, { useCicloGatilho, GATILHO } from './GraficoGatilho';
 
 type Estado = 'normal' | 'atencao';
 
 interface Leitura {
   parametro: string;
+  aba?: string; // nome curto na aba, quando o nome completo não cabe
   ativo: string;
   local: string;
   valor: string;
@@ -43,6 +45,7 @@ const LEITURAS: Leitura[] = [
   },
   {
     parametro: 'Pressão atmosférica',
+    aba: 'Pressão (hPa)',
     ativo: 'Carga refrigerada 118',
     local: 'Em trânsito, descida da serra',
     valor: '1.004', unidade: 'hPa', estado: 'normal',
@@ -98,13 +101,31 @@ export default function LeiturasAoVivo() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) setPausado(true);
   }, []);
 
+  // O card de temperatura fica o tempo de um ciclo completo do gráfico com gatilho; os outros, 6 s.
   useEffect(() => {
     if (pausado || emFoco) return;
-    const t = setInterval(() => setIndice((i) => (i + 1) % LEITURAS.length), 6000);
-    return () => clearInterval(t);
-  }, [pausado, emFoco]);
+    const espera = LEITURAS[indice].parametro === 'Temperatura' ? GATILHO.duracaoMs : 6000;
+    const t = setTimeout(() => setIndice((i) => (i + 1) % LEITURAS.length), espera);
+    return () => clearTimeout(t);
+  }, [pausado, emFoco, indice]);
 
-  const l = LEITURAS[indice];
+  const base = LEITURAS[indice];
+  const vivo = base.parametro === 'Temperatura';
+  const ciclo = useCicloGatilho(pausado || !vivo);
+  // No card de temperatura, valor, estado, hora e legenda acompanham o gráfico ao vivo.
+  const l: Leitura = vivo
+    ? {
+        ...base,
+        valor: GATILHO.fmt(ciclo.valor),
+        estado: ciclo.emAlerta ? 'atencao' : 'normal',
+        meta: [{ rotulo: 'Gatilho', valor: `${GATILHO.faixa[0]} a ${GATILHO.faixa[1]}`, unidade: '°C' }, { rotulo: 'Energia', valor: 'Ligada' }, { rotulo: 'Leitura', valor: GATILHO.hora(ciclo.i) }],
+        legenda: ciclo.normalizado
+          ? `Equipe agiu e a temperatura voltou à faixa às ${GATILHO.horaNormal}`
+          : ciclo.alertaEnviado
+            ? `Acima do gatilho: alerta enviado às ${GATILHO.horaAlerta} para a equipe de qualidade`
+            : 'Dentro da faixa. A equipe só é chamada se cruzar o gatilho',
+      }
+    : base;
   return (
     <div
       className="leituras"
@@ -133,16 +154,18 @@ export default function LeiturasAoVivo() {
             ))}
           </dl>
         </div>
-        <Grafico l={l} />
-        <figcaption className="apoio">{l.legenda} · exemplo ilustrativo</figcaption>
+        {vivo ? <GraficoGatilho i={ciclo.i} emAlerta={ciclo.emAlerta} /> : <Grafico l={l} />}
+        <figcaption className={`apoio${vivo && ciclo.alertaEnviado && !ciclo.normalizado ? ' leitura__alerta' : ''}`}>{l.legenda} · exemplo ilustrativo</figcaption>
       </figure>
 
-      <div className="leituras__controles" role="group" aria-label="Parâmetros medidos">
+      <div className="leituras__controles">
+        <div className="leituras__abas" role="group" aria-label="Parâmetros medidos">
         {LEITURAS.map((x, i) => (
-          <button key={x.parametro} type="button" className="leituras__aba" aria-pressed={i === indice} onClick={() => { setIndice(i); setPausado(true); }}>
-            {x.parametro}
+          <button key={x.parametro} type="button" className="leituras__aba" aria-label={x.parametro} aria-pressed={i === indice} onClick={() => { setIndice(i); setPausado(true); }}>
+            {x.aba ?? x.parametro}
           </button>
         ))}
+        </div>
         <button type="button" className="leituras__pausa" onClick={() => setPausado((p) => !p)}>
           {pausado ? 'Retomar' : 'Pausar'}
         </button>

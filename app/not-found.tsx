@@ -9,7 +9,7 @@ export default function NaoEncontrada() {
         <p className="lead">O site da Sensoriz foi reorganizado. Comece pelos setores ou fale com o nosso time.</p>
         <div className="acoes">
           <Link className="botao botao--primario" href="/">Ir para o início</Link>
-          <Link className="botao botao--secundario" href="/setores">Ver setores</Link>
+          <Link className="botao botao--secundario" href="/solucoes">Ver soluções</Link>
         </div>
       </div>
     </section>
