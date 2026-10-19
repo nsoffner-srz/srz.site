@@ -8,12 +8,10 @@ setores:
 palavrasChave: [Logística e Cold Chain, Alimentos, Cadeia do Frio, IoT e Tecnologia]
 capaAlt: "Funcionário em câmara fria com carrinhos de produtos perecíveis"
 capaCredito: "Foto: Anna Shvets / Pexels"
-# PENDÊNCIA: números e caso sem fonte (30% de perdas globais, -40% desperdício,
-# caso de laticínios: -75%, R$ 1,2 mi/ano). Validar ou retirar.
-rascunho: true
+rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
-Você sabia que 30% dos alimentos perecíveis são perdidos globalmente devido a falhas na cadeia de frio? Enquanto consumidores exigem produtos frescos e seguros, empresas enfrentam desafios como variações de temperatura, auditorias rigorosas e custos crescentes.
+Você sabia que mais de 13% dos alimentos produzidos no mundo se perdem por falta de refrigeração, segundo o Instituto Internacional de Refrigeração (IIR)? Enquanto consumidores exigem produtos frescos e seguros, empresas enfrentam desafios como variações de temperatura, auditorias rigorosas e custos crescentes.
 
 Mas como garantir que sua operação não faça parte dessa estatística?
 
@@ -22,7 +20,7 @@ Mas como garantir que sua operação não faça parte dessa estatística?
 A logística de alimentos e bebidas refrigerados exige precisão absoluta. Um desvio de apenas +2 °C pode:
 
 - Inviabilizar lotes inteiros de produtos.
-- Gerar multas milionárias por descumprir normas como RDC 430 e ISO 22000.
+- Gerar multas milionárias por descumprir normas sanitárias e certificações como a ISO 22000.
 - Danificar a reputação da marca, com recalls e insatisfação do cliente.
 
 E se você pudesse antecipar problemas antes que eles ocorram?
@@ -33,30 +31,14 @@ A resposta está na monitoração contínua e inteligente. Imagine uma solução
 
 - Controla temperatura e umidade 24/7, mesmo em locais remotos ou sem internet.
 - Envia alertas instantâneos por e-mail ou WhatsApp para variações críticas.
-- Rastreia cargas em qualquer modal (aéreo, marítimo, rodoviário) com tecnologia híbrida (GPS + BLE + UWB).
+- Rastreia cargas em qualquer modal (aéreo, marítimo, rodoviário) com localização híbrida (GPS, rede celular e Wi-Fi).
 
 **Resultado:**
 
-- Redução de até 40% no desperdício de produtos.
-- Conformidade automática com padrões da ANVISA, IATA e ISO.
+- Registros prontos para auditorias e certificações.
 - Certificados de integridade para comprovar qualidade em auditorias.
 
-## 3. Caso Real: De 20% de Perdas para Excelência Operacional
-
-Uma empresa de distribuição de laticínios enfrentava perdas recorrentes devido a falhas no controle de temperatura durante o transporte.
-
-**Solução implementada:**
-
-- Sensores IoT para monitoramento em tempo real.
-- Integração com sistemas de gestão logística.
-
-**Resultados em 6 meses:**
-
-- 75% menos avarias nos produtos.
-- Certificação ISO 22000 obtida sem observações.
-- Economia de R$ 1,2 milhão/ano em desperdícios e multas.
-
-Como replicar esse sucesso?
+Como levar isso para a sua operação?
 
 ## 4. 3 Pilares para uma Cadeia de Frio Impecável
 

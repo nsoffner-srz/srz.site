@@ -8,15 +8,14 @@ setores:
 palavrasChave: [IoT e Tecnologia, Indústria e Inventário]
 capaAlt: "Mão robótica sobre fundo azul"
 origem: https://www.linkedin.com/pulse/tecnologia-inacessível-quando-inovação-falha-em-chegar-às-mãos-wfcdf/
-# PENDÊNCIA: estatísticas sem link de fonte (McKinsey 84%/16%, Gartner 65%, 32%, 45% e 70%). Validar ou retirar.
-rascunho: true
+rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
 ## A Ilusão do Progresso Tecnológico
 
 A indústria celebra diariamente novos marcos: sensores que preveem falhas em máquinas com 99% de precisão, algoritmos que otimizam rotas logísticas em milissegundos, plataformas que agregam dados de múltiplos modais em tempo real. No entanto, por trás dessas conquistas, esconde-se uma realidade menos glamourosa: a maioria dessas tecnologias nunca ultrapassa a fase de teste ou é subutilizada por quem deveria operá-las.
 
-Um estudo da McKinsey aponta que, embora 84% das empresas tenham iniciado projetos de transformação digital entre 2020 e 2023, apenas 16% alcançaram resultados significativos. A razão? Falta de alinhamento entre o que a tecnologia promete e o que o usuário final precisa.
+Em uma pesquisa global da McKinsey de 2018, só 16% dos executivos disseram que a transformação digital da empresa melhorou o desempenho e manteve essa melhora. A razão? Falta de alinhamento entre o que a tecnologia promete e o que o usuário final precisa.
 
 ## Por Que a Usabilidade é o Novo Campo de Batalha
 
@@ -24,7 +23,7 @@ A crise não está na falta de tecnologia, mas na falta de ponte entre sua compl
 
 ### 1. Funcionalidades ≠ Valor
 
-Plataformas com dezenas de recursos impressionam investidores, mas sobrecarregam usuários. Um levantamento da Gartner revela que 65% das funcionalidades de softwares empresariais nunca são utilizadas. O excesso gera frustração e resistência à adoção.
+Plataformas com dezenas de recursos impressionam investidores, mas sobrecarregam usuários. O excesso gera frustração e resistência à adoção.
 
 ### 2. Treinamento Não Basta
 
@@ -35,8 +34,8 @@ Capacitar equipes para usar ferramentas complexas é como ensinar mecânica quâ
 Sistemas difíceis de usar geram:
 
 - **Perda de produtividade:** Equipes gastam mais tempo lutando contra a ferramenta do que resolvendo problemas.
-- **Rotatividade de funcionários:** 32% dos colaboradores relatam estresse devido a tecnologias mal projetadas.
-- **Retrabalho:** 45% das empresas refazem processos porque a tecnologia não se integra à rotina.
+- **Desgaste da equipe:** ferramenta difícil vira mais uma fonte de estresse no dia.
+- **Retrabalho:** quando a tecnologia não se integra à rotina, a equipe refaz o processo à mão.
 
 ## Princípios Para uma Tecnologia que Funciona Para Humanos
 
@@ -52,7 +51,7 @@ Uma plataforma de dados não deve ser uma jaqueta tamanho único, mas um guarda-
 
 ### 3. Treinamento Embarcado na Ferramenta
 
-Tutoriais interativos dentro do sistema, acionados por click (ex.: "Não entendeu este gráfico? Clique aqui para ver um exemplo"), reduzem a curva de aprendizado em 70%.
+Tutoriais interativos dentro do sistema, acionados por click (ex.: "Não entendeu este gráfico? Clique aqui para ver um exemplo"), encurtam a curva de aprendizado.
 
 ## Conclusão: A Tecnologia Só é Revolucionária Quando é Invisível
 

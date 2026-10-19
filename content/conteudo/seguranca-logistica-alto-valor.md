@@ -9,7 +9,6 @@ setores:
 palavrasChave: [Ativos de Alto Valor, Logística e Cold Chain, Geofencing]
 capaAlt: "Carretas estacionadas nas docas de um armazém"
 # PENDÊNCIA: sem fonte (caso R$ 2 milhões, "1 em cada 3 empresas", "70% dos roubos").
-# Confirmar "±0,5G" nas especificações dos dispositivos.
 rascunho: true
 ---
 
@@ -19,7 +18,7 @@ Essa é a realidade de empresas que usam análise preditiva e IoT para proteger 
 
 - **Detecção de padrões suspeitos:** A IA identifica rotas de risco ou paradas prolongadas.
 - **Geofencing inteligente:** Alertas se a carga sair de zonas pré-definidas.
-- **Compliance automático:** Relatórios prontos para normas como RDC 430 e IATA.
+- **Compliance automático:** Relatórios prontos para auditoria.
 
 ## Por que isso importa?
 
@@ -28,8 +27,8 @@ Essa é a realidade de empresas que usam análise preditiva e IoT para proteger 
 
 ## Solução Sensoriz em Ação
 
-- Sensores de impacto com precisão de ±0,5G.
-- Rastreamento híbrido (GPS + UWB) para ambientes fechados e abertos.
+- Sensores de impacto, queda e orientação.
+- Localização híbrida (GPS, rede celular e Wi-Fi) em ambientes fechados e abertos.
 - Integração com sistemas de segurança existentes.
 
 ## Não deixe o acaso definir o destino da sua carga

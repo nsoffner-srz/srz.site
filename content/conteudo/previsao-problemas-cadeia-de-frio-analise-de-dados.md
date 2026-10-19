@@ -53,7 +53,7 @@ A análise preditiva transforma dados brutos em insights acionáveis. Veja como 
 
 - Redução de 50% em avarias de produtos.
 - Economia de 30% em custos logísticos.
-- Conformidade automática com normas como RDC 430 e IATA.
+- Registros prontos para auditoria.
 
 ## 3. Caso Real: Como uma Empresa de Bebidas Evitou um Recall de R$ 2 Mi
 

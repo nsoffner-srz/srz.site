@@ -9,7 +9,7 @@ setores:
 palavrasChave: [Saúde e Farmacêutico, Regulatório (Anvisa), Cadeia do Frio]
 capaAlt: "Frascos de vacina enfileirados"
 # PENDÊNCIA: sem fonte ("60% das não conformidades", caso farmacêutico: -90%, R$ 2,5 mi).
-# Confirmar "±0,5 °C" nas especificações. "A Anvisa está intensificando fiscalizações em 2025" está datado.
+# "A Anvisa está intensificando fiscalizações em 2025" está datado.
 rascunho: true
 ---
 
@@ -48,7 +48,7 @@ Uma empresa farmacêutica líder no Brasil enfrentava perdas recorrentes de vaci
 
 **Solução implementada:**
 
-- Sensores IoT com precisão de ±0,5 °C e alertas em tempo real via SMS/WhatsApp.
+- Sensores IoT com precisão melhor que 1 °C e rastreabilidade NIST e alertas em tempo real via SMS/WhatsApp.
 - Plataforma integrada para rastreabilidade ponta a ponta, com dados imutáveis e prontos para auditorias.
 
 **Resultado em 6 meses:**

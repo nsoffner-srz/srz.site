@@ -8,11 +8,10 @@ setores:
 palavrasChave: [Saúde e Farmacêutico, Cadeia do Frio, Regulatório (Anvisa), Gestão pela Exceção]
 capaAlt: "Vista aérea de docas de carregamento de um centro de distribuição"
 origem: https://www.linkedin.com/pulse/fragilidade-da-cadeia-do-frio-brasileira-e-responsabilidade-compartilhada-nnobf/
-# PENDÊNCIA: citar a fonte de "R$ 192 bilhões" e "65% rodoviário" (provavelmente o Guia ABOL).
-rascunho: true
+rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
-O Brasil possui um setor logístico que fatura cerca de R$ 192 bilhões anualmente. Dentro desse cenário de altíssima complexidade, o modal rodoviário responde por 65% das cargas transportadas. Quando falamos da indústria farmacêutica, atuar nesse nível de capilaridade geográfica exige muito mais do que apenas frotas refrigeradas.
+Os operadores logísticos do Brasil faturaram R$ 192 bilhões em 2023, segundo o estudo Perfil dos Operadores Logísticos 2024, da ABOL. É um setor de altíssima complexidade, e quase todo ele passa pela estrada: 92% dos operadores fazem transporte rodoviário de carga fechada. Quando falamos da indústria farmacêutica, atuar nesse nível de capilaridade geográfica exige muito mais do que apenas frotas refrigeradas.
 
 Para garantir a excelência e a segurança do paciente, as diretrizes do Guia Prático da Associação Brasileira de Operadores Logísticos (ABOL) são fundamentais. Elas estabelecem os pilares inegociáveis para a padronização e a qualidade na logística de produtos de interesse à saúde.
 

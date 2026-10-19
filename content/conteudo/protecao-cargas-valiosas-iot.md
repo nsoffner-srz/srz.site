@@ -9,8 +9,7 @@ setores:
 palavrasChave: [Ativos de Alto Valor, IoT e Tecnologia]
 capaAlt: "Trabalhador fechando a porta de um contêiner no porto"
 capaCredito: "Foto: Simon R. Minshall / Pexels"
-# PENDÊNCIA: sem fonte ("45% dos roubos", caso -90%). Confirmar "precisão de até 30 cm"
-# e "certificação IATA" nas especificações dos dispositivos.
+# PENDÊNCIA: sem fonte ("45% dos roubos", caso -90%).
 rascunho: true
 ---
 
@@ -19,7 +18,7 @@ Imagine transportar equipamentos médicos, joias ou componentes eletrônicos sem
 Mas e se você pudesse:
 
 - Monitorar impactos e quedas em tempo real, recebendo alertas antes que danos irreparáveis ocorram?
-- Rastrear cargas globalmente, mesmo em locais sem internet, com precisão de até 30 cm?
+- Rastrear cargas globalmente, mesmo em locais sem internet?
 - Bloquear acessos não autorizados com sensores de luminosidade e abertura de portas?
 
 ## Na Sensoriz, transformamos dados em segurança
@@ -28,7 +27,7 @@ Nossa tecnologia IoT oferece:
 
 - Alertas instantâneos para vibrações, impactos ou tentativas de violação.
 - Relatórios auditáveis que comprovam a integridade da carga em auditorias.
-- Rastreamento multimodal (aéreo, marítimo, rodoviário) com certificação IATA.
+- Rastreamento multimodal (aéreo, marítimo, rodoviário) com hubs certificados para uso em mais de 46 companhias aéreas.
 
 **Caso real:** Uma empresa de equipamentos médicos reduziu roubos em 90% após implementar sensores de luminosidade e geofencing.
 

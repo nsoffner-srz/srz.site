@@ -8,11 +8,10 @@ setores:
 palavrasChave: [Logística e Cold Chain, Alimentos, Cadeia do Frio, Gestão pela Exceção]
 capaAlt: "Empilhadeira na porta de uma câmara fria de armazém"
 capaCredito: "Foto: ELEVATE / Pexels"
-# PENDÊNCIA: citar a fonte de "61% das empresas".
-rascunho: true
+rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
-Manter a integridade de produtos sensíveis, como carnes, laticínios e fármacos, é um dos maiores desafios do mercado atual. No Brasil, 61% das empresas reconhecem que não têm controle completo sobre onde as perdas ocorrem ao longo da cadeia de suprimentos. Quando falamos da América Latina, a lacuna na infraestrutura de refrigeração é uma das maiores do mundo, resultando em desperdícios críticos por pequenos desvios térmicos.
+Manter a integridade de produtos sensíveis, como carnes, laticínios e fármacos, é um dos maiores desafios do mercado atual. Segundo o Instituto Internacional de Refrigeração (IIR), mais de 13% dos alimentos produzidos no mundo se perdem por falta de refrigeração. Quando falamos da América Latina, a lacuna na infraestrutura de refrigeração é uma das maiores do mundo, resultando em desperdícios críticos por pequenos desvios térmicos.
 
 A pergunta que fica para os líderes de operação é: até quando sua empresa vai aceitar a perda de produtos como um custo padrão do negócio?
 
