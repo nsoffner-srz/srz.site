@@ -137,11 +137,12 @@ export default function Home() {
               <ul className="parametros">{PARAMETROS_SOLUCAO.map((p) => <li key={p}>{p}</li>)}</ul>
               <p className="apoio"><Link href="/produtos/dispositivos">Conheça os dispositivos</Link></p>
             </div>
-            {/* Texto do Rodrigo (out/2026). Saiu da antiga seção Resultados. */}
+            {/* Out/2026: "a partir de" o caso mais favorável documentado. Fichas técnicas (HGR4, HGD4): verifica a cada 10 s.
+                Registro configurável; mínimo usual de 1 min (Nicole), padrão de fábrica 5 min. */}
             <div className="card destaque">
               <h3 className="titulo-secao">Monitoramento inteligente</h3>
-              <p className="numeros__valor"><span className="numeros__prefixo">a cada</span><span className="dado">5</span><span className="numeros__unidade">s</span></p>
-              <p className="apoio">O dispositivo verifica o ambiente e registra a cada 15 minutos. Se algo sai do padrão, quebra esse ritmo, registra e avisa na hora.</p>
+              <p className="numeros__valor"><span className="numeros__prefixo">a partir de</span><span className="dado">10</span><span className="numeros__unidade">s</span></p>
+              <p className="apoio">É o intervalo mais curto em que o dispositivo verifica o ambiente. O registro é configurável, a partir de 1 minuto. Os intervalos variam conforme o modelo. Se algo sai do padrão, o dispositivo quebra esse ritmo, registra e avisa na hora.</p>
               <p className="apoio"><Link href="/produtos/servicos#compliance">Frequência ajustável para estoque parado ou em movimento</Link></p>
             </div>
           </div>

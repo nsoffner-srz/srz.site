@@ -9,11 +9,11 @@ setores:
 palavrasChave: [Ativos de Alto Valor, IoT e Tecnologia]
 capaAlt: "Trabalhador fechando a porta de um contêiner no porto"
 capaCredito: "Foto: Simon R. Minshall / Pexels"
-# PENDÊNCIA: sem fonte ("45% dos roubos", caso -90%).
-rascunho: true
+# Casos confirmados como da Sensoriz pela Nicole (19/10/2026). Números de mercado sem fonte retirados.
+rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
-Imagine transportar equipamentos médicos, joias ou componentes eletrônicos sem saber se chegarão intactos ao destino. No Brasil, 45% dos roubos de carga ocorrem em rotas críticas, e danos não detectados durante o transporte custam milhões em prejuízos.
+Imagine transportar equipamentos médicos, joias ou componentes eletrônicos sem saber se chegarão intactos ao destino. No Brasil, roubos e danos não detectados durante o transporte custam milhões em prejuízos.
 
 Mas e se você pudesse:
 

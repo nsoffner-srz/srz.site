@@ -8,12 +8,11 @@ setores:
   - logistica-e-cadeia-fria
 palavrasChave: [Saúde e Farmacêutico, Regulatório (Anvisa), Cadeia do Frio]
 capaAlt: "Frascos de vacina enfileirados"
-# PENDÊNCIA: sem fonte ("60% das não conformidades", caso farmacêutico: -90%, R$ 2,5 mi).
-# "A Anvisa está intensificando fiscalizações em 2025" está datado.
-rascunho: true
+# Casos confirmados como da Sensoriz pela Nicole (19/10/2026). Números de mercado sem fonte retirados.
+rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
-Você sabia que 60% das não conformidades em auditorias farmacêuticas estão relacionadas a falhas no monitoramento de temperatura e rastreabilidade? Em um mercado onde um desvio de +2 °C pode inviabilizar um lote inteiro de medicamentos, a conformidade com as normas RDC 430/2020 (Boas Práticas de Distribuição, Armazenagem e Transporte de Medicamentos) e RDC 653/2022 (que altera a RDC 430 e prorroga seus prazos de adequação) não é apenas uma exigência — é uma questão de sobrevivência.
+Em um mercado onde um desvio de +2 °C pode inviabilizar um lote inteiro de medicamentos, a conformidade com as normas RDC 430/2020 (Boas Práticas de Distribuição, Armazenagem e Transporte de Medicamentos) e RDC 653/2022 (que altera a RDC 430 e prorroga seus prazos de adequação) não é apenas uma exigência — é uma questão de sobrevivência.
 
 Mas como garantir que sua operação está 100% alinhada a esses requisitos?
 
@@ -69,6 +68,6 @@ Quer saber como replicar esse sucesso na sua operação?
 
 A conformidade com RDC 430 e RDC 653 não precisa ser um pesadelo burocrático. Com a tecnologia certa, você transforma dados em vantagem estratégica: menos custos, mais segurança e uma reputação blindada.
 
-Mas atenção: a Anvisa está intensificando fiscalizações em 2025. Sua operação está preparada?
+Sua operação está preparada para a próxima fiscalização?
 
 Não espere um recall para agir! Agende uma demonstração gratuita e descubra como a Sensoriz pode apoiar sua operação na conformidade com as RDCs 430 e 653.

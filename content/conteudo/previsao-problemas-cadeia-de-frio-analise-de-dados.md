@@ -7,20 +7,19 @@ setores:
   - logistica-e-cadeia-fria
 palavrasChave: [Logística e Cold Chain, Alimentos, Cadeia do Frio, IoT e Tecnologia]
 capaAlt: "Operador com roupa térmica movendo carga dentro de uma câmara fria"
-# PENDÊNCIA: números e caso sem fonte (R$ 500 mil, 25%, -50% avarias, -30% custos,
-# caso de sucos: R$ 2 mi, 98%, 100%). Validar ou apresentar como exemplo ilustrativo.
-rascunho: true
+# Casos confirmados como da Sensoriz pela Nicole (19/10/2026). Números de mercado sem fonte retirados.
+rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
-Um carregamento de frutos do mar, avaliado em R$ 500 mil, foi perdido porque a temperatura do caminhão subiu 3 °C durante o transporte. O motivo? Uma falha no sistema de refrigeração que só foi detectada no destino final.
+Imagine um carregamento de frutos do mar perdido porque a temperatura do caminhão subiu 3 °C durante o transporte. O motivo: uma falha no sistema de refrigeração que só foi detectada no destino final.
 
-E se essa empresa tivesse previsto o problema 48 horas antes?
+E se a empresa tivesse visto o problema começar ainda na estrada?
 
 ## 1. Os Custos Ocultos da Falta de Previsibilidade
 
 Na logística de alimentos e bebidas refrigerados, dados não analisados são riscos invisíveis. Os principais desafios incluem:
 
-- **Desperdício de produtos:** 25% das perdas ocorrem por falhas não detectadas a tempo.
+- **Desperdício de produtos:** falhas não detectadas a tempo viram carga perdida.
 - **Multas por não conformidade:** Auditorias identificam falhas post-mortem, gerando penalidades.
 - **Ineficiência operacional:** Rotas não otimizadas e paradas não planejadas aumentam custos.
 
@@ -49,10 +48,10 @@ A análise preditiva transforma dados brutos em insights acionáveis. Veja como 
 - Manutenção preventiva de equipamentos.
 - Ajuste de estoques com base em tendências sazonais.
 
-### Resultados Comprovados
+### O que muda na operação
 
-- Redução de 50% em avarias de produtos.
-- Economia de 30% em custos logísticos.
+- Menos avarias, porque a equipe age antes do produto sair da faixa.
+- Menos custo com descarte e reentrega.
 - Registros prontos para auditoria.
 
 ## 3. Caso Real: Como uma Empresa de Bebidas Evitou um Recall de R$ 2 Mi
