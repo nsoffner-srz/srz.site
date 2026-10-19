@@ -4,6 +4,7 @@ import Perguntas from '@/components/Perguntas';
 import ChamadaDiagnostico from '@/components/ChamadaDiagnostico';
 import JsonLd from '@/components/JsonLd';
 import PainelCore from '@/components/core/PainelCore';
+import FotoProduto from '@/components/FotoProduto';
 import { GRUPOS_PRODUTO, type Produto } from '@/lib/produtos';
 import { DISPOSITIVOS, MODELOS_HUB } from '@/lib/hardware';
 import { SETORES_ROTULO } from '@/lib/site';
@@ -55,6 +56,7 @@ export default function PaginaProduto({ s }: { s: Produto }) {
               <div className="grade grade--3">
                 {DISPOSITIVOS.map((d) => (
                   <article className="card dispositivo" id={d.id} key={d.nome}>
+                    {d.foto && <FotoProduto foto={d.foto} prioridade />}
                     <p className="dispositivo__uso">“{d.uso}”</p>
                     <h2 className="display-m">{d.nome}</h2>
                     <p className="apoio">{d.resumo}</p>
@@ -63,15 +65,20 @@ export default function PaginaProduto({ s }: { s: Produto }) {
                   </article>
                 ))}
               </div>
-              <p className="pendente" style={{ marginTop: 'var(--space-4)' }}>Fotos dos dispositivos: pendentes</p>
             </div>
           </section>
           <section className="secao">
             <div className="container">
               <div className="secao__topo"><p className="rotulo">Modelos de hub</p><h2 className="display-l">Um hub para cada aplicação</h2></div>
-              <dl className="config__lista">
-                {MODELOS_HUB.map((m) => <div key={m.nome}><dt>{m.nome}</dt><dd className="apoio">{m.uso}</dd></div>)}
-              </dl>
+              <ul className="grade grade--4 modelos-hub">
+                {MODELOS_HUB.map((m) => (
+                  <li className="card" key={m.nome}>
+                    {m.foto ? <FotoProduto foto={m.foto} /> : <p className="pendente foto-produto">Foto pendente</p>}
+                    <h3 className="titulo-secao">{m.nome}</h3>
+                    <p className="apoio">{m.uso}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </section>
         </>
