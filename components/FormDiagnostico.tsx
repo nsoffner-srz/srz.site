@@ -1,5 +1,5 @@
 'use client';
-// Formulário de diagnóstico. Envia para /api/diagnostico (functions/api/diagnostico.ts),
+// Formulário de diagnóstico. Envia para /api/diagnostico (worker/index.ts),
 // que cria o lead no Pipeline Sensoriz do Notion com origem "Site".
 // Sem JavaScript, o formulário funciona do mesmo jeito (envio normal).
 import { useEffect, useRef, useState } from 'react';

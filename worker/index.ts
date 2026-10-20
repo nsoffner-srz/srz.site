@@ -1,5 +1,5 @@
-// Cloudflare Pages Function: recebe o formulário de diagnóstico e cria o lead no Notion.
-// Rota: POST /api/diagnostico
+// Worker da Cloudflare: serve os arquivos estáticos de out/ e atende /api/diagnostico.
+// Rota: POST /api/diagnostico — recebe o formulário e o botão de WhatsApp, cria o lead no Notion.
 //
 // Variáveis de ambiente (configurar no painel da Cloudflare, nunca no código):
 //   NOTION_TOKEN            token da integração do Notion com acesso ao banco "Pipeline Sensoriz"
@@ -11,10 +11,10 @@
 //   (ou, com canal=whatsapp, aviso de que veio pelo botão de WhatsApp). Visão "Leads do site": Origem Site + Prospecção.
 
 interface Env {
+  ASSETS: { fetch(request: Request): Promise<Response> };
   NOTION_TOKEN?: string;
   NOTION_DATA_SOURCE_ID?: string;
 }
-interface Contexto { request: Request; env: Env }
 
 const PIPELINE_PADRAO = '215c6b1d-e809-80b6-bab4-000bec491c23';
 const SETORES: Record<string, string> = {
@@ -36,7 +36,9 @@ function responder(request: Request, ok: boolean, status = ok ? 200 : 400) {
   return Response.redirect(new URL(`/diagnostico?${ok ? 'enviado=1' : 'erro=1'}`, request.url).href, 303);
 }
 
-export async function onRequestPost({ request, env }: Contexto): Promise<Response> {
+async function diagnostico(request: Request, env: Env): Promise<Response> {
+  if (request.method !== 'POST') return new Response('Method Not Allowed', { status: 405 });
+
   const form = await request.formData();
 
   // Campo escondido: se veio preenchido, é robô. Responde ok sem gravar nada.
@@ -94,3 +96,11 @@ export async function onRequestPost({ request, env }: Contexto): Promise<Respons
   }
   return responder(request, true);
 }
+
+export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    const url = new URL(request.url);
+    if (url.pathname === '/api/diagnostico') return diagnostico(request, env);
+    return env.ASSETS.fetch(request);
+  },
+};

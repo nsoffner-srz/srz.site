@@ -7,9 +7,11 @@ Instruções para quem trabalha neste repositório com o Claude (VS Code ou clau
 Site institucional da Sensoriz (sensoriz.com.br), substituindo o site atual feito em Framer.
 Feito em **React com Next.js** (App Router), por indicação do TI, com **exportação estática**
 (`output: 'export'`): cada página sai como HTML pronto, o que mantém o SEO e a busca por IA (AEO).
-Publicado na **Cloudflare Pages**. Dados estruturados (schema.org), sitemap, RSS, `robots.txt` e `llms.txt`.
+Publicado como **Cloudflare Worker com assets estáticos** (Workers Builds, não Pages). Dados estruturados
+(schema.org), sitemap, RSS, `robots.txt` e `llms.txt`.
 Não usar recursos que exigem servidor Node (rotas dinâmicas sem `generateStaticParams`, `cookies()`,
-middleware, API routes do Next): o que precisar de servidor vai em `functions/` (Cloudflare Pages Functions).
+middleware, API routes do Next): o que precisar de servidor vai em `worker/index.ts` (Worker que serve
+`out/` e atende as rotas `/api/*`, configurado em `wrangler.toml`).
 
 Responsável pelo site: Nicole Soffner (CMO). Tecnologia: Leonardo Rissi (CTO).
 
@@ -51,7 +53,8 @@ styles/global.css          classes base (display-xl, card, botao, chip, prosa...
 styles/site.css            componentes e páginas
 public/marca/              logotipos e símbolo oficiais
 public/_redirects          301 das URLs do Framer para as novas
-functions/api/diagnostico.ts   Cloudflare Pages Function: formulário vira lead no Notion
+worker/index.ts            Worker: serve out/ e atende POST /api/diagnostico (formulário vira lead no Notion)
+wrangler.toml              configuração do Worker (nome, binding de assets, rotas que passam pelo Worker)
 ```
 
 ## Mapa do site
@@ -169,12 +172,17 @@ Datas e eventos sempre em português. Sem emojis.
 - A classe `.pendente` marca o que ainda falta. **O site não vai ao ar com nenhum `.pendente` visível.**
   Para listar: `grep -rn "pendente" app components lib`.
 
-## Publicação (Cloudflare Pages)
+## Publicação (Cloudflare Workers Builds)
 
-- Projeto conectado a este repositório no GitHub. Build: `npm run build` · pasta de saída: `out`.
+- Projeto conectado a este repositório no GitHub (Workers Builds, não a Pages clássica).
+  Build: `npm run build` · comando de implantação: `npx wrangler deploy` · diretório raiz do projeto: a raiz do
+  repositório (onde está o `package.json`) — nunca `out/`, que só existe depois do build rodar.
+- `wrangler.toml` define `assets.directory = "out"` e `main = "worker/index.ts"`: as páginas estáticas são
+  servidas pelos assets do Worker; `/api/*` (`run_worker_first`) passa pelo `worker/index.ts` antes.
 - Variáveis de ambiente (Settings > Variables, nunca no código): `NOTION_TOKEN`, `NOTION_DATA_SOURCE_ID`
   (padrão: Pipeline Sensoriz). A integração do Notion precisa de acesso ao banco Pipeline Sensoriz.
-- Cada branch gera um link de prévia para revisão antes do merge na `main`.
+  Confirmar que estão no ambiente de Produção.
+- Cada branch gera um link de prévia (`*.workers.dev`) para revisão antes do merge na `main`.
 - Antes de apontar o domínio: conferir a lista completa de URLs do Framer em `public/_redirects`
   (incluindo cada post do blog antigo) e só então cancelar o Framer.
 

@@ -1,5 +1,8 @@
 name = "srz-site"
-compatibility_date = "2026-10-20"
+main = "worker/index.ts"
+compatibility_date = "2026-05-03"
 
 [assets]
 directory = "out"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
