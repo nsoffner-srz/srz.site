@@ -15,6 +15,7 @@ export interface Setor {
   nome: string;
   ordem: number;
   resumo: string;
+  rotuloHero?: string; // rótulo acima do título; padrão: nome do setor
   tituloHero: string;
   subtituloHero: string;
   publico: string;
@@ -251,8 +252,9 @@ export const SETORES: Setor[] = [
     nome: 'Ativos de Alto Valor',
     ordem: 4,
     resumo: 'Equipamentos de data center acompanhados do embarque à obra, com registro de cada etapa.',
-    tituloHero: 'Saiba com quem estava cada pallet do seu data center, em cada etapa',
-    subtituloHero: 'Servidores, racks e equipamentos de energia passam por voo, terminal, estrada e obra antes de funcionar. A Sensoriz acompanha o pallet, não só o caminhão.',
+    rotuloHero: 'Soluções para data centers e ativos de alto valor',
+    tituloHero: 'Cada pallet rastreado, do embarque à obra',
+    subtituloHero: 'Saiba onde está o equipamento e com quem, em cada etapa da cadeia.',
     publico: 'Construtoras e operadoras de data centers, integradores e distribuidores de servidores, equipamentos de rede, baterias e sistemas de energia e refrigeração.',
     dor: {
       titulo: 'O equipamento atrasa ou chega avariado, e ninguém sabe em que etapa',
