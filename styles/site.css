@@ -412,3 +412,16 @@ summary.topo__link::after { content: ''; width: 7px; height: 7px; border-right: 
   .custodia__faixa { flex-direction: column; align-items: flex-start; gap: 0; }
 }
 .limites { margin: 0; padding-left: 1.2em; display: grid; gap: var(--space-3); font: var(--text-corpo); color: var(--tinta-secundaria); align-content: start; }
+
+/* Visual vivo do Estoque parado (components/ArmazemAoVivo.tsx): planta com 6 pontos. */
+.armazem__planta { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-areas: "a b c" "d e f"; }
+.armazem__ponto { display: grid; gap: 2px; align-content: start; min-height: 92px; padding: 10px; border-radius: var(--radius-md); background: var(--superficie-sutil); border: 1px solid var(--borda-sutil); transition: background .4s, border-color .4s; }
+.armazem__nome { font: var(--text-apoio); color: var(--tinta-secundaria); line-height: 1.25; }
+.armazem__valor { font: var(--text-apoio); color: var(--tinta); }
+.armazem__valor .dado { font: var(--text-numero-tabela); font-size: 18px; }
+.armazem__estado { font: var(--text-rotulo); color: var(--estado-normal); }
+.armazem__ponto--atencao { background: var(--estado-atencao-fundo); border-color: var(--estado-atencao); }
+.armazem__ponto--atencao .armazem__estado, .armazem__ponto--atencao .armazem__valor { color: var(--estado-atencao); }
+.armazem__ponto--aberta { border-style: dashed; border-color: var(--estado-atencao); }
+.armazem__ponto--aberta .armazem__valor { color: var(--estado-atencao); font-weight: 600; }
+@media (max-width: 420px) { .armazem__ponto { min-height: 84px; padding: 8px; } .armazem__nome { font-size: 13px; } }

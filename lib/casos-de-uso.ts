@@ -4,6 +4,7 @@ import type { SetorId } from './site';
 
 export interface CasoDeUso {
   slug: string;
+  visual?: 'armazem' | 'frota'; // animação ao lado do título
   nome: string;
   titulo: string;
   resumo: string;
@@ -16,6 +17,7 @@ export interface CasoDeUso {
 export const CASOS_DE_USO: CasoDeUso[] = [
   {
     slug: 'estoque-parado',
+    visual: 'armazem',
     nome: 'Estoque parado',
     titulo: 'Geladeiras, câmaras e salas sob controle, dia e noite',
     resumo: 'Produtos e ativos guardados: na geladeira, na câmara fria, na sala de estoque ou no armazém.',

@@ -6,6 +6,7 @@ import ChamadaDiagnostico from '@/components/ChamadaDiagnostico';
 import JsonLd from '@/components/JsonLd';
 import type { CasoDeUso } from '@/lib/casos-de-uso';
 import { SETORES_ROTULO } from '@/lib/site';
+import ArmazemAoVivo from '@/components/ArmazemAoVivo';
 import { faqJsonLd, trilhaJsonLd } from '@/lib/seo';
 
 export default function PaginaCasoDeUso({ c }: { c: CasoDeUso }) {
@@ -14,7 +15,8 @@ export default function PaginaCasoDeUso({ c }: { c: CasoDeUso }) {
     <>
       <JsonLd dados={[trilhaJsonLd(trilha), ...faqJsonLd(c.perguntas)]} />
       <section className="pagina-topo">
-        <div className="container pagina-topo__grade">
+        <div className={`container pagina-topo__grade${c.visual ? ' pagina-topo__grade--visual' : ''}`}>
+          {c.visual === 'armazem' && <ArmazemAoVivo />}
           <Trilha itens={trilha} />
           <p className="rotulo">{c.nome}</p>
           <h1 className="display-xl">{c.titulo}</h1>
