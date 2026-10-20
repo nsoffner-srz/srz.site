@@ -42,12 +42,15 @@ async function checar(request: Request, env: Env): Promise<Response> {
   const json = (corpo: object) =>
     new Response(JSON.stringify(corpo, null, 2), { headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
   if (!new URL(request.url).searchParams.has('checar')) return json({ worker: 'publicado', uso: 'Envie o formulário por POST. Para checar a configuração, acrescente ?checar=1' });
-  if (!env.NOTION_TOKEN) return json({ worker: 'publicado', notion: 'sem_token', ajuda: 'Cadastrar NOTION_TOKEN no Worker (Variables and Secrets) e publicar de novo' });
+  // Só os NOMES das variáveis que este Worker enxerga (nunca os valores): ajuda a achar erro de digitação ou de projeto.
+  const variaveis = Object.keys(env).filter((k) => k !== 'ASSETS');
+  const host = new URL(request.url).host;
+  if (!env.NOTION_TOKEN) return json({ worker: 'publicado', host, variaveis, notion: 'sem_token', ajuda: 'Cadastrar NOTION_TOKEN no Worker (Variables and Secrets) e publicar de novo' });
   const r = await fetch(`https://api.notion.com/v1/data_sources/${env.NOTION_DATA_SOURCE_ID || PIPELINE_PADRAO}`, {
     headers: { Authorization: `Bearer ${env.NOTION_TOKEN}`, 'Notion-Version': '2025-09-03' },
   });
   const notion = r.ok ? 'ok' : r.status === 401 ? 'token_invalido' : r.status === 404 ? 'pipeline_nao_compartilhado_com_a_integracao' : `erro_${r.status}`;
-  return json({ worker: 'publicado', notion });
+  return json({ worker: 'publicado', host, variaveis, notion });
 }
 
 async function diagnostico(request: Request, env: Env): Promise<Response> {
