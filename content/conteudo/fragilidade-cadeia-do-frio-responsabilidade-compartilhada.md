@@ -8,7 +8,6 @@ setores:
 palavrasChave: [Saúde e Farmacêutico, Cadeia do Frio, Regulatório (Anvisa), Gestão pela Exceção]
 capaAlt: "Vista aérea de docas de carregamento de um centro de distribuição"
 origem: https://www.linkedin.com/pulse/fragilidade-da-cadeia-do-frio-brasileira-e-responsabilidade-compartilhada-nnobf/
-rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
 Os operadores logísticos do Brasil faturaram R$ 192 bilhões em 2023, segundo o estudo Perfil dos Operadores Logísticos 2024, da ABOL. É um setor de altíssima complexidade, e quase todo ele passa pela estrada: 92% dos operadores fazem transporte rodoviário de carga fechada. Quando falamos da indústria farmacêutica, atuar nesse nível de capilaridade geográfica exige muito mais do que apenas frotas refrigeradas.

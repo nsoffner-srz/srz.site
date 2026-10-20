@@ -146,9 +146,7 @@ export default function PaginaSetor({ s }: { s: Setor }) {
               ))}
               <p className="apoio">Instalação real em um caminhão de distribuição: o hub vai na parede do baú, em menos de 1 minuto, sem mexer na elétrica.</p>
             </div>
-          ) : (
-            <p className="pendente" style={{ marginTop: 'var(--space-3)' }}>Foto dos dispositivos instalados neste setor: pendente</p>
-          )}
+          ) : null}
         </div>
       </section>
 

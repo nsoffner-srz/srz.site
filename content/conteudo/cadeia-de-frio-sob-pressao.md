@@ -8,7 +8,6 @@ setores:
 palavrasChave: [Logística e Cold Chain, Alimentos, Cadeia do Frio, Gestão pela Exceção]
 capaAlt: "Empilhadeira na porta de uma câmara fria de armazém"
 capaCredito: "Foto: ELEVATE / Pexels"
-rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
 Manter a integridade de produtos sensíveis, como carnes, laticínios e fármacos, é um dos maiores desafios do mercado atual. Segundo o Instituto Internacional de Refrigeração (IIR), mais de 13% dos alimentos produzidos no mundo se perdem por falta de refrigeração. Quando falamos da América Latina, a lacuna na infraestrutura de refrigeração é uma das maiores do mundo, resultando em desperdícios críticos por pequenos desvios térmicos.

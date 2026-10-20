@@ -9,7 +9,6 @@ setores:
 palavrasChave: [Ativos de Alto Valor, Logística e Cold Chain, Geofencing]
 capaAlt: "Carretas estacionadas nas docas de um armazém"
 # Casos confirmados como da Sensoriz pela Nicole (19/10/2026). Números de mercado sem fonte retirados.
-rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
 Um carregamento de componentes automotivos avaliado em R$ 2 milhões foi salvo porque o sistema de monitoramento detectou uma tentativa de violação durante uma parada não programada. O motorista recebeu um alerta via WhatsApp e acionou a polícia em tempo real.

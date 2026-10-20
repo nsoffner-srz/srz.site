@@ -8,7 +8,6 @@ setores:
 palavrasChave: [IoT e Tecnologia, Indústria e Inventário]
 capaAlt: "Mão robótica sobre fundo azul"
 origem: https://www.linkedin.com/pulse/tecnologia-inacessível-quando-inovação-falha-em-chegar-às-mãos-wfcdf/
-rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
 ## A Ilusão do Progresso Tecnológico

@@ -8,7 +8,6 @@ setores:
 palavrasChave: [Logística e Cold Chain, Alimentos, Cadeia do Frio, IoT e Tecnologia]
 capaAlt: "Operador com roupa térmica movendo carga dentro de uma câmara fria"
 # Casos confirmados como da Sensoriz pela Nicole (19/10/2026). Números de mercado sem fonte retirados.
-rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
 Imagine um carregamento de frutos do mar perdido porque a temperatura do caminhão subiu 3 °C durante o transporte. O motivo: uma falha no sistema de refrigeração que só foi detectada no destino final.

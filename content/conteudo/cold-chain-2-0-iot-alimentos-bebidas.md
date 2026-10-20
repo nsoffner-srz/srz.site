@@ -8,7 +8,6 @@ setores:
 palavrasChave: [Logística e Cold Chain, Alimentos, Cadeia do Frio, IoT e Tecnologia]
 capaAlt: "Funcionário em câmara fria com carrinhos de produtos perecíveis"
 capaCredito: "Foto: Anna Shvets / Pexels"
-rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
 Você sabia que mais de 13% dos alimentos produzidos no mundo se perdem por falta de refrigeração, segundo o Instituto Internacional de Refrigeração (IIR)? Enquanto consumidores exigem produtos frescos e seguros, empresas enfrentam desafios como variações de temperatura, auditorias rigorosas e custos crescentes.

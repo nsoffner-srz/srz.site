@@ -10,7 +10,6 @@ capaAlt: "Navio porta-contêineres atracado em um terminal portuário ao entarde
 capaCredito: "Foto: Wolfgang Weiser / Pexels"
 origem: https://www.linkedin.com/pulse/o-que-é-transporte-multimodal-e-por-visibilidade-de-todas-etapas-fytqf/
 # Casos confirmados como da Sensoriz pela Nicole (19/10/2026). Números de mercado sem fonte retirados.
-rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
 O transporte multimodal é a integração de diferentes modais de transporte (rodoviário, ferroviário, marítimo, aéreo) em uma única operação logística, sob responsabilidade de um único operador. Essa abordagem permite otimizar custos, prazos e eficiência, mas exige um controle rigoroso de todas as etapas — desde a coleta da carga até a entrega final. Neste artigo, explicamos por que a visibilidade em tempo real é crítica para o sucesso dessa estratégia e como a tecnologia pode evitar gargalos característicos em movimentações que usam múltiplas modalidades de transporte.

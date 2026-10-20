@@ -10,7 +10,6 @@ palavrasChave: [Ativos de Alto Valor, IoT e Tecnologia]
 capaAlt: "Trabalhador fechando a porta de um contêiner no porto"
 capaCredito: "Foto: Simon R. Minshall / Pexels"
 # Casos confirmados como da Sensoriz pela Nicole (19/10/2026). Números de mercado sem fonte retirados.
-rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
 Imagine transportar equipamentos médicos, joias ou componentes eletrônicos sem saber se chegarão intactos ao destino. No Brasil, roubos e danos não detectados durante o transporte custam milhões em prejuízos.

@@ -9,7 +9,6 @@ setores:
 palavrasChave: [Saúde e Farmacêutico, Regulatório (Anvisa), Cadeia do Frio]
 capaAlt: "Frascos de vacina enfileirados"
 # Casos confirmados como da Sensoriz pela Nicole (19/10/2026). Números de mercado sem fonte retirados.
-rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
 Em um mercado onde um desvio de +2 °C pode inviabilizar um lote inteiro de medicamentos, a conformidade com as normas RDC 430/2020 (Boas Práticas de Distribuição, Armazenagem e Transporte de Medicamentos) e RDC 653/2022 (que altera a RDC 430 e prorroga seus prazos de adequação) não é apenas uma exigência — é uma questão de sobrevivência.

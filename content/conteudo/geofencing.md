@@ -9,7 +9,6 @@ setores:
 palavrasChave: [IoT e Tecnologia, Logística e Cold Chain, Indústria e Inventário, Geofencing]
 capaAlt: "Vista aérea de caminhões estacionados nas docas de um armazém"
 # Casos confirmados como da Sensoriz pela Nicole (19/10/2026). Números de mercado sem fonte retirados.
-rascunho: true # fact check feito em 19/10/2026; aguarda aprovação da Nicole
 ---
 
 Imagine um mundo onde os limites físicos ganham inteligência, transformando-se em aliados estratégicos para otimizar operações, prevenir riscos e garantir eficiência. É nesse cenário que o geofencing se destaca, uma tecnologia que cria cercas virtuais por meio de GPS, Wi-Fi ou RFID, permitindo não somente monitorar, mas também automatizar ações com base na localização. Enquanto muitos associam essa ferramenta ao controle de frotas, seu potencial vai muito além — e está revolucionando setores como a agropecuária, indústria e até mesmo o planejamento urbano.
