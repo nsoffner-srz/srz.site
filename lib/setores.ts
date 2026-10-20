@@ -277,7 +277,7 @@ export const SETORES: Setor[] = [
     normas: [],
     comoResolve: {
       ver: 'Onde está cada pallet, em que etapa e em que condição.',
-      agir: 'Aviso quando o pallet fica parado tempo demais, é aberto, tomba ou sofre impacto. Fora isso, silêncio.',
+      agir: 'Aviso quando o pallet fica parado além do tempo definido (padrão de 20 minutos, configurável), é aberto, tomba ou sofre impacto. Fora isso, silêncio.',
       provar: 'Registro de cada ocorrência com hora, local e etapa, que ninguém altera. Serve para o contrato e para o seguro.',
     },
     configuracao: [
@@ -300,6 +300,7 @@ export const SETORES: Setor[] = [
       { pergunta: 'Qual a diferença para o rastreador do caminhão?', resposta: 'O rastreador fica no caminhão e só cobre a estrada. O hub da Sensoriz vai no pallet e acompanha a carga em todas as etapas.' },
       { pergunta: 'A Sensoriz mostra a posição em tempo real?', resposta: 'O hub informa a posição em intervalos: a cada 1 hora parado e a cada 15 minutos em movimento. Impactos, quedas e aberturas geram aviso na hora.' },
       { pergunta: 'Funciona no voo e no terminal de cargas?', resposta: 'Sim no voo. O hub é aprovado em 46 companhias aéreas, entra em modo avião sozinho na decolagem e continua registrando. No pouso, envia o histórico do voo. Vale também para o transporte por navio. O sinal em cada terminal é testado na sua rota antes de começar.' },
+      { pergunta: 'Quanto tempo parado vira alerta?', resposta: 'O padrão é 20 minutos parado fora do previsto. Esse tempo é configurável para cada operação.' },
       { pergunta: 'O registro serve para o seguro?', resposta: 'Cada ocorrência fica registrada com hora, local e etapa, e ninguém altera o histórico. Validamos o formato com a sua seguradora.' },
       { pergunta: 'Dá para saber se o equipamento tombou ou sofreu impacto?', resposta: 'Sim. O hub mede movimento, impacto e queda e avisa a equipe na hora.' },
     ],
