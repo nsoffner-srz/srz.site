@@ -14,7 +14,7 @@
 
 ## Produtos
 - [Dispositivos](https://www.sensoriz.com.br/produtos/dispositivos): hub, tag e lacre inteligente.
-- [Sensoriz CORE](https://www.sensoriz.com.br/produtos/sensoriz-core): plataforma com alertas por exceção, relatórios para auditoria e integrações.
+- [Sensoriz CORE](https://www.sensoriz.com.br/produtos/sensoriz-core): plataforma com alertas por exceção (limites de alerta, de ação e de especificação), integridade de dados no padrão ALCOA++, relatórios para auditoria e integrações.
 - [Serviços](https://www.sensoriz.com.br/produtos/servicos): implantação, serviço de compliance e suporte dos dispositivos.
 
 ## Clientes

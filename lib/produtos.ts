@@ -18,7 +18,14 @@ export interface Produto {
   // Argumentos comerciais em destaque logo abaixo do título (CORE, feedback do Rodrigo out/2026)
   argumentos?: { titulo: string; texto: string }[];
   // Seção de alertas detalhada (CORE)
-  alertas?: { titulo: string; itens: { titulo: string; texto: string }[] };
+  alertas?: {
+    titulo: string;
+    itens: { titulo: string; texto: string }[];
+    // Os três níveis de limite (reunião de out/2026). Descritos pelo efeito, sem a lógica de cálculo.
+    limites?: { titulo: string; itens: { nome: string; texto: string }[] };
+  };
+  // Integridade de dados (ALCOA++), seção própria na CORE (out/2026). Dizer "no padrão", nunca "validado".
+  integridade?: { titulo: string; texto: string; principios: string[] };
 }
 
 export const GRUPOS_PRODUTO: Record<GrupoProduto, string> = {
@@ -70,11 +77,25 @@ export const PRODUTOS: Produto[] = [
         { titulo: 'Canais', texto: 'WhatsApp, e-mail, SMS, Telegram, Google Chat e Microsoft Teams.' },
         { titulo: 'Grade de horário', texto: 'Quem recebe em horário comercial e quem recebe à noite e no fim de semana.' },
       ],
+      limites: {
+        titulo: 'Limites de alerta, de ação e de especificação',
+        itens: [
+          { nome: 'Limite de alerta', texto: 'A leitura saiu da faixa normal de operação. A equipe olha antes de virar problema.' },
+          { nome: 'Limite de ação', texto: 'A tendência mostra que a faixa do produto vai ser ultrapassada. Hora de agir.' },
+          { nome: 'Limite de especificação', texto: 'A leitura saiu da faixa exigida pelo produto, por exemplo 2 a 8 °C. A excursão fica registrada com início, fim e quem foi avisado.' },
+        ],
+      },
+    },
+    integridade: {
+      titulo: 'Integridade de dados no padrão ALCOA++',
+      texto: 'Para a Anvisa e para as auditorias de qualidade, não basta ter o dado: ele precisa ser confiável do começo ao fim. Na CORE, cada leitura é registrada no momento em que acontece, com hora, local e o dispositivo que a gerou, e chega à plataforma criptografada. Ninguém edita o histórico, nem a própria operação, e o relatório sai sempre do dado original. Os registros ficam guardados com cópia de segurança, completos e disponíveis para auditoria quando o fiscal pedir.',
+      principios: ['Atribuível', 'Legível', 'Contemporâneo', 'Original', 'Preciso', 'Completo', 'Consistente', 'Duradouro', 'Disponível', 'Rastreável'],
     },
     perguntas: [
       { pergunta: 'Preciso instalar algum programa?', resposta: 'Não. A CORE abre no navegador do computador e do celular.' },
       { pergunta: 'Quem recebe os alertas?', resposta: 'Cada pessoa escolhe os alertas e o canal.' },
       { pergunta: 'A integração com outros sistemas tem custo extra?', resposta: 'Depende do sistema. Definimos no diagnóstico.' },
+      { pergunta: 'A Sensoriz CORE atende ALCOA++?', resposta: 'Sim. Cada leitura é atribuída ao dispositivo que a gerou, registrada na hora em que acontece, guardada no original, sem edição, e fica disponível para auditoria.' },
     ],
   },
   {
@@ -85,7 +106,7 @@ export const PRODUTOS: Produto[] = [
     resumo: 'A Sensoriz instala, acompanha os dispositivos e entrega o registro pronto para a fiscalização.',
     secoes: [
       { id: 'implantacao', titulo: 'Implantação e instalação', texto: 'A Sensoriz instala os dispositivos, configura a CORE e treina sua equipe. Sem fio e sem obra.' },
-      { id: 'compliance', titulo: 'Serviço de compliance', texto: 'Registro contínuo, excursões documentadas com início, fim e quem foi avisado, e relatório que ninguém edita. Vale como prova para as normas da Anvisa.' },
+      { id: 'compliance', titulo: 'Serviço de compliance', texto: 'Registro contínuo, excursões documentadas com início, fim e quem foi avisado, e relatório que ninguém edita, com dados no padrão ALCOA++. Vale como prova para as normas da Anvisa.' },
       { id: 'suporte', titulo: 'Suporte e gestão dos dispositivos', texto: 'Acompanhamos bateria, sinal e calibração de cada dispositivo. Se um parar de comunicar, a CORE mostra "Sem sinal" e avisa.' },
     ],
     setores: ['logistica-e-cadeia-fria', 'farmacias-e-clinicas', 'saude'],

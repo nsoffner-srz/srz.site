@@ -93,6 +93,18 @@ export default function PaginaProduto({ s }: { s: Produto }) {
         </section>
       )}
 
+      {s.integridade && (
+        <section className="secao" id="integridade">
+          <div className="container integridade">
+            <div className="secao__topo"><p className="rotulo">Anvisa e auditorias</p><h2 className="display-l">{s.integridade.titulo}</h2></div>
+            <p className="lead integridade__texto">{s.integridade.texto}</p>
+            <ul className="integridade__principios" aria-label="Princípios ALCOA++">
+              {s.integridade.principios.map((p) => <li key={p}>{p}</li>)}
+            </ul>
+          </div>
+        </section>
+      )}
+
       {s.alertas && (
         <section className="secao" id="alertas">
           <div className="container">
@@ -103,6 +115,16 @@ export default function PaginaProduto({ s }: { s: Produto }) {
                 <div className="card norma" key={a.titulo}><span className="pilares__n dado">0{k + 1}</span><h3 className="titulo-secao">{a.titulo}</h3><p className="apoio">{a.texto}</p></div>
               ))}
             </div>
+            {s.alertas.limites && (
+              <div className="card limites-alerta" id="limites">
+                <h3 className="titulo-secao">{s.alertas.limites.titulo}</h3>
+                <ol className="grade grade--3 limites-alerta__lista">
+                  {s.alertas.limites.itens.map((l) => (
+                    <li key={l.nome}><p className="rotulo">{l.nome}</p><p className="apoio">{l.texto}</p></li>
+                  ))}
+                </ol>
+              </div>
+            )}
           </div>
         </section>
       )}

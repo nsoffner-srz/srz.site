@@ -133,6 +133,7 @@ export const SETORES: Setor[] = [
     perguntas: [
       { pergunta: 'Qual a diferença entre a Sensoriz e um datalogger?', resposta: 'O datalogger só é lido no destino. A Sensoriz avisa durante a viagem, quando ainda dá para salvar a carga.' },
       { pergunta: 'Serve para alimentos congelados e frescos?', resposta: 'Sim. Cada câmara, baú ou estoque tem a sua faixa: congelados, resfriados e frescos.' },
+      { pergunta: 'A Sensoriz atende ALCOA++?', resposta: 'Sim. Cada leitura é atribuída ao dispositivo que a gerou, registrada na hora em que acontece, guardada no original, sem edição, e fica disponível para auditoria. A CORE trabalha com limites de alerta, de ação e de especificação.' },
       { pergunta: 'A Sensoriz atende a RDC 430?', resposta: 'A Sensoriz registra temperatura e umidade o tempo todo e gera o relatório que a RDC 430 pede.' },
       { pergunta: 'Dá para saber se o baú foi aberto no caminho?', resposta: 'Sim. O lacre inteligente e o sensor de luz avisam a equipe na hora.' },
       { pergunta: 'Por onde a equipe recebe os alertas?', resposta: 'Por WhatsApp, e-mail ou SMS. Cada pessoa escolhe o que quer receber.' },
@@ -207,6 +208,7 @@ export const SETORES: Setor[] = [
       { pergunta: 'Preciso continuar preenchendo a planilha de temperatura?', resposta: 'Não. O registro é automático, com a máxima e a mínima de cada dia.' },
       { pergunta: 'O que acontece se a energia cair à noite?', resposta: 'O responsável técnico recebe um aviso na hora.' },
       { pergunta: 'Como mostro os registros na visita da vigilância sanitária?', resposta: 'Pelo QR Code na geladeira. Ele mostra os últimos 30 dias, sem senha.' },
+      { pergunta: 'A Sensoriz atende ALCOA++?', resposta: 'Sim. Cada leitura é atribuída ao dispositivo que a gerou, registrada na hora em que acontece, guardada no original, sem edição, e fica disponível para auditoria. A CORE trabalha com limites de alerta, de ação e de especificação.' },
       { pergunta: 'Qual norma vale para a minha farmácia?', resposta: 'RDC 67: manipulação. RDC 44: farmácias e drogarias. RDC 197: quem aplica vacinas. Uma farmácia pode seguir mais de uma.' },
       { pergunta: 'A instalação exige obra?', resposta: 'Não. Tudo é sem fio e o hub vai na tomada.' },
     ],
