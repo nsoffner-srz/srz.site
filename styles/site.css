@@ -527,3 +527,17 @@ summary.topo__link::after { content: ''; width: 7px; height: 7px; border-right: 
 .integridade__texto { max-width: 68ch; }
 .integridade__principios { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; margin: var(--space-5) 0 0; padding: 0; }
 .integridade__principios li { padding: var(--space-2) var(--space-3); border: 1px solid var(--borda); border-radius: var(--radius-md); background: var(--superficie); font-size: 14px; }
+
+/* Botão flutuante de WhatsApp com cadastro rápido (out/2026) */
+.zap { position: fixed; right: 16px; bottom: 16px; z-index: 60; display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-3); }
+.zap__botao { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; color: #FFFFFF; background: #25D366; box-shadow: 0 6px 20px rgba(11, 18, 32, .22); }
+.zap__botao:focus-visible { outline: 3px solid var(--foco); outline-offset: 3px; }
+.zap__painel { width: min(360px, calc(100vw - 32px)); max-height: calc(100vh - 104px); overflow-y: auto; padding: var(--space-5); background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--radius-md); box-shadow: 0 12px 40px rgba(11, 18, 32, .2); }
+.zap__topo { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.zap__topo .titulo-secao { margin: 0; }
+.zap__fechar { width: 44px; height: 44px; margin: -10px -10px -10px 0; font-size: 26px; line-height: 1; color: var(--tinta-secundaria); background: none; border: 0; cursor: pointer; }
+.zap__painel > .apoio { margin: var(--space-2) 0 var(--space-4); }
+.zap__form { gap: var(--space-3); }
+.zap__form .botao { width: 100%; justify-content: center; }
+@media print { .zap { display: none; } }
+.zap .zap__form { grid-template-columns: 1fr; } .zap .zap__form > * { grid-column: 1 / -1; }

@@ -8,6 +8,7 @@ import '@/styles/global.css';
 import '@/styles/site.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import BotaoWhatsapp from '@/components/BotaoWhatsapp';
 import JsonLd from '@/components/JsonLd';
 import { SITE } from '@/lib/site';
 import { organizacaoJsonLd } from '@/lib/seo';
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="conteudo">{children}</main>
         <Footer />
+        <BotaoWhatsapp />
       </body>
     </html>
   );

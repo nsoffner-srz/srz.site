@@ -8,6 +8,7 @@
 // Mapeamento para o Pipeline Sensoriz:
 //   Name = empresa · Contato principal = nome e cargo · Email · Phone · Origem = Site
 //   Status = Prospecção · A2 Pontos de monitoramento = pontos · Próxima Ação Comercial = setor e mensagem
+//   (ou, com canal=whatsapp, aviso de que veio pelo botão de WhatsApp). Visão "Leads do site": Origem Site + Prospecção.
 
 interface Env {
   NOTION_TOKEN?: string;
@@ -50,10 +51,15 @@ export async function onRequestPost({ request, env }: Contexto): Promise<Respons
   const pontos = Number(texto(form.get('pontos'), 10)) || null;
   const mensagem = texto(form.get('mensagem'), 1500);
   const consentimento = form.get('consentimento');
+  // Botão flutuante de WhatsApp: cadastro rápido (nome, empresa e WhatsApp), sem e-mail.
+  const viaWhatsapp = texto(form.get('canal'), 20) === 'whatsapp';
 
-  if (!nome || !email.includes('@') || !telefone || !empresa || !consentimento) {
+  if (!nome || !telefone || !empresa || !consentimento || (!viaWhatsapp && !email.includes('@'))) {
     return responder(request, false);
   }
+  const proximaAcao = viaWhatsapp
+    ? 'Veio pelo botão de WhatsApp do site. Responder pelo WhatsApp.'
+    : `Retornar pedido de diagnóstico do site. Setor: ${setor}.${mensagem ? ` Mensagem: ${mensagem}` : ''}`;
 
   if (!env.NOTION_TOKEN) {
     console.error('NOTION_TOKEN não configurado');
@@ -72,12 +78,12 @@ export async function onRequestPost({ request, env }: Contexto): Promise<Respons
       properties: {
         Name: { title: [{ text: { content: empresa } }] },
         'Contato principal': rich(cargo ? `${nome} (${cargo})` : nome),
-        Email: { email },
+        ...(email.includes('@') ? { Email: { email } } : {}),
         Phone: { phone_number: telefone },
         Origem: { select: { name: 'Site' } },
         Status: { status: { name: 'Prospecção' } },
         ...(pontos ? { 'A2 Pontos de monitoramento': { number: pontos } } : {}),
-        'Próxima Ação Comercial': rich(`Retornar pedido de diagnóstico do site. Setor: ${setor}.${mensagem ? ` Mensagem: ${mensagem}` : ''}`),
+        'Próxima Ação Comercial': rich(proximaAcao),
       },
     }),
   });
