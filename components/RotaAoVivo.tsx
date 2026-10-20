@@ -21,6 +21,25 @@ function temperaturaEm(p: number) {
 const fmt = (v: number) => v.toFixed(1).replace('.', ',');
 // Ponto da rota em que a temperatura cruza o gatilho (onde o alerta é enviado).
 const P_ALERTA = (() => { for (let q = 0; q <= 1; q += 0.002) if (temperaturaEm(q) > GATILHO) return q; return 0.5; })();
+// Ponto em que a temperatura volta para baixo do gatilho.
+const P_NORMAL = (() => { for (let q = P_ALERTA; q <= 1; q += 0.002) if (temperaturaEm(q) <= GATILHO) return q; return 0.6; })();
+// Linha do tempo: a carga para no alerta (tempo de ler), anda devagar enquanto está acima do gatilho,
+// segura de novo quando normaliza e segue. Devolve a posição na rota (0 a 1) para cada instante.
+const SEGURA_ALERTA = 3500, SEGURA_NORMAL = 2500, LENTO = 2.5, PAUSA_FIM = 1500;
+const T1 = DURACAO * P_ALERTA;
+const T2 = T1 + SEGURA_ALERTA;
+const T3 = T2 + DURACAO * (P_NORMAL - P_ALERTA) * LENTO;
+const T4 = T3 + SEGURA_NORMAL;
+const T5 = T4 + DURACAO * (1 - P_NORMAL);
+const CICLO = T5 + PAUSA_FIM;
+function posicaoNoTempo(ms: number) {
+  if (ms < T1) return ms / DURACAO;
+  if (ms < T2) return P_ALERTA;
+  if (ms < T3) return P_ALERTA + (ms - T2) / (DURACAO * LENTO);
+  if (ms < T4) return P_NORMAL;
+  if (ms < T5) return P_NORMAL + (ms - T4) / DURACAO;
+  return 1;
+}
 
 export default function RotaAoVivo() {
   const caminho = useRef<SVGPathElement>(null);
@@ -33,8 +52,7 @@ export default function RotaAoVivo() {
     let inicio = performance.now();
     let id = 0;
     const quadro = (agora: number) => {
-      const t = ((agora - inicio) % (DURACAO + 1500)) / DURACAO; // pausa curta no destino
-      setP(Math.min(t, 1));
+      setP(Math.min(posicaoNoTempo((agora - inicio) % CICLO), 1));
       id = requestAnimationFrame(quadro);
     };
     inicio = performance.now();
@@ -51,8 +69,7 @@ export default function RotaAoVivo() {
 
   const temp = temperaturaEm(p);
   const acima = temp > GATILHO;
-  const passouAlerta = p > 0.47;
-  const normalizado = passouAlerta && !acima && p > 0.6;
+  const normalizado = !acima && p >= P_NORMAL;
   const estado = acima ? 'atencao' : 'normal';
   const comprimento = caminho.current?.getTotalLength() ?? 1;
 

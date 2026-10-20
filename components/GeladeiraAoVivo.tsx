@@ -37,8 +37,13 @@ export default function GeladeiraAoVivo() {
   useEffect(() => {
     if (pausado || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setPasso((p) => p); return; }
     setPasso(0);
-    const t = setInterval(() => setPasso((p) => (p + 1) % (N + PAUSA_FINAL)), PASSO_MS);
-    return () => clearInterval(t);
+    // Segura no momento da queda e quando a energia volta, para dar tempo de ler o aviso.
+    const espera = (p: number) => (p === QUEDA ? 3500 : p === VOLTA ? 2800 : p > QUEDA && p < VOLTA ? 550 : PASSO_MS);
+    let atual = 0;
+    let t: ReturnType<typeof setTimeout>;
+    const avanca = () => { t = setTimeout(() => { atual = (atual + 1) % (N + PAUSA_FINAL); setPasso(atual); avanca(); }, espera(atual)); };
+    avanca();
+    return () => clearTimeout(t);
   }, [pausado]);
 
   const i = Math.min(passo, N - 1);

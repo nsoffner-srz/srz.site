@@ -30,14 +30,27 @@ const hora = (i: number) => {
 };
 const fmt = (v: number) => v.toFixed(1).replace('.', ',');
 
+// Ritmo: passos rápidos fora do evento; no momento do alerta o quadro segura para dar tempo de ler.
+const SEGURA_ALERTA_MS = 3500; // parado no cruzamento do gatilho
+const PASSO_ALERTA_MS = 550; // passos mais lentos enquanto está acima do gatilho
+const SEGURA_NORMAL_MS = 2500; // parado quando volta à faixa
+const espera = (p: number) =>
+  p === CRUZA ? SEGURA_ALERTA_MS : p === VOLTA ? SEGURA_NORMAL_MS : p > CRUZA && p < VOLTA ? PASSO_ALERTA_MS : PASSO_MS;
+const DURACAO_MS = Array.from({ length: N + PAUSA_FINAL }, (_, p) => espera(p)).reduce((a, b) => a + b, 0);
+
 export function useCicloGatilho(parado: boolean) {
   const [passo, setPasso] = useState(parado ? QUADRO_PARADO : 0);
   useEffect(() => {
     const menosMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (parado || menosMovimento) { setPasso(QUADRO_PARADO); return; }
     setPasso(0); // recomeça o ciclo sempre que o card volta a aparecer
-    const t = setInterval(() => setPasso((p) => (p + 1) % (N + PAUSA_FINAL)), PASSO_MS);
-    return () => clearInterval(t);
+    let atual = 0;
+    let t: ReturnType<typeof setTimeout>;
+    const avanca = () => {
+      t = setTimeout(() => { atual = (atual + 1) % (N + PAUSA_FINAL); setPasso(atual); avanca(); }, espera(atual));
+    };
+    avanca();
+    return () => clearTimeout(t);
   }, [parado]);
   const i = Math.min(passo, N - 1);
   const emAlerta = i >= CRUZA && i < VOLTA;
@@ -69,4 +82,4 @@ export default function GraficoGatilho({ i, emAlerta }: { i: number; emAlerta: b
   );
 }
 
-export const GATILHO = { faixa: FAIXA, horaAlerta: hora(CRUZA), horaNormal: hora(VOLTA), hora, fmt, duracaoMs: (N + PAUSA_FINAL) * PASSO_MS };
+export const GATILHO = { faixa: FAIXA, horaAlerta: hora(CRUZA), horaNormal: hora(VOLTA), hora, fmt, duracaoMs: DURACAO_MS };

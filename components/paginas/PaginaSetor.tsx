@@ -31,7 +31,7 @@ export default function PaginaSetor({ s }: { s: Setor }) {
           {s.visual === 'rota' && <RotaAoVivo />}
           {s.visual === 'geladeira' && <GeladeiraAoVivo />}
           <Trilha itens={trilha} />
-          <p className="rotulo">{s.rotuloHero ?? s.nome}</p>
+          <p className="rotulo">{s.nome}</p>
           <h1 className="display-xl">{s.tituloHero}</h1>
           <p className="lead">{s.subtituloHero}</p>
           <p className="apoio"><strong>Para quem:</strong> {s.publico}</p>

@@ -15,7 +15,6 @@ export interface Setor {
   nome: string;
   ordem: number;
   resumo: string;
-  rotuloHero?: string; // rótulo acima do título; padrão: nome do setor
   tituloHero: string;
   subtituloHero: string;
   publico: string;
@@ -252,9 +251,8 @@ export const SETORES: Setor[] = [
     nome: 'Ativos de Alto Valor',
     ordem: 4,
     resumo: 'Equipamentos de data center acompanhados do embarque à obra, com registro de cada etapa.',
-    rotuloHero: 'Soluções para data centers e ativos de alto valor',
-    tituloHero: 'Cada pallet rastreado, do embarque à obra',
-    subtituloHero: 'Saiba onde está o equipamento e com quem, em cada etapa da cadeia.',
+    tituloHero: 'Monitoramento para data centers e cadeias de ativos de alto valor',
+    subtituloHero: 'Saiba onde está cada pallet e com quem, do embarque à obra.',
     publico: 'Construtoras e operadoras de data centers, integradores e distribuidores de servidores, equipamentos de rede, baterias e sistemas de energia e refrigeração.',
     dor: {
       titulo: 'O equipamento atrasa ou chega avariado, e ninguém sabe em que etapa',
