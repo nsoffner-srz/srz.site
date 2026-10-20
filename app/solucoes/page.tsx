@@ -24,7 +24,7 @@ export default function Solucoes() {
             <h1 className="display-xl">Soluções</h1>
             <p className="lead">Operações diferentes, o mesmo desafio: cuidar do que está longe.</p>
           </div>
-          <h2 className="rotulo" style={{ marginBottom: 'var(--space-3)' }}>Por setor</h2>
+          <h2 className="rotulo" id="por-setor" style={{ marginBottom: 'var(--space-3)' }}>Por setor</h2>
           <div className="grade grade--2">
             {SETORES.map((s) => (
               <article className="card card-link" key={s.id}>

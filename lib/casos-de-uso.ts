@@ -49,7 +49,7 @@ export const CASOS_DE_USO: CasoDeUso[] = [
     ],
     setores: ['logistica-e-cadeia-fria', 'farmacias-e-clinicas', 'ativos-de-alto-valor'],
     perguntas: [
-      { pergunta: 'Funciona onde o sinal é fraco?', resposta: 'Sim. Em um trajeto do Norte ao Sul do Brasil, com trecho fluvial, a carga teve sinal o tempo todo.' },
+      { pergunta: 'Funciona onde o sinal é fraco?', resposta: 'Sim. Onde não há sinal, como no navio em navegação, o hub continua registrando e envia o histórico quando a rede volta.' },
       { pergunta: 'Preciso ligar o dispositivo na elétrica do caminhão?', resposta: 'Não. O hub tem bateria própria e é instalado sem mexer no veículo. Bom para frota de agregados.' },
     ],
   },

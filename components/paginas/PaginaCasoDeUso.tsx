@@ -25,7 +25,7 @@ export default function PaginaCasoDeUso({ c }: { c: CasoDeUso }) {
           <p className="lead">{c.resumo}</p>
           <div className="acoes">
             <Link className="botao botao--primario" href="/diagnostico">Solicitar diagnóstico</Link>
-            <Link className="botao botao--secundario" href="/produtos/dispositivos">Ver os dispositivos</Link>
+            <Link className="botao botao--secundario" href="/solucoes#por-setor">Ver por setor</Link>
           </div>
         </div>
       </section>

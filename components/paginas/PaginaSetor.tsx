@@ -8,7 +8,7 @@ import CardConteudo from '@/components/CardConteudo';
 import CaseCard from '@/components/CaseCard';
 import JsonLd from '@/components/JsonLd';
 import type { Setor } from '@/lib/setores';
-import { casesDoSetor, CASES_SUCESSO } from '@/lib/cases';
+import { casesDoSetor, CASES_SUCESSO_PUBLICOS as CASES_SUCESSO } from '@/lib/cases';
 import CaseSucessoCard from '@/components/CaseSucessoCard';
 import { artigos } from '@/lib/conteudo';
 import { faqJsonLd, trilhaJsonLd } from '@/lib/seo';

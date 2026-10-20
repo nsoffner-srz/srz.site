@@ -13,11 +13,13 @@ export interface Case {
   cenario: string;
   solucao: string;
   depoimentos: { texto: string; autor: string }[]; // vazio = depoimento ainda não recebido
+  autorizado: boolean; // false = fica fora do site até o cliente autorizar por escrito
 }
 
 export const CASES: Case[] = [
   {
     id: 'fabricante-climatizacao',
+    autorizado: false, // aguardando autorização (out/2026)
     cliente: 'Fabricante multinacional de climatização',
     segmento: 'Indústria',
     setor: 'ativos-de-alto-valor',
@@ -33,6 +35,7 @@ export const CASES: Case[] = [
   },
   {
     id: 'goldpao',
+    autorizado: false, // aguardando autorização (out/2026)
     cliente: 'GoldPão',
     segmento: 'Pães congelados',
     setor: 'logistica-e-cadeia-fria',
@@ -44,6 +47,7 @@ export const CASES: Case[] = [
   },
   {
     id: 'fungo-de-quintal',
+    autorizado: false, // aguardando autorização (out/2026)
     cliente: 'Fungo de Quintal',
     segmento: 'Produção de cogumelos',
     setor: 'logistica-e-cadeia-fria',
@@ -54,7 +58,8 @@ export const CASES: Case[] = [
   },
 ];
 
-export const casesDoSetor = (setor: string) => CASES.filter((c) => c.setor === setor);
+// Só o que pode aparecer no site (autorizado). Use estas listas nas páginas, nunca CASES/CASES_SUCESSO direto.
+export const casesDoSetor = (setor: string) => CASES.filter((c) => c.autorizado && c.setor === setor);
 
 // Cases de sucesso no formato antes · problema · como atuamos · resultado (sugestão do Felipe/WOW e do
 // Rodrigo, out/2026). Sem nome de cliente: só o segmento. Aparecem na home e no topo de /cases.
@@ -70,11 +75,13 @@ export interface CaseSucesso {
   depoimento?: { texto: string; autor: string };
   foto?: { src: string; alt: string };
   href: string;
+  autorizado: boolean; // false = fica fora do site até o cliente autorizar
 }
 
 export const CASES_SUCESSO: CaseSucesso[] = [
   {
     id: 'quimica-cadeia-fria',
+    autorizado: true,
     segmento: 'Multinacional química',
     contexto: 'Cadeia fria',
     destaque: { prefixo: 'R$', valor: '300', unidade: 'mil', rotulo: 'em perda evitada na primeira ocorrência' },
@@ -86,6 +93,7 @@ export const CASES_SUCESSO: CaseSucesso[] = [
   },
   {
     id: 'prefeitura-vacinas',
+    autorizado: true,
     segmento: 'Prefeitura',
     contexto: 'Vacinas em postos de saúde',
     destaque: { prefixo: 'menos de', valor: '1', unidade: 'mês', rotulo: 'de payback' },
@@ -97,6 +105,7 @@ export const CASES_SUCESSO: CaseSucesso[] = [
   },
   {
     id: 'climatizacao-transporte',
+    autorizado: false,
     segmento: 'Indústria de climatização',
     contexto: 'Transporte de equipamentos',
     destaque: { valor: '100', unidade: '%', rotulo: 'do trajeto com sinal, do Norte ao Sul' },
@@ -109,6 +118,7 @@ export const CASES_SUCESSO: CaseSucesso[] = [
   },
   {
     id: 'paes-congelados-frota',
+    autorizado: false,
     segmento: 'Fabricante de pães congelados',
     contexto: 'Frota de distribuição',
     destaque: { prefixo: 'menos de', valor: '1', unidade: 'min', rotulo: 'de instalação por caminhão' },
@@ -119,3 +129,6 @@ export const CASES_SUCESSO: CaseSucesso[] = [
     href: '/solucoes/estoque-em-movimento',
   },
 ];
+
+export const CASES_PUBLICOS = CASES.filter((c) => c.autorizado);
+export const CASES_SUCESSO_PUBLICOS = CASES_SUCESSO.filter((c) => c.autorizado);

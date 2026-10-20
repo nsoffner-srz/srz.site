@@ -18,7 +18,7 @@
 - [Serviços](https://www.sensoriz.com.br/produtos/servicos): implantação, serviço de compliance e suporte dos dispositivos.
 
 ## Clientes
-- [Cases](https://www.sensoriz.com.br/cases): GoldPão (frota de pão congelado), Fungo de Quintal (estoque de cogumelos frescos) e um fabricante multinacional de climatização (impacto no transporte).
+- [Cases](https://www.sensoriz.com.br/cases): resultados de operações monitoradas com a Sensoriz, no formato antes e depois, sem nome de cliente.
 
 ## Conteúdo
 - [Todos os artigos](https://www.sensoriz.com.br/conteudo)

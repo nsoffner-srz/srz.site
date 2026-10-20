@@ -8,7 +8,7 @@ import Parceiros from '@/components/Parceiros';
 import JsonLd from '@/components/JsonLd';
 import { SETORES } from '@/lib/setores';
 import { CASOS_DE_USO } from '@/lib/casos-de-uso';
-import { CASES_SUCESSO } from '@/lib/cases';
+import { CASES_SUCESSO_PUBLICOS as CASES_SUCESSO } from '@/lib/cases';
 import { PARAMETROS_SOLUCAO } from '@/lib/hardware';
 import { artigos } from '@/lib/conteudo';
 import { SITE } from '@/lib/site';
