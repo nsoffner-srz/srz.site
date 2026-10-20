@@ -389,3 +389,26 @@ summary.topo__link::after { content: ''; width: 7px; height: 7px; border-right: 
 .socio { display: grid; gap: var(--space-2); align-content: start; }
 .socio p, .socio h3 { margin: 0; }
 .socio__foto { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-md); margin-bottom: var(--space-2); }
+
+/* Esquema de custódia (components/EsquemaCustodia.tsx). Faixa cheia = cobre; tracejada = testar na rota. */
+.custodia__etapas { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.custodia__etapa { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-4); background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--radius-lg); }
+.custodia__etapa p, .custodia__etapa h3 { margin: 0; }
+.custodia__n { color: var(--tinta-suave); }
+.custodia__nome { font: var(--text-titulo-secao); color: var(--tinta); }
+.custodia__guarda { display: grid; gap: 2px; font: var(--text-apoio); color: var(--tinta-secundaria); margin-bottom: var(--space-2) !important; }
+.custodia__faixa { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); min-height: 40px; padding: 6px 12px; border-radius: var(--radius-md); font: var(--text-apoio); }
+.custodia__rotulo-faixa { color: inherit; }
+.custodia__estado { font-weight: 600; white-space: nowrap; }
+.custodia__faixa--hub-sim { background: var(--estado-normal-fundo); color: var(--estado-normal); }
+.custodia__faixa--hub-validar { background: repeating-linear-gradient(135deg, var(--estado-atencao-fundo) 0 8px, transparent 8px 14px); color: var(--estado-atencao); outline: 1px dashed var(--estado-atencao); outline-offset: -1px; }
+.custodia__faixa--caminhao-sim { background: var(--superficie-sutil); color: var(--tinta); }
+.custodia__faixa--caminhao-nao { background: transparent; color: var(--tinta-suave); outline: 1px solid var(--borda-sutil); outline-offset: -1px; }
+.custodia__nota { margin-top: var(--space-4); }
+@media (min-width: 1024px) {
+  .custodia__etapas { grid-template-columns: repeat(var(--n), 1fr); grid-template-rows: repeat(5, auto); column-gap: var(--space-2); row-gap: 0; }
+  /* subgrid: as faixas ficam alinhadas entre as etapas, mesmo com nomes de tamanhos diferentes */
+  .custodia__etapa { padding: var(--space-3); grid-row: span 5; grid-template-rows: subgrid; row-gap: var(--space-2); }
+  .custodia__faixa { flex-direction: column; align-items: flex-start; gap: 0; }
+}
+.limites { margin: 0; padding-left: 1.2em; display: grid; gap: var(--space-3); font: var(--text-corpo); color: var(--tinta-secundaria); align-content: start; }

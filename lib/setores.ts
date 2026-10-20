@@ -26,6 +26,10 @@ export interface Setor {
   perguntas: { pergunta: string; resposta: string }[];
   caseId?: string;
   fotos?: { src: string; alt: string; largura: number; altura: number }[]; // fotos reais da instalação
+  // Esquema de custódia (Ativos de Alto Valor): com quem está a carga em cada etapa e o que cada tecnologia cobre.
+  custodia?: { titulo: string; texto: string; etapas: { nome: string; guarda: string; caminhao: boolean; hub: 'sim' | 'validar' }[]; nota: string };
+  limites?: { titulo: string; texto: string; itens: string[] }; // o que precisa ser testado em cada rota
+  ocultarCase?: boolean; // case aguardando aprovação do cliente
   visual?: 'rota' | 'geladeira'; // visual vivo ao lado do título (Logística: rota; Farmácias: geladeira na madrugada)
   // Capacidade em paletes por tipo de veículo (Logística). Só dados verificados (out/2026).
   valorCarga?: { titulo: string; texto: string; linhas: { veiculo: string; paletes: string; operacao: string }[] }; // visual vivo ao lado do título (Logística: carga percorrendo a rota)
@@ -241,37 +245,63 @@ export const SETORES: Setor[] = [
   },
   {
     id: 'ativos-de-alto-valor',
+    // Out/2026: foco em data centers (expansão e construção no Brasil). Brief em CLAUDE.md e no projeto.
+    // Não citar incidentes, clientes sem autorização, parceiros de hardware nem preços.
+    // Limites do HGR4 ditos na página; voo e terminal dependem de teste por rota (confirmar com o Leonardo).
     nome: 'Ativos de Alto Valor',
     ordem: 4,
-    resumo: 'Integridade e localização de equipamentos de alto valor, parados ou em movimento.',
-    tituloHero: 'Garantia de integridade para os seus ativos em toda a cadeia de suprimentos',
-    subtituloHero: 'Identifique cada ocorrência: o que aconteceu, onde, em que condição e em que etapa. Com o ativo parado no estoque ou em movimento.',
-    publico: 'Fabricantes e distribuidores de eletrônicos, data centers e equipamentos industriais e de climatização de alto valor.',
+    resumo: 'Equipamentos de data center acompanhados do embarque à obra, com registro de cada etapa.',
+    tituloHero: 'Saiba com quem estava cada pallet do seu data center, em cada etapa',
+    subtituloHero: 'Servidores, racks e equipamentos de energia passam por voo, terminal, estrada e obra antes de funcionar. A Sensoriz acompanha o pallet, não só o caminhão.',
+    publico: 'Construtoras e operadoras de data centers, integradores e distribuidores de servidores, equipamentos de rede, baterias e sistemas de energia e refrigeração.',
     dor: {
-      titulo: 'O dano só aparece quando o cliente abre a caixa',
-      texto: 'Queda no transbordo, manuseio errado ou equipamento tombado. Sem registro, ninguém sabe onde aconteceu nem quem responde.',
-      custo: 'Equipamento perdido sem responsável e seguro sem laudo.',
+      titulo: 'O equipamento atrasa ou chega avariado, e ninguém sabe em que etapa',
+      texto: 'Entre a origem e a obra, a carga passa por várias mãos. O rastreador do caminhão mostra o caminhão, não o pallet, e só cobre a estrada. Quando a caixa chega danificada ou não chega, falta registro para saber onde aconteceu e com quem estava.',
+      custo: 'Cronograma da obra parado e prejuízo sem responsável definido.',
+    },
+    custodia: {
+      titulo: 'Do embarque à obra, com quem está a carga',
+      texto: 'O hub vai no pallet e acompanha cada etapa. O rastreador do caminhão só enxerga a estrada.',
+      etapas: [
+        { nome: 'Embarque na origem', guarda: 'Exportador e agente de carga', caminhao: false, hub: 'sim' },
+        { nome: 'Voo', guarda: 'Companhia aérea', caminhao: false, hub: 'validar' },
+        { nome: 'Terminal e desembaraço', guarda: 'Terminal de cargas', caminhao: false, hub: 'validar' },
+        { nome: 'Estrada', guarda: 'Transportadora', caminhao: true, hub: 'sim' },
+        { nome: 'Chegada ao data center', guarda: 'Sua equipe e a obra', caminhao: false, hub: 'sim' },
+      ],
+      nota: 'Quem responde por cada etapa depende do contrato e da apólice. Validamos com o seu despachante e a sua seguradora.',
     },
     normas: [],
     comoResolve: {
-      ver: 'Onde está cada ativo e em que condição.',
-      agir: 'Aviso quando o ativo sofre impacto, tomba ou sai da área.',
-      provar: 'Laudo de cada ocorrência, com força, hora, local e etapa.',
+      ver: 'Onde está cada pallet, em que etapa e em que condição.',
+      agir: 'Aviso quando o pallet fica parado tempo demais, é aberto, tomba ou sofre impacto. Fora isso, silêncio.',
+      provar: 'Registro de cada ocorrência com hora, local e etapa, que ninguém altera. Serve para o contrato e para o seguro.',
     },
     configuracao: [
-      { item: 'Hub no equipamento', detalhe: 'Mede impacto, vibração, orientação e localização. Bateria de até 5 anos.' },
-      { item: 'Lacre inteligente', detalhe: 'Na porta do caminhão. Avisa se a carga for aberta fora do destino.' },
-      { item: 'Sensoriz CORE', detalhe: 'Mapa, alertas de ocorrência e laudos.' },
+      { item: 'Hub recarregável no pallet', detalhe: 'Localização por GPS, rede celular e Wi-Fi. Mede luz, movimento, impacto, queda e temperatura. Cerca de 40 dias de bateria por viagem e uso aprovado em 46 companhias aéreas.' },
+      { item: 'Tags nas caixas', detalhe: 'Temperatura e umidade em cada caixa. Até 1.000 tags por hub e bateria de cerca de 5 anos.' },
+      { item: 'Lacre inteligente', detalhe: 'Na porta do caminhão. Avisa se a carga for aberta antes da obra.' },
+      { item: 'Sensoriz CORE', detalhe: 'Mapa da viagem, alertas por exceção e o histórico de cada pallet.' },
     ],
-    ambientes: ['Estoque e centro de distribuição', 'Data center', 'Transporte e transbordo', 'Instalação no cliente'],
+    ambientes: ['Embarque e voo', 'Terminal de cargas', 'Transporte rodoviário', 'Canteiro de obra e data center'],
+    limites: {
+      titulo: 'O que testamos na sua rota antes de começar',
+      texto: 'Preferimos dizer os limites antes. Cada rota passa por um teste.',
+      itens: [
+        'O hub informa a posição em intervalos: a cada 1 hora parado e a cada 15 minutos em movimento. Não é um ponto contínuo no mapa.',
+        'O sinal dentro de cada terminal alfandegado e a autorização de cada terminal são testados na sua rota.',
+        'Os documentos e a responsabilidade de cada etapa são validados com o seu despachante e a sua seguradora.',
+      ],
+    },
     perguntas: [
-      { pergunta: 'Como a Sensoriz mede impacto?', resposta: 'O hub mede a força de cada impacto e registra data, hora e local.' },
-      { pergunta: 'Dá para saber se o equipamento tombou?', resposta: 'Sim. O hub mede a orientação nos eixos X, Y e Z e avisa a equipe na hora.' },
-      { pergunta: 'Funciona com o equipamento parado no estoque e em transporte?', resposta: 'Sim. O mesmo hub acompanha o ativo no estoque, na viagem e na instalação.' },
-      { pergunta: 'O laudo serve para o seguro?', resposta: 'Sim. Cada ocorrência fica registrada com força, data, hora e local, e ninguém altera o histórico.' },
-      { pergunta: 'O que são zonas de controle?', resposta: 'Áreas desenhadas na CORE. Se um ativo sair, a equipe é avisada.' },
+      { pergunta: 'Qual a diferença para o rastreador do caminhão?', resposta: 'O rastreador fica no caminhão e só cobre a estrada. O hub da Sensoriz vai no pallet e acompanha a carga em todas as etapas.' },
+      { pergunta: 'A Sensoriz mostra a posição em tempo real?', resposta: 'O hub informa a posição em intervalos: a cada 1 hora parado e a cada 15 minutos em movimento. Impactos, quedas e aberturas geram aviso na hora.' },
+      { pergunta: 'Funciona no voo e no terminal de cargas?', resposta: 'O hub é aprovado para uso em 46 companhias aéreas. O sinal em cada terminal é testado na sua rota antes de começar.' },
+      { pergunta: 'O registro serve para o seguro?', resposta: 'Cada ocorrência fica registrada com hora, local e etapa, e ninguém altera o histórico. Validamos o formato com a sua seguradora.' },
+      { pergunta: 'Dá para saber se o equipamento tombou ou sofreu impacto?', resposta: 'Sim. O hub mede movimento, impacto e queda e avisa a equipe na hora.' },
     ],
     caseId: 'fabricante-climatizacao',
+    ocultarCase: true, // aguardando aprovação do cliente (out/2026)
   },
 ];
 

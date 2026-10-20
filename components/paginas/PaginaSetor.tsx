@@ -14,11 +14,13 @@ import { artigos } from '@/lib/conteudo';
 import { faqJsonLd, trilhaJsonLd } from '@/lib/seo';
 import RotaAoVivo from '@/components/RotaAoVivo';
 import GeladeiraAoVivo from '@/components/GeladeiraAoVivo';
+import EsquemaCustodia from '@/components/EsquemaCustodia';
 
 export default function PaginaSetor({ s }: { s: Setor }) {
   const trilha = [{ nome: 'Início', caminho: '/' }, { nome: 'Soluções', caminho: '/solucoes' }, { nome: s.nome, caminho: `/solucoes/${s.id}` }];
-  const cases = casesDoSetor(s.id);
-  const sucesso = CASES_SUCESSO.filter((c) => c.href === `/solucoes/${s.id}`);
+  // ocultarCase: case aguardando aprovação do cliente; a seção sai da página até lá.
+  const cases = s.ocultarCase ? [] : casesDoSetor(s.id);
+  const sucesso = s.ocultarCase ? [] : CASES_SUCESSO.filter((c) => c.href === `/solucoes/${s.id}`);
   const relacionados = artigos().filter((a) => a.setores.includes(s.id)).slice(0, 3);
 
   return (
@@ -51,6 +53,16 @@ export default function PaginaSetor({ s }: { s: Setor }) {
           </div>
         </div>
       </section>
+
+      {/* 1a. Esquema de custódia (só quando o setor tem) */}
+      {s.custodia && (
+        <section className="secao">
+          <div className="container">
+            <div className="secao__topo"><p className="rotulo">Custódia</p><h2 className="display-l">{s.custodia.titulo}</h2><p className="lead">{s.custodia.texto}</p></div>
+            <EsquemaCustodia c={s.custodia} />
+          </div>
+        </section>
+      )}
 
       {/* 1b. Quanto vale a carga (só quando o setor tem a tabela) */}
       {s.valorCarga && (
@@ -135,6 +147,21 @@ export default function PaginaSetor({ s }: { s: Setor }) {
           )}
         </div>
       </section>
+
+      {/* 4b. Limites: o que é testado na rota do cliente (só quando o setor tem) */}
+      {s.limites && (
+        <section className="secao secao--branca">
+          <div className="container duas-colunas">
+            <div className="duas-colunas__texto">
+              <p className="rotulo">Antes de começar</p>
+              <h2 className="display-l">{s.limites.titulo}</h2>
+              <p className="lead">{s.limites.texto}</p>
+              <Link className="botao botao--primario" href="/diagnostico">Mapear a custódia da minha rota</Link>
+            </div>
+            <ul className="limites">{s.limites.itens.map((i) => <li key={i}>{i}</li>)}</ul>
+          </div>
+        </section>
+      )}
 
       {/* 5. Case ou depoimento. Sem cliente ativo no setor, usa o case de sucesso sem nome; sem nenhum, a seção sai. */}
       {(cases.length > 0 || sucesso.length > 0) && (
