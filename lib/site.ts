@@ -91,7 +91,7 @@ export const PARCEIROS = [
   {
     nome: 'WOW Aceleradora de Startups',
     // Selo "Acelerada por WOW" guardado no armazenamento de marketing da Sensoriz.
-    logo: 'https://nyc3.digitaloceanspaces.com/srz.mktstorage/home/parceiros/wow/acelerada-wow.png',
+    logo: '/marca/parceiros/wow-acelerada.png',
     largura: 2066, altura: 307, exibir: 40,
   },
   { nome: 'Sebrae for Startups', logo: '/marca/parceiros/sebrae-for-startups.png', largura: 477, altura: 154, exibir: 56 },
