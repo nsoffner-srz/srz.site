@@ -24,10 +24,18 @@ export default function Empresa() {
           <Trilha itens={trilha} />
           <h1 className="display-xl">A Sensoriz existe para que nada de valor se perca longe dos olhos</h1>
           <p className="lead">Desenvolvemos a plataforma Sensoriz CORE e trabalhamos com parceiros internacionais de hardware. Para que você veja, aja e prove.</p>
-          <p className="pendente">História da empresa: pendente</p>
         </div>
       </section>
       <section className="secao secao--branca">
+        <div className="container historia">
+          <div className="secao__topo"><p className="rotulo">História</p><h2 className="display-l">Como a Sensoriz começou</h2></div>
+          <div className="prosa">
+            <p>Por mais de 12 anos em operações logísticas, Rodrigo Amaral viu o mesmo problema se repetir: a carga sai de vista, entra num ponto cego e a perda só aparece quando já é tarde para agir.</p>
+            <p>Em fevereiro de 2024, ele fundou a Sensoriz com Leonardo Rissi e Natan Pace para resolver isso. Com o tempo, outros sócios se juntaram ao time.</p>
+          </div>
+        </div>
+      </section>
+      <section className="secao">
         <div className="container">
           <div className="secao__topo"><p className="rotulo">Sócios</p><h2 className="display-l">Quem faz a Sensoriz</h2></div>
           <ul className="socios">
@@ -42,11 +50,10 @@ export default function Empresa() {
           </ul>
         </div>
       </section>
-      <section className="secao">
+      <section className="secao secao--branca">
         <div className="container">
           <div className="secao__topo"><p className="rotulo">Programas</p><h2 className="display-l">Aceleração e apoio</h2></div>
-          <Parceiros titulo="A Sensoriz participa de" />
-          <p className="pendente" style={{ marginTop: 'var(--space-3)' }}>Texto curto sobre cada programa: pendente</p>
+          <Parceiros detalhado />
         </div>
       </section>
       <ChamadaDiagnostico />

@@ -93,8 +93,9 @@ export const PARCEIROS = [
     // Selo "Acelerada por WOW" guardado no armazenamento de marketing da Sensoriz.
     logo: '/marca/parceiros/wow-acelerada.png',
     largura: 2066, altura: 307, exibir: 40,
+    texto: 'Programa de aceleração. A Sensoriz faz parte do Batch #34, de 2026.',
   },
-  { nome: 'Sebrae for Startups', logo: '/marca/parceiros/sebrae-for-startups.png', largura: 477, altura: 154, exibir: 56 },
+  { nome: 'Sebrae for Startups', logo: '/marca/parceiros/sebrae-for-startups.png', largura: 477, altura: 154, exibir: 56, texto: 'Programa do Sebrae que apoia o crescimento de startups.' },
   // Logo do Google + "for Startups" em Google Sans, convertido em curvas (feedback do Rodrigo, out/2026).
-  { nome: 'Google for Startups', logo: '/marca/parceiros/google-for-startups-cinza.svg', largura: 210, altura: 32, exibir: 34 },
+  { nome: 'Google for Startups', logo: '/marca/parceiros/google-for-startups-cinza.svg', largura: 210, altura: 32, exibir: 34, texto: 'Programa do Google com ferramentas, mentoria e rede para startups.' },
 ] as const;

@@ -512,3 +512,9 @@ summary.topo__link::after { content: ''; width: 7px; height: 7px; border-right: 
 @media (min-width: 900px) { .alertas__fluxo { grid-template-columns: repeat(3, 1fr); } }
 .hero__grade > *, .leituras, .leituras > * { min-width: 0; } /* nada no card de leituras alarga a grade no celular */
 @media (max-width: 480px) { .leitura__meta { flex-wrap: wrap; gap: var(--space-2) var(--space-4); } }
+
+/* Empresa: história curta e programas com texto */
+.historia .prosa { max-width: 68ch; }
+.programa__logo { display: flex; align-items: center; min-height: 88px; padding: var(--space-4); margin-bottom: var(--space-4); background: #FFFFFF; border: 1px solid var(--borda); border-radius: var(--radius-md); }
+.programa__logo img { max-width: 100%; }
+.programas { list-style: none; margin: 0; padding: 0; }
