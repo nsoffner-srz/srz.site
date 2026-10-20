@@ -492,3 +492,21 @@ summary.topo__link::after { content: ''; width: 7px; height: 7px; border-right: 
 .pallet__etapa--atencao .pallet__marca { background: var(--estado-atencao); border-color: var(--estado-atencao); box-shadow: 0 0 0 6px color-mix(in srgb, var(--estado-atencao) 30%, transparent); }
 .pallet__guarda { display: grid; gap: 2px; margin: 0; padding: 8px 10px; border-radius: var(--radius-md); background: var(--superficie-sutil); font: var(--text-apoio); color: var(--tinta); }
 @media (prefers-reduced-motion: reduce) { .pallet__trilha::after { transition: none; } }
+
+/* Esquema de alertas da CORE (components/core/EsquemaAlertas.tsx): exceção → quem recebe → por onde. */
+.alertas { margin: 0; display: grid; gap: var(--space-3); padding: var(--space-4); border: 1px solid var(--borda); border-radius: var(--radius-lg); background: var(--superficie); box-shadow: var(--sombra-flutuante); }
+.alertas__fluxo { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.alertas__etapa { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-3); border-radius: var(--radius-md); background: var(--superficie-sutil); border: 1px solid var(--borda-sutil); opacity: .55; transition: opacity .4s, border-color .4s; }
+.alertas__etapa p { margin: 0; }
+.alertas__etapa--ativa { opacity: 1; border-color: var(--borda); }
+.alertas__destaque { font: var(--text-corpo-forte); color: var(--tinta); }
+.alertas__excecao { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font: var(--text-apoio); color: var(--tinta); }
+.alertas__grade, .alertas__canais { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.alertas__grade li, .alertas__canais li { padding: 4px 10px; border-radius: var(--radius-pill); border: 1px solid var(--borda); background: var(--superficie); font: var(--text-apoio); color: var(--tinta-suave); transition: background .3s, color .3s, border-color .3s; }
+.alertas__opcao--sim { background: var(--estado-normal-fundo) !important; border-color: var(--estado-normal) !important; color: var(--estado-normal) !important; font-weight: 600; }
+.alertas__grupo { font: var(--text-apoio); color: var(--tinta-secundaria); }
+.alertas__grupo strong { color: var(--tinta); }
+.alertas__resultado { display: grid; gap: 2px; padding: var(--space-3); border-radius: var(--radius-md); background: var(--superficie-sutil); font: var(--text-corpo-forte); color: var(--tinta-secundaria); transition: background .4s, color .4s; }
+.alertas__resultado--ok { background: var(--estado-normal-fundo); color: var(--estado-normal); }
+.alertas .alertas__pausa { position: static; justify-self: end; }
+@media (min-width: 900px) { .alertas__fluxo { grid-template-columns: repeat(3, 1fr); } }

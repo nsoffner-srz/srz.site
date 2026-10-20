@@ -4,6 +4,7 @@ import Perguntas from '@/components/Perguntas';
 import ChamadaDiagnostico from '@/components/ChamadaDiagnostico';
 import JsonLd from '@/components/JsonLd';
 import PainelCore from '@/components/core/PainelCore';
+import EsquemaAlertas from '@/components/core/EsquemaAlertas';
 import FotoProduto from '@/components/FotoProduto';
 import { GRUPOS_PRODUTO, type Produto } from '@/lib/produtos';
 import { DISPOSITIVOS, MODELOS_HUB } from '@/lib/hardware';
@@ -96,7 +97,8 @@ export default function PaginaProduto({ s }: { s: Produto }) {
         <section className="secao" id="alertas">
           <div className="container">
             <div className="secao__topo"><p className="rotulo">Alertas e gestão por exceção</p><h2 className="display-l">{s.alertas.titulo}</h2></div>
-            <div className="grade grade--4">
+            <EsquemaAlertas />
+            <div className="grade grade--4" style={{ marginTop: 'var(--space-5)' }}>
               {s.alertas.itens.map((a, k) => (
                 <div className="card norma" key={a.titulo}><span className="pilares__n dado">0{k + 1}</span><h3 className="titulo-secao">{a.titulo}</h3><p className="apoio">{a.texto}</p></div>
               ))}
