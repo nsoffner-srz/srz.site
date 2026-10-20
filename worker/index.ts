@@ -36,7 +36,22 @@ function responder(request: Request, ok: boolean, status = ok ? 200 : 400) {
   return Response.redirect(new URL(`/diagnostico?${ok ? 'enviado=1' : 'erro=1'}`, request.url).href, 303);
 }
 
+// Checagem sem criar lead: abra /api/diagnostico?checar=1 no navegador.
+// Mostra se o Worker está publicado, se o token existe e se a integração enxerga o Pipeline (só leitura).
+async function checar(request: Request, env: Env): Promise<Response> {
+  const json = (corpo: object) =>
+    new Response(JSON.stringify(corpo, null, 2), { headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
+  if (!new URL(request.url).searchParams.has('checar')) return json({ worker: 'publicado', uso: 'Envie o formulário por POST. Para checar a configuração, acrescente ?checar=1' });
+  if (!env.NOTION_TOKEN) return json({ worker: 'publicado', notion: 'sem_token', ajuda: 'Cadastrar NOTION_TOKEN no Worker (Variables and Secrets) e publicar de novo' });
+  const r = await fetch(`https://api.notion.com/v1/data_sources/${env.NOTION_DATA_SOURCE_ID || PIPELINE_PADRAO}`, {
+    headers: { Authorization: `Bearer ${env.NOTION_TOKEN}`, 'Notion-Version': '2025-09-03' },
+  });
+  const notion = r.ok ? 'ok' : r.status === 401 ? 'token_invalido' : r.status === 404 ? 'pipeline_nao_compartilhado_com_a_integracao' : `erro_${r.status}`;
+  return json({ worker: 'publicado', notion });
+}
+
 async function diagnostico(request: Request, env: Env): Promise<Response> {
+  if (request.method === 'GET') return checar(request, env);
   if (request.method !== 'POST') return new Response('Method Not Allowed', { status: 405 });
 
   const form = await request.formData();

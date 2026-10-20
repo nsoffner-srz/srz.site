@@ -15,19 +15,19 @@
 /solucoes/monitoramento-ambiental /solucoes/estoque-parado              301
 # Posts do blog antigo (/blog/articles/<slug>) para a seção Conteúdo.
 # Precisam vir antes da regra /blog/*. Slugs com acento aparecem também na forma codificada (%C3%A1...).
-# Linhas comentadas são de artigos ainda em rascunho: descomente quando o artigo for publicado.
-# Até lá, a regra /blog/* manda o visitante para /conteudo.
+# Artigos publicados em out/2026: todos os posts do blog antigo apontam para o artigo equivalente.
+# A regra /blog/* manda para /conteudo o que não tiver equivalente.
 /blog/articles/como-a-visibilidade-na-cadeia-de-frio-se-tornou-o-novo-roi-sustentável   /conteudo/visibilidade-cadeia-de-frio-roi-sustentavel   301
 /blog/articles/como-a-visibilidade-na-cadeia-de-frio-se-tornou-o-novo-roi-sustent%C3%A1vel   /conteudo/visibilidade-cadeia-de-frio-roi-sustentavel   301
-# /blog/articles/cadeia-de-frio-sob-pressao   /conteudo/cadeia-de-frio-sob-pressao   301
-# /blog/articles/geofencing   /conteudo/geofencing   301
-# /blog/articles/previsão-de-problemas-na-cadeia-de-frio-como-a-análise-de-dados-transforma-risco-em-resultado   /conteudo/previsao-problemas-cadeia-de-frio-analise-de-dados   301
-# /blog/articles/previs%C3%A3o-de-problemas-na-cadeia-de-frio-como-a-an%C3%A1lise-de-dados-transforma-risco-em-resultado   /conteudo/previsao-problemas-cadeia-de-frio-analise-de-dados   301
-# /blog/articles/cold-chain-2-0-como-a-tecnologia-iot-está-revolucionando-a-cadeia-de-frio-para-alimentos-e-bebidas   /conteudo/cold-chain-2-0-iot-alimentos-bebidas   301
-# /blog/articles/cold-chain-2-0-como-a-tecnologia-iot-est%C3%A1-revolucionando-a-cadeia-de-frio-para-alimentos-e-bebidas   /conteudo/cold-chain-2-0-iot-alimentos-bebidas   301
-# /blog/articles/seguranca-logistica-alto-valor   /conteudo/seguranca-logistica-alto-valor   301
-# /blog/articles/protecao-cargas-valiosas-iot   /conteudo/protecao-cargas-valiosas-iot   301
-# /blog/articles/rdc-430-rdc-653-conformidade-farmaceutica   /conteudo/rdc-430-rdc-653-conformidade-farmaceutica   301
+/blog/articles/cadeia-de-frio-sob-pressao   /conteudo/cadeia-de-frio-sob-pressao   301
+/blog/articles/geofencing   /conteudo/geofencing   301
+/blog/articles/previsão-de-problemas-na-cadeia-de-frio-como-a-análise-de-dados-transforma-risco-em-resultado   /conteudo/previsao-problemas-cadeia-de-frio-analise-de-dados   301
+/blog/articles/previs%C3%A3o-de-problemas-na-cadeia-de-frio-como-a-an%C3%A1lise-de-dados-transforma-risco-em-resultado   /conteudo/previsao-problemas-cadeia-de-frio-analise-de-dados   301
+/blog/articles/cold-chain-2-0-como-a-tecnologia-iot-está-revolucionando-a-cadeia-de-frio-para-alimentos-e-bebidas   /conteudo/cold-chain-2-0-iot-alimentos-bebidas   301
+/blog/articles/cold-chain-2-0-como-a-tecnologia-iot-est%C3%A1-revolucionando-a-cadeia-de-frio-para-alimentos-e-bebidas   /conteudo/cold-chain-2-0-iot-alimentos-bebidas   301
+/blog/articles/seguranca-logistica-alto-valor   /conteudo/seguranca-logistica-alto-valor   301
+/blog/articles/protecao-cargas-valiosas-iot   /conteudo/protecao-cargas-valiosas-iot   301
+/blog/articles/rdc-430-rdc-653-conformidade-farmaceutica   /conteudo/rdc-430-rdc-653-conformidade-farmaceutica   301
 /blog                  /conteudo                          301
 /blog/*                /conteudo                          301
 /contato               /diagnostico                       301

@@ -45,7 +45,12 @@ export default function BotaoWhatsapp() {
     try { navigator.sendBeacon('/api/diagnostico', dados); } catch { /* o WhatsApp abre mesmo assim */ }
     const texto = `Olá, sou ${nome}, da ${empresa}. Quero falar sobre monitoramento.`;
     const url = `https://wa.me/${NUMERO}?text=${encodeURIComponent(texto)}`;
-    if (!window.open(url, '_blank', 'noopener')) window.location.href = url;
+    // Abre o WhatsApp em outra aba. Atenção: window.open com 'noopener' devolve sempre null, então não dá para
+    // usar o retorno para decidir um plano B (isso fazia o site também navegar para o WhatsApp). Um link
+    // com target=_blank, clicado dentro do envio do formulário, abre só a nova aba.
+    const link = document.createElement('a');
+    link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+    document.body.appendChild(link); link.click(); link.remove();
     setAberto(false);
   };
 
