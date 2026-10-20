@@ -400,7 +400,7 @@ summary.topo__link::after { content: ''; width: 7px; height: 7px; border-right: 
 .custodia__faixa { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); min-height: 40px; padding: 6px 12px; border-radius: var(--radius-md); font: var(--text-apoio); }
 .custodia__rotulo-faixa { color: inherit; }
 .custodia__estado { font-weight: 600; white-space: nowrap; }
-.custodia__faixa--hub-sim { background: var(--estado-normal-fundo); color: var(--estado-normal); }
+.custodia__faixa--hub-sim, .custodia__faixa--hub-registra { background: var(--estado-normal-fundo); color: var(--estado-normal); }
 .custodia__faixa--hub-validar { background: repeating-linear-gradient(135deg, var(--estado-atencao-fundo) 0 8px, transparent 8px 14px); color: var(--estado-atencao); outline: 1px dashed var(--estado-atencao); outline-offset: -1px; }
 .custodia__faixa--caminhao-sim { background: var(--superficie-sutil); color: var(--tinta); }
 .custodia__faixa--caminhao-nao { background: transparent; color: var(--tinta-suave); outline: 1px solid var(--borda-sutil); outline-offset: -1px; }

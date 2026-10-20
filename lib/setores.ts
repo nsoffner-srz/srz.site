@@ -27,7 +27,7 @@ export interface Setor {
   caseId?: string;
   fotos?: { src: string; alt: string; largura: number; altura: number }[]; // fotos reais da instalação
   // Esquema de custódia (Ativos de Alto Valor): com quem está a carga em cada etapa e o que cada tecnologia cobre.
-  custodia?: { titulo: string; texto: string; etapas: { nome: string; guarda: string; caminhao: boolean; hub: 'sim' | 'validar' }[]; nota: string };
+  custodia?: { titulo: string; texto: string; etapas: { nome: string; guarda: string; caminhao: boolean; hub: 'sim' | 'registra' | 'validar' }[]; nota: string };
   limites?: { titulo: string; texto: string; itens: string[] }; // o que precisa ser testado em cada rota
   ocultarCase?: boolean; // case aguardando aprovação do cliente
   visual?: 'rota' | 'geladeira' | 'hospital' | 'pallet'; // visual vivo ao lado do título (Logística: rota; Farmácias: geladeira na madrugada)
@@ -249,7 +249,8 @@ export const SETORES: Setor[] = [
     visual: 'pallet',
     // Out/2026: foco em data centers (expansão e construção no Brasil). Brief em CLAUDE.md e no projeto.
     // Não citar incidentes, clientes sem autorização, parceiros de hardware nem preços.
-    // Limites do HGR4 ditos na página; voo e terminal dependem de teste por rota (confirmar com o Leonardo).
+    // Limites do HGR4 ditos na página. Voo confirmado pela Nicole (20/10/2026): modo avião automático, segue
+    // registrando e envia o histórico no pouso. Terminal alfandegado: sinal testado por rota.
     nome: 'Ativos de Alto Valor',
     ordem: 4,
     resumo: 'Equipamentos de data center acompanhados do embarque à obra, com registro de cada etapa.',
@@ -266,7 +267,7 @@ export const SETORES: Setor[] = [
       texto: 'O hub vai no pallet e acompanha cada etapa. O rastreador do caminhão só enxerga a estrada.',
       etapas: [
         { nome: 'Embarque na origem', guarda: 'Exportador e agente de carga', caminhao: false, hub: 'sim' },
-        { nome: 'Voo', guarda: 'Companhia aérea', caminhao: false, hub: 'validar' },
+        { nome: 'Voo', guarda: 'Companhia aérea', caminhao: false, hub: 'registra' }, // modo avião automático: segue registrando, envia o histórico no pouso
         { nome: 'Terminal e desembaraço', guarda: 'Terminal de cargas', caminhao: false, hub: 'validar' },
         { nome: 'Estrada', guarda: 'Transportadora', caminhao: true, hub: 'sim' },
         { nome: 'Chegada ao data center', guarda: 'Sua equipe e a obra', caminhao: false, hub: 'sim' },
@@ -298,7 +299,7 @@ export const SETORES: Setor[] = [
     perguntas: [
       { pergunta: 'Qual a diferença para o rastreador do caminhão?', resposta: 'O rastreador fica no caminhão e só cobre a estrada. O hub da Sensoriz vai no pallet e acompanha a carga em todas as etapas.' },
       { pergunta: 'A Sensoriz mostra a posição em tempo real?', resposta: 'O hub informa a posição em intervalos: a cada 1 hora parado e a cada 15 minutos em movimento. Impactos, quedas e aberturas geram aviso na hora.' },
-      { pergunta: 'Funciona no voo e no terminal de cargas?', resposta: 'O hub é aprovado para uso em 46 companhias aéreas. O sinal em cada terminal é testado na sua rota antes de começar.' },
+      { pergunta: 'Funciona no voo e no terminal de cargas?', resposta: 'Sim no voo. O hub é aprovado em 46 companhias aéreas, entra em modo avião sozinho na decolagem e continua registrando. No pouso, envia o histórico do voo. Vale também para o transporte por navio. O sinal em cada terminal é testado na sua rota antes de começar.' },
       { pergunta: 'O registro serve para o seguro?', resposta: 'Cada ocorrência fica registrada com hora, local e etapa, e ninguém altera o histórico. Validamos o formato com a sua seguradora.' },
       { pergunta: 'Dá para saber se o equipamento tombou ou sofreu impacto?', resposta: 'Sim. O hub mede movimento, impacto e queda e avisa a equipe na hora.' },
     ],

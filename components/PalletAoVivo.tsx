@@ -1,7 +1,7 @@
 'use client';
 // Visual vivo de Ativos de Alto Valor: um pallet de servidores passando pelas etapas, do embarque à obra,
 // no padrão da CORE (estado em palavra e histórico). Mostra com quem está a carga em cada etapa.
-// No voo não há atualização de posição (dito na tela). No descarregamento, um impacto vira ocorrência
+// No voo o hub entra em modo avião, segue registrando e envia o histórico no pouso (sem status ao vivo). No descarregamento, um impacto vira ocorrência
 // registrada com hora, local e etapa. Valores ilustrativos; nenhum caso real.
 import { useEffect, useState } from 'react';
 
@@ -10,14 +10,15 @@ const ETAPAS = ['Origem', 'Voo', 'Terminal', 'Estrada', 'Obra'];
 type Passo = { etapa: number; guarda: string; hora: string; registro?: string; alerta?: boolean; fim?: boolean; legenda: string; ms: number };
 const PASSOS: Passo[] = [
   { etapa: 0, guarda: 'Exportador e agente de carga', hora: 'Seg 18:20', registro: 'Pallet embarcado na origem', legenda: 'Pallet com o hub embarcado na origem', ms: 2600 },
-  { etapa: 1, guarda: 'Companhia aérea', hora: 'Seg 22:05', registro: 'Decolou', legenda: 'Em voo: a posição volta a atualizar depois do pouso', ms: 2800 },
-  { etapa: 2, guarda: 'Terminal de cargas', hora: 'Ter 06:10', registro: 'Chegou ao terminal de cargas', legenda: 'No terminal, aguardando o desembaraço', ms: 2600 },
+  { etapa: 1, guarda: 'Companhia aérea', hora: 'Seg 22:05', registro: 'Decolou · hub em modo avião', legenda: 'Em voo: o hub entra em modo avião sozinho e continua registrando', ms: 3200 },
+  { etapa: 2, guarda: 'Terminal de cargas', hora: 'Ter 06:10', registro: 'Pousou · histórico do voo enviado', legenda: 'No pouso, o histórico completo do voo chega à CORE', ms: 3200 },
+  { etapa: 2, guarda: 'Terminal de cargas', hora: 'Ter 07:05', registro: 'Chegou ao terminal de cargas', legenda: 'No terminal, aguardando o desembaraço', ms: 2400 },
   { etapa: 2, guarda: 'Terminal de cargas', hora: 'Qui 14:30', registro: 'Liberado e retirado do terminal', legenda: 'Carga liberada e retirada pela transportadora', ms: 2400 },
   { etapa: 3, guarda: 'Transportadora', hora: 'Qui 15:05', registro: 'Em trânsito para a obra', legenda: 'Na estrada, a caminho do data center', ms: 2600 },
   { etapa: 4, guarda: 'Transportadora e equipe da obra', hora: 'Qui 16:42', registro: 'Impacto de 9 G no descarregamento', alerta: true, legenda: 'Impacto no descarregamento: equipe da obra e transportadora avisadas às 16:42', ms: 4500 },
   { etapa: 4, guarda: 'Equipe da obra', hora: 'Qui 16:50', registro: 'Recebido na obra', fim: true, legenda: 'Ocorrência registrada com hora, local e etapa, pronta para o contrato e o seguro', ms: 4500 },
 ];
-const QUADRO_PARADO = 5;
+const QUADRO_PARADO = 6;
 
 export default function PalletAoVivo() {
   const [passo, setPasso] = useState(QUADRO_PARADO);
