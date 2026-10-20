@@ -28,10 +28,11 @@ export default function Empresa() {
       </section>
       <section className="secao secao--branca">
         <div className="container historia">
-          <div className="secao__topo"><p className="rotulo">História</p><h2 className="display-l">Como a Sensoriz começou</h2></div>
+          <div className="secao__topo"><p className="rotulo">História</p><h2 className="display-l">Por que a Sensoriz existe</h2></div>
           <div className="prosa">
-            <p>Por mais de 12 anos em operações logísticas, Rodrigo Amaral viu o mesmo problema se repetir: a carga sai de vista, entra num ponto cego e a perda só aparece quando já é tarde para agir.</p>
-            <p>Em fevereiro de 2024, ele fundou a Sensoriz com Leonardo Rissi e Natan Pace para resolver isso. Com o tempo, outros sócios se juntaram ao time.</p>
+            <p>Alimentos, vacinas e medicamentos são descartados porque saíram da temperatura certa em algum ponto do caminho. Equipamentos de alto valor chegam avariados sem que se saiba onde aconteceu. Quase sempre, a perda só é descoberta no fim, quando já não há o que fazer.</p>
+            <p>A Sensoriz foi fundada em fevereiro de 2024 por Rodrigo Amaral, Leonardo Rissi e Natan Pace para mudar isso, a partir de mais de uma década de experiência em operações logísticas. Com o tempo, novos sócios se juntaram para levar esse trabalho a mais setores.</p>
+            <p>Hoje atuamos com alimentos, farmácias, saúde, logística e ativos de alto valor. O objetivo é o mesmo em todos: menos desperdício, operações em conformidade e produtos que chegam inteiros a quem depende deles.</p>
           </div>
         </div>
       </section>
