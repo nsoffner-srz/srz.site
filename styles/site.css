@@ -462,3 +462,18 @@ summary.topo__link::after { content: ''; width: 7px; height: 7px; border-right: 
 .frota__item--atencao { background: var(--estado-atencao-fundo); border-color: var(--estado-atencao); }
 .frota__item--atencao .frota__temp { color: var(--estado-atencao); }
 @media (prefers-reduced-motion: reduce) { .frota__percurso, .frota__pino { transition: none; } .frota__pino--atencao .frota__pino-halo { animation: none; } }
+
+/* Visual vivo do setor Saúde (components/HospitalAoVivo.tsx): planta por setor, pino e histórico, no padrão da CORE. */
+.hospital__planta { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 6px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--tinta) 4%, var(--superficie)); border: 1px solid var(--borda-sutil); }
+.hospital__sala { min-height: 84px; padding: 8px 10px; border-radius: var(--radius-sm); background: var(--superficie); border: 1px solid var(--borda); font: var(--text-apoio); color: var(--tinta-secundaria); transition: background .4s, border-color .4s; }
+.hospital__sala--ativa { border-color: var(--grafico-serie-1); color: var(--tinta); }
+.hospital__sala--atencao { background: var(--estado-atencao-fundo); border-color: var(--estado-atencao); }
+.hospital__pino { position: absolute; width: 14px; height: 14px; margin: 0 0 0 -7px; border-radius: 50%; background: var(--grafico-serie-1); border: 2px solid var(--superficie); box-shadow: 0 0 0 6px color-mix(in srgb, var(--grafico-serie-1) 25%, transparent); transition: left .9s ease-in-out, top .9s ease-in-out, background .3s; }
+.hospital__pino--atencao { background: var(--estado-atencao); box-shadow: 0 0 0 6px color-mix(in srgb, var(--estado-atencao) 30%, transparent); }
+.hospital__historico { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; min-height: 104px; align-content: start; font: var(--text-apoio); color: var(--tinta-secundaria); }
+.hospital__historico li { padding: 3px 0; border-bottom: 1px solid var(--borda-sutil); animation: core-entra .4s ease-out; }
+.hospital__historico .dado { color: var(--tinta); margin-right: 6px; }
+.hospital__registro--atencao { color: var(--estado-atencao); font-weight: 600; }
+.hospital__evidencia { margin: 0; padding: 6px 10px; border-radius: var(--radius-md); background: var(--estado-normal-fundo); color: var(--estado-normal); font: var(--text-apoio); font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { .hospital__pino { transition: none; } .hospital__historico li { animation: none; } }
+.hospital__evidencia--oculta { visibility: hidden; }

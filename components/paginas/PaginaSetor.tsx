@@ -15,6 +15,7 @@ import { faqJsonLd, trilhaJsonLd } from '@/lib/seo';
 import RotaAoVivo from '@/components/RotaAoVivo';
 import GeladeiraAoVivo from '@/components/GeladeiraAoVivo';
 import EsquemaCustodia from '@/components/EsquemaCustodia';
+import HospitalAoVivo from '@/components/HospitalAoVivo';
 
 export default function PaginaSetor({ s }: { s: Setor }) {
   const trilha = [{ nome: 'Início', caminho: '/' }, { nome: 'Soluções', caminho: '/solucoes' }, { nome: s.nome, caminho: `/solucoes/${s.id}` }];
@@ -30,6 +31,7 @@ export default function PaginaSetor({ s }: { s: Setor }) {
         <div className={`container pagina-topo__grade${s.visual ? ' pagina-topo__grade--visual' : ''}`}>
           {s.visual === 'rota' && <RotaAoVivo />}
           {s.visual === 'geladeira' && <GeladeiraAoVivo />}
+          {s.visual === 'hospital' && <HospitalAoVivo />}
           <Trilha itens={trilha} />
           <p className="rotulo">{s.nome}</p>
           <h1 className="display-xl">{s.tituloHero}</h1>

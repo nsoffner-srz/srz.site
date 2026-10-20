@@ -30,7 +30,7 @@ export interface Setor {
   custodia?: { titulo: string; texto: string; etapas: { nome: string; guarda: string; caminhao: boolean; hub: 'sim' | 'validar' }[]; nota: string };
   limites?: { titulo: string; texto: string; itens: string[] }; // o que precisa ser testado em cada rota
   ocultarCase?: boolean; // case aguardando aprovação do cliente
-  visual?: 'rota' | 'geladeira'; // visual vivo ao lado do título (Logística: rota; Farmácias: geladeira na madrugada)
+  visual?: 'rota' | 'geladeira' | 'hospital'; // visual vivo ao lado do título (Logística: rota; Farmácias: geladeira na madrugada)
   // Capacidade em paletes por tipo de veículo (Logística). Só dados verificados (out/2026).
   valorCarga?: { titulo: string; texto: string; linhas: { veiculo: string; paletes: string; operacao: string }[] }; // visual vivo ao lado do título (Logística: carga percorrendo a rota)
 }
@@ -213,6 +213,7 @@ export const SETORES: Setor[] = [
   },
   {
     id: 'saude',
+    visual: 'hospital',
     nome: 'Saúde',
     ordem: 3,
     resumo: 'Equipamentos e kits localizados, e vacinas na temperatura certa.',
