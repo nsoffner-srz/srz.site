@@ -250,7 +250,7 @@ export const SETORES: Setor[] = [
     // Out/2026: foco em data centers (expansão e construção no Brasil). Brief em CLAUDE.md e no projeto.
     // Não citar incidentes, clientes sem autorização, parceiros de hardware nem preços.
     // Limites do HGR4 ditos na página. Voo confirmado pela Nicole (20/10/2026): modo avião automático, segue
-    // registrando e envia o histórico no pouso. Terminal alfandegado: sinal testado por rota.
+    // registrando e envia o histórico no pouso. Sinal em todas as etapas, menos em voo e navio em navegação (Nicole, 20/10/2026).
     nome: 'Ativos de Alto Valor',
     ordem: 4,
     resumo: 'Equipamentos de data center acompanhados do embarque ao destino final, com registro de cada etapa.',
@@ -268,7 +268,7 @@ export const SETORES: Setor[] = [
       etapas: [
         { nome: 'Embarque na origem', guarda: 'Exportador e agente de carga', caminhao: false, hub: 'sim' },
         { nome: 'Voo', guarda: 'Companhia aérea', caminhao: false, hub: 'registra' }, // modo avião automático: segue registrando, envia o histórico no pouso
-        { nome: 'Terminal e desembaraço', guarda: 'Terminal de cargas', caminhao: false, hub: 'validar' },
+        { nome: 'Terminal e desembaraço', guarda: 'Terminal de cargas', caminhao: false, hub: 'sim' },
         { nome: 'Estrada', guarda: 'Transportadora', caminhao: true, hub: 'sim' },
         { nome: 'Destino final', guarda: 'Sua equipe', caminhao: false, hub: 'sim' },
       ],
@@ -292,14 +292,14 @@ export const SETORES: Setor[] = [
       texto: 'Preferimos dizer os limites antes. Cada rota passa por um teste.',
       itens: [
         'O hub informa a posição em intervalos: a cada 1 hora parado e a cada 15 minutos em movimento. Não é um ponto contínuo no mapa.',
-        'O sinal dentro de cada terminal alfandegado e a autorização de cada terminal são testados na sua rota.',
+        'A autorização de cada terminal para o uso do hub é confirmada antes de começar.',
         'Os documentos e a responsabilidade de cada etapa são validados com o seu despachante e a sua seguradora.',
       ],
     },
     perguntas: [
       { pergunta: 'Qual a diferença para o rastreador do caminhão?', resposta: 'O rastreador fica no caminhão e só cobre a estrada. O hub da Sensoriz vai no pallet e acompanha a carga em todas as etapas.' },
       { pergunta: 'A Sensoriz mostra a posição em tempo real?', resposta: 'O hub informa a posição em intervalos: a cada 1 hora parado e a cada 15 minutos em movimento. Impactos, quedas e aberturas geram aviso na hora.' },
-      { pergunta: 'Funciona no voo e no terminal de cargas?', resposta: 'Sim no voo. O hub é aprovado em 46 companhias aéreas, entra em modo avião sozinho na decolagem e continua registrando. No pouso, envia o histórico do voo. Vale também para o transporte por navio. O sinal em cada terminal é testado na sua rota antes de começar.' },
+      { pergunta: 'Funciona no voo e no terminal de cargas?', resposta: 'Sim. No terminal o hub tem sinal normalmente. No voo, é aprovado em 46 companhias aéreas, entra em modo avião sozinho na decolagem e continua registrando; no pouso, envia o histórico do voo. Vale também para o navio em navegação.' },
       { pergunta: 'Quanto tempo parado vira alerta?', resposta: 'O padrão é 20 minutos parado fora do previsto. Esse tempo é configurável para cada operação.' },
       { pergunta: 'O registro serve para o seguro?', resposta: 'Cada ocorrência fica registrada com hora, local e etapa, e ninguém altera o histórico. Validamos o formato com a sua seguradora.' },
       { pergunta: 'Dá para saber se o equipamento tombou ou sofreu impacto?', resposta: 'Sim. O hub mede movimento, impacto e queda e avisa a equipe na hora.' },
