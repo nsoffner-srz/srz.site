@@ -6,7 +6,7 @@
 - [Logística e Cadeia Fria](https://www.sensoriz.com.br/solucoes/logistica-e-cadeia-fria): temperatura e umidade de alimentos e medicamentos no transporte, na câmara fria e no estoque; RDC 430, RDC 653, RDC 216 e Portaria 326.
 - [Farmácias e Clínicas](https://www.sensoriz.com.br/solucoes/farmacias-e-clinicas): geladeiras, salas e laboratórios de farmácias de manipulação (RDC 67), farmácias e drogarias (RDC 44) e serviços de vacinação (RDC 197).
 - [Saúde](https://www.sensoriz.com.br/solucoes/saude): localização de equipamentos e kits cirúrgicos e rede de frio de vacinas.
-- [Ativos de Alto Valor](https://www.sensoriz.com.br/solucoes/ativos-de-alto-valor): equipamentos de data center (servidores, racks, energia) acompanhados no pallet do embarque à obra, com registro de custódia, impacto e abertura em cada etapa.
+- [Ativos de Alto Valor](https://www.sensoriz.com.br/solucoes/ativos-de-alto-valor): equipamentos de data center (servidores, racks, energia) acompanhados no pallet do embarque ao destino final, com registro de custódia, impacto e abertura em cada etapa.
 
 ## Soluções por caso de uso
 - [Estoque parado](https://www.sensoriz.com.br/solucoes/estoque-parado): geladeiras, câmaras frias, salas de estoque e armazéns.

@@ -253,24 +253,24 @@ export const SETORES: Setor[] = [
     // registrando e envia o histórico no pouso. Terminal alfandegado: sinal testado por rota.
     nome: 'Ativos de Alto Valor',
     ordem: 4,
-    resumo: 'Equipamentos de data center acompanhados do embarque à obra, com registro de cada etapa.',
+    resumo: 'Equipamentos de data center acompanhados do embarque ao destino final, com registro de cada etapa.',
     tituloHero: 'Monitoramento para data centers e cadeias de ativos de alto valor',
-    subtituloHero: 'Saiba onde está cada pallet e com quem, do embarque à obra.',
+    subtituloHero: 'Saiba onde está cada pallet e com quem, do embarque ao destino final.',
     publico: 'Construtoras e operadoras de data centers, integradores e distribuidores de servidores, equipamentos de rede, baterias e sistemas de energia e refrigeração.',
     dor: {
       titulo: 'O equipamento atrasa ou chega avariado, e ninguém sabe em que etapa',
-      texto: 'Entre a origem e a obra, a carga passa por várias mãos. O rastreador do caminhão mostra o caminhão, não o pallet, e só cobre a estrada. Quando a caixa chega danificada ou não chega, falta registro para saber onde aconteceu e com quem estava.',
-      custo: 'Cronograma da obra parado e prejuízo sem responsável definido.',
+      texto: 'Entre a origem e o destino final, a carga passa por várias mãos. O rastreador do caminhão mostra o caminhão, não o pallet, e só cobre a estrada. Quando a caixa chega danificada ou não chega, falta registro para saber onde aconteceu e com quem estava.',
+      custo: 'Cronograma do projeto parado e prejuízo sem responsável definido.',
     },
     custodia: {
-      titulo: 'Do embarque à obra, com quem está a carga',
+      titulo: 'Do embarque ao destino final, com quem está a carga',
       texto: 'O hub vai no pallet e acompanha cada etapa. O rastreador do caminhão só enxerga a estrada.',
       etapas: [
         { nome: 'Embarque na origem', guarda: 'Exportador e agente de carga', caminhao: false, hub: 'sim' },
         { nome: 'Voo', guarda: 'Companhia aérea', caminhao: false, hub: 'registra' }, // modo avião automático: segue registrando, envia o histórico no pouso
         { nome: 'Terminal e desembaraço', guarda: 'Terminal de cargas', caminhao: false, hub: 'validar' },
         { nome: 'Estrada', guarda: 'Transportadora', caminhao: true, hub: 'sim' },
-        { nome: 'Chegada ao data center', guarda: 'Sua equipe e a obra', caminhao: false, hub: 'sim' },
+        { nome: 'Destino final', guarda: 'Sua equipe', caminhao: false, hub: 'sim' },
       ],
       nota: 'Quem responde por cada etapa depende do contrato e da apólice. Validamos com o seu despachante e a sua seguradora.',
     },
@@ -283,10 +283,10 @@ export const SETORES: Setor[] = [
     configuracao: [
       { item: 'Hub recarregável no pallet', detalhe: 'Localização por GPS, rede celular e Wi-Fi. Mede luz, movimento, impacto, queda e temperatura. Cerca de 40 dias de bateria por viagem e uso aprovado em 46 companhias aéreas.' },
       { item: 'Tags nas caixas', detalhe: 'Temperatura e umidade em cada caixa. Até 1.000 tags por hub e bateria de cerca de 5 anos.' },
-      { item: 'Lacre inteligente', detalhe: 'Na porta do caminhão. Avisa se a carga for aberta antes da obra.' },
+      { item: 'Lacre inteligente', detalhe: 'Na porta do caminhão. Avisa se a carga for aberta antes do destino final.' },
       { item: 'Sensoriz CORE', detalhe: 'Mapa da viagem, alertas por exceção e o histórico de cada pallet.' },
     ],
-    ambientes: ['Embarque e voo', 'Terminal de cargas', 'Transporte rodoviário', 'Canteiro de obra e data center'],
+    ambientes: ['Embarque e voo', 'Terminal de cargas', 'Transporte rodoviário', 'Destino final: data center ou centro de distribuição'],
     limites: {
       titulo: 'O que testamos na sua rota antes de começar',
       texto: 'Preferimos dizer os limites antes. Cada rota passa por um teste.',
