@@ -117,13 +117,13 @@ export default function LeiturasAoVivo() {
     ? {
         ...base,
         valor: GATILHO.fmt(ciclo.valor),
-        estado: ciclo.emAlerta ? 'atencao' : 'normal',
-        meta: [{ rotulo: 'Gatilho', valor: `${GATILHO.faixa[0]} a ${GATILHO.faixa[1]}`, unidade: '°C' }, { rotulo: 'Energia', valor: 'Ligada' }, { rotulo: 'Leitura', valor: GATILHO.hora(ciclo.i) }],
-        legenda: ciclo.normalizado
-          ? `Equipe agiu e a temperatura voltou à faixa às ${GATILHO.horaNormal}`
-          : ciclo.alertaEnviado
-            ? `Acima do gatilho: alerta enviado às ${GATILHO.horaAlerta} para a equipe de qualidade`
-            : 'Dentro da faixa. A equipe só é chamada se cruzar o gatilho',
+        estado: ciclo.nivel === 'normal' ? 'normal' : 'atencao',
+        meta: [
+          { rotulo: 'Especificação', valor: `${GATILHO.espec[0]} a ${GATILHO.espec[1]}`, unidade: '°C' },
+          { rotulo: 'Alerta', valor: `${GATILHO.alerta[0]} a ${GATILHO.alerta[1]}`, unidade: '°C' },
+          { rotulo: 'Leitura', valor: GATILHO.hora(ciclo.i) },
+        ],
+        legenda: ciclo.legenda,
       }
     : base;
   return (
@@ -154,8 +154,8 @@ export default function LeiturasAoVivo() {
             ))}
           </dl>
         </div>
-        {vivo ? <GraficoGatilho i={ciclo.i} emAlerta={ciclo.emAlerta} /> : <Grafico l={l} />}
-        <figcaption className={`apoio${vivo && ciclo.alertaEnviado && !ciclo.normalizado ? ' leitura__alerta' : ''}`}>{l.legenda} · exemplo ilustrativo</figcaption>
+        {vivo ? <GraficoGatilho i={ciclo.i} /> : <Grafico l={l} />}
+        <figcaption className={`apoio${vivo && ciclo.destaque ? ' leitura__alerta' : ''}`}>{l.legenda} · exemplo ilustrativo</figcaption>
       </figure>
 
       <div className="leituras__controles">

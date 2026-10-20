@@ -1,44 +1,47 @@
 'use client';
-// Visual vivo da página de Farmácias (feedback do Rodrigo, out/2026): a geladeira durante a madrugada.
-// A energia cai às 02:14, o hub na tomada avisa na hora, a temperatura começa a subir e o responsável
-// técnico age antes de ela passar do gatilho. Mesma linguagem do gráfico da home. Valores ilustrativos.
+// Visual vivo da página de Farmácias: a geladeira durante a madrugada, com os três limites (out/2026).
+// A energia cai às 00:36 e o hub na tomada avisa na hora. A temperatura passa do limite de alerta,
+// a tendência dispara o limite de ação, a energia volta e a temperatura retorna sem sair da especificação.
+// Mesma linguagem do gráfico da home. Valores ilustrativos.
 import { useEffect, useState } from 'react';
+import GraficoLimites from './GraficoLimites';
+import { ALERTA, CHIP, ESPEC, fmt, minutosAteEspec, type Nivel } from '@/lib/limites';
 
-const W = 320, H = 96;
-const MIN = 0, MAX = 12;
-const FAIXA: [number, number] = [2, 8];
 const PASSO_MS = 260;
+const MIN_POR_LEITURA = 12;
 
 // 40 leituras, uma a cada 12 min, das 22:00 às 05:48.
 const SERIE = [
   4.6, 4.7, 4.5, 4.6, 4.8, 4.7, 4.6, 4.5, 4.7, 4.6, 4.8, 4.7, 4.6,
-  4.9, 5.4, 5.9, 6.4, 6.9, 7.3, 7.5, // energia caiu (passo 13)
-  7.2, 6.6, 6.0, 5.5, 5.1, 4.9, 4.8, // energia voltou / equipe agiu (passo 20)
-  4.7, 4.6, 4.7, 4.8, 4.6, 4.5, 4.7, 4.6, 4.7, 4.6, 4.5, 4.6, 4.7,
+  4.9, 5.4, 5.9, 6.4, 6.8, 7.2, 7.5, 7.7, // energia caiu (passo 13)
+  7.6, 7.3, 6.8, 6.2, 5.6, 5.1, 4.9, // energia voltou (passo 21)
+  4.7, 4.6, 4.7, 4.8, 4.6, 4.5, 4.7, 4.6, 4.7, 4.6, 4.5, 4.6,
 ];
 const N = SERIE.length;
 const QUEDA = 13;
-const VOLTA = 20;
-const QUADRO_PARADO = 17;
+const I_ALERTA = SERIE.findIndex((v) => v > ALERTA[1]);
+const I_ACAO = SERIE.findIndex((v, k) => k > I_ALERTA && v >= 7.5);
+const VOLTA_ENERGIA = 21;
+const I_NORMAL = SERIE.findIndex((v, k) => k > VOLTA_ENERGIA && v <= ALERTA[1]);
+const QUADRO_PARADO = I_ACAO;
 const PAUSA_FINAL = 8;
+const MIN_ACAO = minutosAteEspec(SERIE, I_ACAO, MIN_POR_LEITURA);
 
-const y = (v: number) => H - ((v - MIN) / (MAX - MIN)) * H;
-const x = (i: number) => (i / (N - 1)) * W;
 const hora = (i: number) => {
-  const m = 22 * 60 + i * 12;
+  const m = 22 * 60 + i * MIN_POR_LEITURA;
   return `${String(Math.floor(m / 60) % 24).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
 };
-const fmt = (v: number) => v.toFixed(1).replace('.', ',');
+// Segura nos avisos (queda, alerta, ação) e na volta ao normal, para dar tempo de ler.
+const espera = (p: number) =>
+  p === QUEDA || p === I_ALERTA || p === I_ACAO ? 3500 : p === I_NORMAL ? 3000 : p === VOLTA_ENERGIA ? 2500 : p > QUEDA && p < I_NORMAL ? 550 : PASSO_MS;
 
 export default function GeladeiraAoVivo() {
   const [passo, setPasso] = useState(QUADRO_PARADO);
   const [pausado, setPausado] = useState(false);
 
   useEffect(() => {
-    if (pausado || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setPasso((p) => p); return; }
+    if (pausado || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     setPasso(0);
-    // Segura no momento da queda e quando a energia volta, para dar tempo de ler o aviso.
-    const espera = (p: number) => (p === QUEDA ? 3500 : p === VOLTA ? 2800 : p > QUEDA && p < VOLTA ? 550 : PASSO_MS);
     let atual = 0;
     let t: ReturnType<typeof setTimeout>;
     const avanca = () => { t = setTimeout(() => { atual = (atual + 1) % (N + PAUSA_FINAL); setPasso(atual); avanca(); }, espera(atual)); };
@@ -47,10 +50,22 @@ export default function GeladeiraAoVivo() {
   }, [pausado]);
 
   const i = Math.min(passo, N - 1);
-  const semEnergia = i >= QUEDA && i < VOLTA;
-  const avisado = i >= QUEDA;
-  const resolvido = i >= VOLTA;
-  const linha = SERIE.slice(0, i + 1).map((v, k) => `${k ? 'L' : 'M'}${x(k).toFixed(1)} ${y(v).toFixed(1)}`).join(' ');
+  const semEnergia = i >= QUEDA && i < VOLTA_ENERGIA;
+  const nivel: Nivel = i >= I_NORMAL || i < I_ALERTA ? 'normal' : i >= I_ACAO ? 'acao' : 'alerta';
+  // Antes do limite de alerta, a queda de energia já é um aviso (Atenção).
+  const chip = nivel === 'normal' && semEnergia ? CHIP.alerta : CHIP[nivel];
+
+  const legenda = i >= I_NORMAL
+    ? `Energia de volta e temperatura na faixa às ${hora(I_NORMAL)}. Nenhuma excursão: o produto não saiu da especificação`
+    : i >= VOLTA_ENERGIA
+      ? `Energia de volta às ${hora(VOLTA_ENERGIA)}. A temperatura começa a cair`
+      : i >= I_ACAO
+        ? `Limite de ação: no ritmo atual, passa de ${ESPEC[1]} °C em cerca de ${MIN_ACAO} min. Responsável técnico age`
+        : i >= I_ALERTA
+          ? `Limite de alerta: acima de ${ALERTA[1]} °C às ${hora(I_ALERTA)}. Responsável técnico avisado`
+          : i >= QUEDA
+            ? `Queda de energia às ${hora(QUEDA)}: responsável técnico avisado na hora`
+            : 'Farmácia fechada, geladeira dentro da faixa normal';
 
   return (
     <figure className="leitura rota" aria-label="Exemplo de geladeira de farmácia monitorada durante a madrugada">
@@ -58,33 +73,32 @@ export default function GeladeiraAoVivo() {
         <div>
           <p className="leitura__parametro">Estoque parado</p>
           <p className="leitura__ativo">Geladeira de insumos 01</p>
-          <p className="apoio">Farmácia fechada · gatilho em {FAIXA[0]} e {FAIXA[1]} °C</p>
+          <p className="apoio">Farmácia fechada · especificação {ESPEC[0]} a {ESPEC[1]} °C</p>
         </div>
-        <span className={`chip chip--${semEnergia ? 'atencao' : 'normal'}`}>{semEnergia ? 'Atenção' : 'Normal'}</span>
+        <span className={`chip chip--${chip.classe}`}>{chip.texto}</span>
       </div>
       <div className="leitura__valores">
         <p className="leitura__valor"><span className="dado">{fmt(SERIE[i])}</span><span className="leitura__unidade">°C</span></p>
         <dl className="leitura__meta">
+          <div><dt className="rotulo">Alerta</dt><dd><span className="dado">{ALERTA[0]} a {ALERTA[1]}</span> °C</dd></div>
           <div><dt className="rotulo">Energia</dt><dd>{semEnergia ? 'Desligada' : 'Ligada'}</dd></div>
           <div><dt className="rotulo">Leitura</dt><dd><span className="dado">{hora(i)}</span></dd></div>
         </dl>
       </div>
-      <svg className="leitura__grafico grafico-gatilho" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true">
-        <rect x="0" y={y(FAIXA[1])} width={W} height={y(FAIXA[0]) - y(FAIXA[1])} fill="var(--grafico-faixa)" />
-        <line x1="0" x2={W} y1={y(FAIXA[1])} y2={y(FAIXA[1])} stroke="var(--estado-atencao)" strokeWidth="1.5" strokeDasharray="5 4" vectorEffect="non-scaling-stroke" />
-        <line x1="0" x2={W} y1={y(FAIXA[0])} y2={y(FAIXA[0])} stroke="var(--tinta-suave)" strokeWidth="1" strokeDasharray="5 4" vectorEffect="non-scaling-stroke" />
-        {/* Faixa do período sem energia */}
-        {avisado && <rect x={x(QUEDA)} y="0" width={x(Math.min(i, VOLTA)) - x(QUEDA)} height={H} fill="var(--estado-atencao-fundo)" opacity=".8" />}
-        <path d={linha} fill="none" stroke="var(--grafico-serie-1)" strokeWidth="2" vectorEffect="non-scaling-stroke" />
-        {avisado && <line x1={x(QUEDA)} x2={x(QUEDA)} y1="0" y2={H} stroke="var(--estado-atencao)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" className={semEnergia ? 'grafico-gatilho__pulso' : undefined} />}
-      </svg>
-      <figcaption className={`apoio${semEnergia ? ' leitura__alerta' : ''}`}>
-        {resolvido
-          ? `Energia de volta às ${hora(VOLTA)}. A temperatura não passou do gatilho e tudo ficou registrado`
-          : avisado
-            ? `Queda de energia às ${hora(QUEDA)}: responsável técnico avisado na hora, antes de o produto sair da faixa`
-            : 'Farmácia fechada, geladeira dentro da faixa'}
-        {' · exemplo ilustrativo'}
+      <GraficoLimites
+        id="geladeira"
+        serie={SERIE}
+        i={i}
+        periodo={[QUEDA, VOLTA_ENERGIA]}
+        projetar={i >= I_ACAO && i < VOLTA_ENERGIA}
+        marcas={[
+          { indice: QUEDA, tipo: 'evento', pulsa: i >= QUEDA && i < I_ALERTA },
+          { indice: I_ALERTA, tipo: 'alerta', pulsa: i >= I_ALERTA && i < I_ACAO },
+          { indice: I_ACAO, tipo: 'acao', pulsa: i >= I_ACAO && i < I_NORMAL },
+        ]}
+      />
+      <figcaption className={`apoio${i >= QUEDA && i < I_NORMAL ? ' leitura__alerta' : ''}`}>
+        {legenda}{' · exemplo ilustrativo'}
       </figcaption>
       <button type="button" className="leituras__pausa" onClick={() => setPausado((v) => !v)}>{pausado ? 'Retomar' : 'Pausar'}</button>
     </figure>

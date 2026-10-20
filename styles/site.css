@@ -541,3 +541,12 @@ summary.topo__link::after { content: ''; width: 7px; height: 7px; border-right: 
 .zap__form .botao { width: 100%; justify-content: center; }
 @media print { .zap { display: none; } }
 .zap .zap__form { grid-template-columns: 1fr; } .zap .zap__form > * { grid-column: 1 / -1; }
+.rota__ocorrencia-marca--critico { background: var(--estado-critico); }
+
+/* Estado "Crítico" (fora da especificação) nas animações de temperatura (out/2026) */
+.armazem__ponto--critico { background: var(--estado-critico-fundo); border-color: var(--estado-critico); }
+.armazem__ponto--critico .armazem__estado, .armazem__ponto--critico .armazem__valor { color: var(--estado-critico); }
+.frota__percurso--critico { stroke: var(--estado-critico); }
+.frota__pino--critico .frota__pino-halo, .frota__pino--critico .frota__pino-centro { fill: var(--estado-critico); }
+.frota__item--critico { background: var(--estado-critico-fundo); border-color: var(--estado-critico); }
+.frota__item--critico .frota__temp, .frota__situacao--critico { color: var(--estado-critico); }

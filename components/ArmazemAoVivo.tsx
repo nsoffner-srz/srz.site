@@ -1,24 +1,28 @@
 'use client';
 // Visual vivo da solução Estoque parado: a planta de um armazém com 6 pontos monitorados.
-// De madrugada a porta da doca abre, a câmara ao lado esquenta e cruza o gatilho, o responsável é avisado,
-// a porta fecha e a câmara volta à faixa. Os outros pontos seguem normais (gestão por exceção).
+// De madrugada a porta da doca abre e a câmara ao lado esquenta: passa do limite de alerta, a tendência
+// dispara o limite de ação e ela sai da especificação (excursão registrada). A porta fecha e a câmara volta.
+// Os outros pontos seguem normais (gestão por exceção). Três limites, como na CORE (out/2026).
 // A animação segura nos momentos de alerta e de volta ao normal, para dar tempo de ler. Valores ilustrativos.
 import { useEffect, useState } from 'react';
+import { ALERTA, CHIP, ESPEC, type Nivel } from '@/lib/limites';
 
 const N = 30;
 const PORTA_ABRE = 6;
 const PORTA_FECHA = 17;
 const PAUSA_FINAL = 6;
-const GATILHO = 8;
 
 // Câmara fria 01, ao lado da doca: estável, esquenta com a porta aberta, volta depois que fecha.
 const CAMARA = [
   4.6, 4.7, 4.6, 4.5, 4.6, 4.7, 4.8, 5.3, 5.9, 6.5, 7.1, 7.6, 8.1, 8.5, 8.8, 8.9, 8.7,
   8.2, 7.4, 6.6, 5.9, 5.4, 5.0, 4.8, 4.7, 4.6, 4.7, 4.6, 4.5, 4.6,
 ];
-const CRUZA = CAMARA.findIndex((v) => v > GATILHO);
-const VOLTA = CAMARA.findIndex((v, i) => i > CRUZA && v <= GATILHO);
-const QUADRO_PARADO = CRUZA + 2;
+const I_ALERTA = CAMARA.findIndex((v) => v > ALERTA[1]);
+const I_ACAO = CAMARA.findIndex((v, i) => i > I_ALERTA && v >= 7.5);
+const I_ESPEC = CAMARA.findIndex((v) => v > ESPEC[1]);
+const I_DENTRO = CAMARA.findIndex((v, i) => i > I_ESPEC && v <= ESPEC[1]);
+const I_NORMAL = CAMARA.findIndex((v, i) => i > I_DENTRO && v <= ALERTA[1]);
+const QUADRO_PARADO = I_ESPEC + 1;
 
 type Ponto = { nome: string; faixa: string; base: number; unidade: string; area: string };
 const PONTOS: Ponto[] = [
@@ -31,7 +35,7 @@ const PONTOS: Ponto[] = [
 ];
 
 const espera = (p: number) =>
-  p === CRUZA ? 3500 : p === VOLTA ? 2800 : p === PORTA_ABRE ? 1800 : p > CRUZA && p < VOLTA ? 650 : 420;
+  p === I_ALERTA || p === I_ACAO || p === I_ESPEC ? 3500 : p === I_DENTRO || p === I_NORMAL ? 2800 : p === PORTA_ABRE ? 1800 : p > I_ALERTA && p < I_NORMAL ? 650 : 420;
 const hora = (i: number) => `03:${String(i * 2).padStart(2, '0')}`;
 const fmt = (v: number, casas = 1) => v.toFixed(casas).replace('.', ',').replace('-', '−');
 
@@ -51,15 +55,23 @@ export default function ArmazemAoVivo() {
 
   const i = Math.min(passo, N - 1);
   const portaAberta = i >= PORTA_ABRE && i < PORTA_FECHA;
-  const emAlerta = i >= CRUZA && i < VOLTA;
-  const resolvido = i >= VOLTA;
+  const v = CAMARA[i];
+  const nivel: Nivel = v > ESPEC[1] ? 'especificacao' : i >= I_NORMAL || i < I_ALERTA ? 'normal' : i >= I_ACAO && i < I_ESPEC ? 'acao' : 'alerta';
+  const chip = CHIP[nivel];
+  const excursao = i >= I_DENTRO ? (I_DENTRO - I_ESPEC) * 2 : 0; // min (uma leitura a cada 2 min)
   const oscila = (k: number) => ((i + k) % 3 - 1) * 0.1;
 
-  const legenda = resolvido
-    ? `Porta fechada e câmara de volta à faixa às ${hora(VOLTA)}. Ocorrência registrada`
-    : emAlerta
-      ? `Câmara fria 01 acima de ${GATILHO} °C: responsável avisado às ${hora(CRUZA)}`
-      : portaAberta
+  const legenda = i >= I_NORMAL
+    ? `Porta fechada e câmara de volta à faixa normal às ${hora(I_NORMAL)}. Excursão de ${excursao} min registrada`
+    : i >= I_DENTRO
+      ? `Câmara fria 01 de volta abaixo de ${ESPEC[1]} °C às ${hora(I_DENTRO)}. Fim da excursão registrado`
+      : nivel === 'especificacao'
+        ? `Fora da especificação: câmara fria 01 acima de ${ESPEC[1]} °C às ${hora(I_ESPEC)}. Excursão registrada`
+        : nivel === 'acao'
+          ? `Limite de ação: a tendência da câmara fria 01 passa de ${ESPEC[1]} °C. Responsável chamado a agir`
+          : nivel === 'alerta'
+            ? `Limite de alerta: câmara fria 01 acima de ${ALERTA[1]} °C às ${hora(I_ALERTA)}. Responsável avisado`
+            : portaAberta
         ? `Porta da doca aberta às ${hora(PORTA_ABRE)}. A câmara ao lado começa a esquentar`
         : 'Seis pontos dentro da faixa. Ninguém precisa ficar olhando o painel';
 
@@ -71,28 +83,29 @@ export default function ArmazemAoVivo() {
           <p className="leitura__ativo">Armazém central · 6 pontos</p>
           <p className="apoio">Leitura das <span className="dado">{hora(i)}</span></p>
         </div>
-        <span className={`chip chip--${emAlerta ? 'atencao' : 'normal'}`}>{emAlerta ? 'Atenção' : 'Normal'}</span>
+        <span className={`chip chip--${chip.classe}`}>{chip.texto}</span>
       </div>
       <ul className="armazem__planta">
         {PONTOS.map((p, k) => {
           const camara = k === 0;
           const doca = p.area === 'd';
-          const alerta = camara && emAlerta;
+          const estadoPonto = camara ? chip : CHIP.normal;
+          const alerta = camara && nivel !== 'normal';
           const valor = camara ? CAMARA[i] : p.base + oscila(k) * (p.unidade === '%UR' ? 10 : 1);
           return (
-            <li key={p.nome} className={`armazem__ponto${alerta ? ' armazem__ponto--atencao' : ''}${doca && portaAberta ? ' armazem__ponto--aberta' : ''}`} style={{ gridArea: p.area }}>
+            <li key={p.nome} className={`armazem__ponto${alerta ? ` armazem__ponto--${estadoPonto.classe}` : ''}${doca && portaAberta ? ' armazem__ponto--aberta' : ''}`} style={{ gridArea: p.area }}>
               <span className="armazem__nome">{p.nome}</span>
               {doca ? (
                 <span className="armazem__valor">{portaAberta ? 'Porta aberta' : 'Porta fechada'}</span>
               ) : (
                 <span className="armazem__valor"><span className="dado">{fmt(valor, p.unidade === '%UR' ? 0 : 1)}</span> {p.unidade}</span>
               )}
-              <span className="armazem__estado">{alerta ? 'Atenção' : doca ? '' : 'Normal'}</span>
+              <span className="armazem__estado">{doca ? '' : estadoPonto.texto}</span>
             </li>
           );
         })}
       </ul>
-      <figcaption className={`apoio${emAlerta ? ' leitura__alerta' : ''}`}>{legenda} · exemplo ilustrativo</figcaption>
+      <figcaption className={`apoio${nivel !== 'normal' ? ' leitura__alerta' : ''}`}>{legenda} · exemplo ilustrativo</figcaption>
       <button type="button" className="leituras__pausa" onClick={() => setPausado((v) => !v)}>{pausado ? 'Retomar' : 'Pausar'}</button>
     </figure>
   );
