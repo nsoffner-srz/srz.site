@@ -510,3 +510,5 @@ summary.topo__link::after { content: ''; width: 7px; height: 7px; border-right: 
 .alertas__resultado--ok { background: var(--estado-normal-fundo); color: var(--estado-normal); }
 .alertas .alertas__pausa { position: static; justify-self: end; }
 @media (min-width: 900px) { .alertas__fluxo { grid-template-columns: repeat(3, 1fr); } }
+.hero__grade > *, .leituras, .leituras > * { min-width: 0; } /* nada no card de leituras alarga a grade no celular */
+@media (max-width: 480px) { .leitura__meta { flex-wrap: wrap; gap: var(--space-2) var(--space-4); } }
