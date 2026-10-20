@@ -23,6 +23,7 @@ export default function BotaoWhatsapp() {
   const [aberto, setAberto] = useState(false);
   const primeiro = useRef<HTMLInputElement>(null);
   const botao = useRef<HTMLAnchorElement>(null);
+  const enviando = useRef(false);
 
   useEffect(() => {
     if (!aberto) return;
@@ -36,6 +37,8 @@ export default function BotaoWhatsapp() {
 
   const enviar = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (enviando.current) return;
+    enviando.current = true;
     const dados = new FormData(e.currentTarget);
     const nome = String(dados.get('nome') ?? '').trim();
     const empresa = String(dados.get('empresa') ?? '').trim();
@@ -75,7 +78,7 @@ export default function BotaoWhatsapp() {
         href={SITE.whatsapp}
         aria-label="Falar com a Sensoriz pelo WhatsApp"
         aria-expanded={aberto}
-        onClick={(e) => { e.preventDefault(); setAberto((v) => !v); }}
+        onClick={(e) => { e.preventDefault(); enviando.current = false; setAberto((v) => !v); }}
       >
         <IconeWhatsapp />
       </a>
