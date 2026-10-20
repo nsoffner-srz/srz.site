@@ -30,7 +30,7 @@ export interface Setor {
   custodia?: { titulo: string; texto: string; etapas: { nome: string; guarda: string; caminhao: boolean; hub: 'sim' | 'validar' }[]; nota: string };
   limites?: { titulo: string; texto: string; itens: string[] }; // o que precisa ser testado em cada rota
   ocultarCase?: boolean; // case aguardando aprovação do cliente
-  visual?: 'rota' | 'geladeira' | 'hospital'; // visual vivo ao lado do título (Logística: rota; Farmácias: geladeira na madrugada)
+  visual?: 'rota' | 'geladeira' | 'hospital' | 'pallet'; // visual vivo ao lado do título (Logística: rota; Farmácias: geladeira na madrugada)
   // Capacidade em paletes por tipo de veículo (Logística). Só dados verificados (out/2026).
   valorCarga?: { titulo: string; texto: string; linhas: { veiculo: string; paletes: string; operacao: string }[] }; // visual vivo ao lado do título (Logística: carga percorrendo a rota)
 }
@@ -246,6 +246,7 @@ export const SETORES: Setor[] = [
   },
   {
     id: 'ativos-de-alto-valor',
+    visual: 'pallet',
     // Out/2026: foco em data centers (expansão e construção no Brasil). Brief em CLAUDE.md e no projeto.
     // Não citar incidentes, clientes sem autorização, parceiros de hardware nem preços.
     // Limites do HGR4 ditos na página; voo e terminal dependem de teste por rota (confirmar com o Leonardo).

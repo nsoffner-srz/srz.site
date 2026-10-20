@@ -16,6 +16,7 @@ import RotaAoVivo from '@/components/RotaAoVivo';
 import GeladeiraAoVivo from '@/components/GeladeiraAoVivo';
 import EsquemaCustodia from '@/components/EsquemaCustodia';
 import HospitalAoVivo from '@/components/HospitalAoVivo';
+import PalletAoVivo from '@/components/PalletAoVivo';
 
 export default function PaginaSetor({ s }: { s: Setor }) {
   const trilha = [{ nome: 'Início', caminho: '/' }, { nome: 'Soluções', caminho: '/solucoes' }, { nome: s.nome, caminho: `/solucoes/${s.id}` }];
@@ -32,6 +33,7 @@ export default function PaginaSetor({ s }: { s: Setor }) {
           {s.visual === 'rota' && <RotaAoVivo />}
           {s.visual === 'geladeira' && <GeladeiraAoVivo />}
           {s.visual === 'hospital' && <HospitalAoVivo />}
+          {s.visual === 'pallet' && <PalletAoVivo />}
           <Trilha itens={trilha} />
           <p className="rotulo">{s.nome}</p>
           <h1 className="display-xl">{s.tituloHero}</h1>

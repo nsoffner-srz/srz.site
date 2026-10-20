@@ -477,3 +477,18 @@ summary.topo__link::after { content: ''; width: 7px; height: 7px; border-right: 
 .hospital__evidencia { margin: 0; padding: 6px 10px; border-radius: var(--radius-md); background: var(--estado-normal-fundo); color: var(--estado-normal); font: var(--text-apoio); font-weight: 600; }
 @media (prefers-reduced-motion: reduce) { .hospital__pino { transition: none; } .hospital__historico li { animation: none; } }
 .hospital__evidencia--oculta { visibility: hidden; }
+
+/* Visual vivo de Ativos de Alto Valor (components/PalletAoVivo.tsx): trilha de etapas e histórico do pallet. */
+.pallet__trilha { --progresso: 0; position: relative; list-style: none; margin: var(--space-2) 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); }
+.pallet__trilha::before, .pallet__trilha::after { content: ''; position: absolute; top: 9px; left: 10%; height: 4px; border-radius: var(--radius-pill); }
+.pallet__trilha::before { right: 10%; background: var(--borda); }
+.pallet__trilha::after { width: calc(80% * var(--progresso)); background: var(--grafico-serie-1); transition: width .8s ease-in-out; }
+.pallet__etapa { position: relative; z-index: 1; display: grid; justify-items: center; gap: 6px; text-align: center; }
+.pallet__marca { width: 22px; height: 22px; border-radius: 50%; background: var(--superficie); border: 3px solid var(--borda); transition: background .4s, border-color .4s, box-shadow .4s; }
+.pallet__nome { font: var(--text-apoio); color: var(--tinta-secundaria); }
+.pallet__etapa--feita .pallet__marca { background: var(--grafico-serie-1); border-color: var(--grafico-serie-1); }
+.pallet__etapa--atual .pallet__marca { border-color: var(--grafico-serie-1); box-shadow: 0 0 0 6px color-mix(in srgb, var(--grafico-serie-1) 25%, transparent); }
+.pallet__etapa--atual .pallet__nome { color: var(--tinta); font-weight: 600; }
+.pallet__etapa--atencao .pallet__marca { background: var(--estado-atencao); border-color: var(--estado-atencao); box-shadow: 0 0 0 6px color-mix(in srgb, var(--estado-atencao) 30%, transparent); }
+.pallet__guarda { display: grid; gap: 2px; margin: 0; padding: 8px 10px; border-radius: var(--radius-md); background: var(--superficie-sutil); font: var(--text-apoio); color: var(--tinta); }
+@media (prefers-reduced-motion: reduce) { .pallet__trilha::after { transition: none; } }
