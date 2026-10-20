@@ -36,6 +36,7 @@ export const CASOS_DE_USO: CasoDeUso[] = [
   },
   {
     slug: 'estoque-em-movimento',
+    visual: 'frota',
     nome: 'Estoque em movimento',
     titulo: 'Sua carga acompanhada do embarque à entrega',
     resumo: 'Cargas e ativos em trânsito: no caminhão, no baú da moto, no contêiner ou no transbordo.',

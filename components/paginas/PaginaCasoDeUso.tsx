@@ -7,6 +7,7 @@ import JsonLd from '@/components/JsonLd';
 import type { CasoDeUso } from '@/lib/casos-de-uso';
 import { SETORES_ROTULO } from '@/lib/site';
 import ArmazemAoVivo from '@/components/ArmazemAoVivo';
+import FrotaAoVivo from '@/components/FrotaAoVivo';
 import { faqJsonLd, trilhaJsonLd } from '@/lib/seo';
 
 export default function PaginaCasoDeUso({ c }: { c: CasoDeUso }) {
@@ -17,6 +18,7 @@ export default function PaginaCasoDeUso({ c }: { c: CasoDeUso }) {
       <section className="pagina-topo">
         <div className={`container pagina-topo__grade${c.visual ? ' pagina-topo__grade--visual' : ''}`}>
           {c.visual === 'armazem' && <ArmazemAoVivo />}
+          {c.visual === 'frota' && <FrotaAoVivo />}
           <Trilha itens={trilha} />
           <p className="rotulo">{c.nome}</p>
           <h1 className="display-xl">{c.titulo}</h1>

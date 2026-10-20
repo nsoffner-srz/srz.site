@@ -425,3 +425,21 @@ summary.topo__link::after { content: ''; width: 7px; height: 7px; border-right: 
 .armazem__ponto--aberta { border-style: dashed; border-color: var(--estado-atencao); }
 .armazem__ponto--aberta .armazem__valor { color: var(--estado-atencao); font-weight: 600; }
 @media (max-width: 420px) { .armazem__ponto { min-height: 84px; padding: 8px; } .armazem__nome { font-size: 13px; } }
+
+/* Visual vivo do Estoque em movimento (components/FrotaAoVivo.tsx): frota num quadro. */
+.frota__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.frota__item { display: grid; gap: 6px; padding: 10px 12px; border-radius: var(--radius-md); background: var(--superficie-sutil); border: 1px solid var(--borda-sutil); transition: background .4s, border-color .4s; }
+.frota__linha { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-2); }
+.frota__nome { font: var(--text-corpo-forte); font-size: 15px; color: var(--tinta); }
+.frota__carga { font: var(--text-apoio); color: var(--tinta-secundaria); }
+.frota__temp { font: var(--text-apoio); color: var(--tinta); white-space: nowrap; }
+.frota__temp .dado { font: var(--text-numero-tabela); font-size: 17px; }
+.frota__trilho { position: relative; height: 6px; border-radius: var(--radius-pill); background: var(--borda); }
+.frota__percorrido { position: absolute; inset: 0 auto 0 0; border-radius: inherit; background: var(--grafico-serie-1); transition: width .4s linear; }
+.frota__ponto { position: absolute; top: 50%; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: var(--grafico-serie-1); box-shadow: 0 0 0 3px var(--superficie); transition: left .4s linear; }
+.frota__situacao { font: var(--text-apoio); color: var(--estado-normal); }
+.frota__situacao--aviso { color: var(--estado-atencao); font-weight: 600; }
+.frota__item--atencao { background: var(--estado-atencao-fundo); border-color: var(--estado-atencao); }
+.frota__item--atencao .frota__temp { color: var(--estado-atencao); }
+.frota__item--atencao .frota__percorrido, .frota__item--atencao .frota__ponto { background: var(--estado-atencao); }
+@media (prefers-reduced-motion: reduce) { .frota__percorrido, .frota__ponto { transition: none; } }
