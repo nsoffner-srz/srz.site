@@ -187,3 +187,18 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Decisões de out/2026 (atualizado em 20/10)
+
+- **Prioridade de destaque:** solução > setor > produto. Os dispositivos não ganham destaque; as animações mostram a operação.
+- **Animações no topo** (todas seguram o quadro no alerta para dar tempo de ler): home (gráfico), Logística (rota),
+  Farmácias (geladeira), Saúde (kit cirúrgico na planta), Ativos de Alto Valor (custódia do pallet),
+  Estoque parado (planta do armazém), Estoque em movimento (frota no mapa, padrão da Visão Geral da CORE).
+- **Ativos de Alto Valor:** foco em data centers. Não citar incidentes, parceiros de hardware, NVIDIA, preços,
+  nem escassez de piloto. Hub tem sinal em todas as etapas, menos em voo e navio em navegação: entra em modo
+  avião sozinho, segue registrando e envia o histórico no pouso. Carga parada: padrão de 20 min, configurável.
+- **Cases:** campo `autorizado` em lib/cases.ts. GoldPão, Fungo de Quintal e a fabricante de climatização ficam
+  ocultos até a autorização por escrito (inclusive as versões sem nome). A prefeitura de vacinas fica.
+- **Intervalos:** verifica a partir de 10 s (fichas HGR4/HGD4); registro configurável a partir de 1 min.
+- **Precisão de temperatura:** menor que 1 °C (nunca ±0,5 °C). Sem UWB, sem "30 cm", sem "certificação IATA".
+- **Dúvidas de hardware:** Rodrigo. Pergunta aberta ao Leonardo: estoque de hubs para piloto.
