@@ -8,6 +8,7 @@ setores:
   - farmacias-e-clinicas
 palavrasChave: [Cadeia do Frio, Dupla Verificação, Segurança Cibernética, Monitoramento Ambiental, RDC 430, RDC 653]
 capaAlt: "Corredor de refrigeradores de supermercado com um controlador de temperatura na parede em primeiro plano"
+capaCredito: "Imagem ilustrativa gerada por IA"
 origem: https://www.linkedin.com/pulse/quando-o-sistema-que-controla-é-mesmo-confirma-lição-do-ataque-rc0bf
 rascunho: false
 perguntas:
