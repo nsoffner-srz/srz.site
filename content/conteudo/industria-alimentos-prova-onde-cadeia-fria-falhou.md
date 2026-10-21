@@ -6,6 +6,7 @@ tema: perdas-e-custos
 setores:
   - logistica-e-cadeia-fria
 palavrasChave: [Cadeia do Frio, Indústria de Alimentos, Perdas, Rastreabilidade, Monitoramento de Temperatura]
+capaAlt: "Doca de descarga com caixas de frutas estragadas em primeiro plano e equipe descarregando um caminhão"
 origem: https://www.linkedin.com/pulse/indústria-de-alimentos-paga-conta-da-cadeia-fria-mas-não-consegue-4wuef
 rascunho: false
 perguntas:

@@ -7,6 +7,7 @@ setores:
   - logistica-e-cadeia-fria
   - farmacias-e-clinicas
 palavrasChave: [El Niño, Cadeia do Frio, Medicamentos, RDC 430, Monitoramento de Temperatura, Gestão de Risco]
+capaAlt: "Caminhão refrigerado entre uma estrada sob sol forte e calor de um lado e chuva forte do outro, com painel de temperatura estável"
 origem: https://www.linkedin.com/pulse/el-niño-histórico-chegando-como-preparar-cadeia-fria-de-medicamentos-2negf
 rascunho: false
 perguntas:
