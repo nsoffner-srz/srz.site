@@ -1,5 +1,5 @@
 ---
-titulo: Segunda, 8h: o que o gerente de Qualidade responde quando a Anvisa suspende a operação
+titulo: "Segunda, 8h: o que o gerente de Qualidade responde quando a Anvisa suspende a operação"
 descricao: A Anvisa suspendeu uma distribuidora do DF após inspeção. Veja as cinco perguntas que o gerente de Qualidade enfrenta na segunda-feira seguinte e como respondê-las.
 publicado: 2026-10-23
 autor: Equipe Sensoriz
