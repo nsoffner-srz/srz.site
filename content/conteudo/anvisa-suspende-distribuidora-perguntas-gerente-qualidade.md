@@ -10,7 +10,7 @@ setores:
 palavrasChave: [Anvisa, suspensão de distribuidora, boas práticas de distribuição, RDC 430, gestão da qualidade, cadeia fria farmacêutica]
 capaAlt: "Armazém com a porta aberta e um pallet de caixas com paleteira, ao fundo palmeiras e morros"
 capaCredito: "Imagem ilustrativa gerada por IA"
-rascunho: true
+rascunho: false
 perguntas:
   - pergunta: O que a Anvisa suspendeu na distribuidora do Distrito Federal?
     resposta: Em 6 de outubro de 2026, a Anvisa suspendeu o armazenamento, a venda, a distribuição, a importação e o uso de medicamentos e insumos da empresa, depois de uma inspeção entre 28 de setembro e 2 de outubro que apontou descumprimento das boas práticas de distribuição e armazenamento.
